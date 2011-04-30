@@ -183,12 +183,18 @@ License
 
 See LICENSE file.
 
+Credits
+=======
+
+Thanks to my employer, [LiquidPlanner](http://liquidplanner.com) for allowing me to take this idea from our
+online project management web application and release it into the wild.
+
 Contact
 =======
 
-You can reach me at [jake@codeincomplete.com](mailto:jake@codeincomplete.com), or via
-my website: [Code inComplete](http://codeincomplete.com).
-
+If you have any ideas, feedback, requests or bug reports, you can reach me at
+[jake@codeincomplete.com](mailto:jake@codeincomplete.com), or via
+my website: [Code inComplete](http://codeincomplete.com/posts/2011/4/29/sprite_factory/).
 
 
 
