@@ -1,0 +1,24 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/regular/regular1.png (64x64)
+        test/images/regular/regular2.png (64x64)
+        test/images/regular/regular3.png (64x64)
+        test/images/regular/regular4.png (64x64)
+        test/images/regular/regular5.png (64x64)
+
+        Output files:
+          test/images/regular.custom.png
+          test/images/regular.custom.css
+
+        Output size:
+          320x64
+
+
+*/
+span.custom_regular1 { border: 4px solid green;  display: inline-block; width: 64px; height: 64px; background: url(regular.custom.png) 0px 0px no-repeat; }
+span.custom_regular2 { border: 4px solid blue;   display: inline-block; width: 64px; height: 64px; background: url(regular.custom.png) -64px 0px no-repeat; }
+span.custom_regular3 { border: 4px solid red;    display: inline-block; width: 64px; height: 64px; background: url(regular.custom.png) -128px 0px no-repeat; }
+span.custom_regular4 { border: 4px solid yellow; display: inline-block; width: 64px; height: 64px; background: url(regular.custom.png) -192px 0px no-repeat; }
+span.custom_regular5 { border: 4px solid pink;   display: inline-block; width: 64px; height: 64px; background: url(regular.custom.png) -256px 0px no-repeat; }

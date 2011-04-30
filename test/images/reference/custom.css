@@ -1,0 +1,22 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/custom/running.png (46x25)
+        test/images/custom/stopped.png (46x25)
+
+        Output files:
+          test/images/custom.png
+          test/images/custom.css
+
+        Output size:
+          92x25
+
+
+*/
+div.running img.button { cursor: pointer; width: 46px; height: 25px; background: url(custom.png) 0px 0px no-repeat }
+div.stopped img.button { cursor: pointer; width: 46px; height: 25px; background: url(custom.png) -46px 0px no-repeat }
+div.running span.running { display: inline; }
+div.running span.stopped { display: none;   }
+div.stopped span.running { display: none;   }
+div.stopped span.stopped { display: inline; }

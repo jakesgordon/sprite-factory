@@ -1,0 +1,24 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/regular/regular1.png (64x64)
+        test/images/regular/regular2.png (64x64)
+        test/images/regular/regular3.png (64x64)
+        test/images/regular/regular4.png (64x64)
+        test/images/regular/regular5.png (64x64)
+
+        Output files:
+          test/images/regular.fixed.png
+          test/images/regular.fixed.css
+
+        Output size:
+          500x100
+
+
+*/
+img.fixed_regular1 { width: 100px; height: 100px; background: url(regular.fixed.png) 0px 0px no-repeat; }
+img.fixed_regular2 { width: 100px; height: 100px; background: url(regular.fixed.png) -100px 0px no-repeat; }
+img.fixed_regular3 { width: 100px; height: 100px; background: url(regular.fixed.png) -200px 0px no-repeat; }
+img.fixed_regular4 { width: 100px; height: 100px; background: url(regular.fixed.png) -300px 0px no-repeat; }
+img.fixed_regular5 { width: 100px; height: 100px; background: url(regular.fixed.png) -400px 0px no-repeat; }

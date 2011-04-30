@@ -1,0 +1,24 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/irregular/irregular1.png (60x60)
+        test/images/irregular/irregular2.png (16x16)
+        test/images/irregular/irregular3.png (48x48)
+        test/images/irregular/irregular4.png (34x14)
+        test/images/irregular/irregular5.png (46x25)
+
+        Output files:
+          test/images/irregular.padded.png
+          test/images/irregular.padded.css
+
+        Output size:
+          304x80
+
+
+*/
+img.padded_irregular1 { width: 80px; height: 80px; background: url(irregular.padded.png) 0px 0px no-repeat; }
+img.padded_irregular2 { width: 36px; height: 36px; background: url(irregular.padded.png) -80px -22px no-repeat; }
+img.padded_irregular3 { width: 68px; height: 68px; background: url(irregular.padded.png) -116px -6px no-repeat; }
+img.padded_irregular4 { width: 54px; height: 34px; background: url(irregular.padded.png) -184px -23px no-repeat; }
+img.padded_irregular5 { width: 66px; height: 45px; background: url(irregular.padded.png) -238px -17px no-repeat; }

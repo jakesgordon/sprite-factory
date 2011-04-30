@@ -1,0 +1,4 @@
+div.running span.running { display: inline; }
+div.running span.stopped { display: none;   }
+div.stopped span.running { display: none;   }
+div.stopped span.stopped { display: inline; }

@@ -1,0 +1,38 @@
+/* Creating a sprite from following images:
+ *
+ * test/images/regular/regular1.png (64x64)
+ * test/images/regular/regular2.png (64x64)
+ * test/images/regular/regular3.png (64x64)
+ * test/images/regular/regular4.png (64x64)
+ * test/images/regular/regular5.png (64x64)
+ *
+ * Output files:
+ *   test/images/regular.sassy.png
+ *   test/images/regular.sassy.sass
+ *
+ * Output size:
+ *   320x64 */
+img.sassy_regular1 {
+  width: 64px;
+  height: 64px;
+  background: url(regular.sassy.png) 0px 0px no-repeat; }
+
+img.sassy_regular2 {
+  width: 64px;
+  height: 64px;
+  background: url(regular.sassy.png) -64px 0px no-repeat; }
+
+img.sassy_regular3 {
+  width: 64px;
+  height: 64px;
+  background: url(regular.sassy.png) -128px 0px no-repeat; }
+
+img.sassy_regular4 {
+  width: 64px;
+  height: 64px;
+  background: url(regular.sassy.png) -192px 0px no-repeat; }
+
+img.sassy_regular5 {
+  width: 64px;
+  height: 64px;
+  background: url(regular.sassy.png) -256px 0px no-repeat; }

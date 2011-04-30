@@ -1,0 +1,24 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/irregular/irregular1.png (60x60)
+        test/images/irregular/irregular2.png (16x16)
+        test/images/irregular/irregular3.png (48x48)
+        test/images/irregular/irregular4.png (34x14)
+        test/images/irregular/irregular5.png (46x25)
+
+        Output files:
+          test/images/irregular.fixed.png
+          test/images/irregular.fixed.css
+
+        Output size:
+          500x100
+
+
+*/
+img.fixed_irregular1 { width: 100px; height: 100px; background: url(irregular.fixed.png) 0px 0px no-repeat; }
+img.fixed_irregular2 { width: 100px; height: 100px; background: url(irregular.fixed.png) -100px 0px no-repeat; }
+img.fixed_irregular3 { width: 100px; height: 100px; background: url(irregular.fixed.png) -200px 0px no-repeat; }
+img.fixed_irregular4 { width: 100px; height: 100px; background: url(irregular.fixed.png) -300px 0px no-repeat; }
+img.fixed_irregular5 { width: 100px; height: 100px; background: url(irregular.fixed.png) -400px 0px no-repeat; }

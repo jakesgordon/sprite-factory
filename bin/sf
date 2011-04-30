@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.push File.expand_path("../lib", File.dirname(__FILE__)) # add sprite factory library to load path
+
+require 'sprite_factory'
+require 'optparse'
+
+options   = { :report => true }
+op        = OptionParser.new
+op.banner = "#{SpriteFactory::DESCRIPTION}\nUsage: sprite <dir> [options]"
+
+op.on("-h", "--help") do
+  puts op.to_s
+  exit
+end
+
+op.on("-v", "--version") do
+  puts SpriteFactory::VERSION
+  exit
+end
+
+output_help   = "specify output location, without any extension"
+layout_help   = "specify layout orientation   ( horizontal, vertical )"
+style_help    = "specify output style format  ( css, sass )"
+library_help  = "specify image library to use ( rmagic, chunkypng )"
+selector_help = "specify custom selector to use for each css rule ( default: 'img.' )"
+csspath_help  = "specify custom path to use for css image urls ( default: output file's basename )"
+
+op.on("--output   [PATH]",        output_help)   {|value| options[:output]   = value }
+op.on("--layout   [ORIENTATION]", layout_help)   {|value| options[:layout]   = value }
+op.on("--style    [STYLE]",       style_help)    {|value| options[:style]    = value }
+op.on("--library  [LIBRARY]",     library_help)  {|value| options[:library]  = value }
+op.on("--selector [SELECTOR]",    selector_help) {|value| options[:selector] = value }
+op.on("--csspath  [CSSPATH]",     csspath_help)  {|value| options[:csspath]  = value }
+
+begin
+  op.parse!(ARGV)
+  raise "a single argument must be specified containing images to be sprited" if ARGV.empty?
+  SpriteFactory.run!(ARGV[0], options)
+rescue Exception => ex
+  puts ex.message
+  puts op.to_s
+  exit
+end
+
+

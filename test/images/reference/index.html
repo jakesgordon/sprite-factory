@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>Test page for sprite factory</title>
+    <link href='regular.css'              rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='regular.horizontal.css'   rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='regular.vertical.css'     rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='regular.padded.css'       rel='stylesheet' type='text/css' media='screen'></link> 
+    <link href='regular.fixed.css'        rel='stylesheet' type='text/css' media='screen'></link> 
+    <link href='regular.sassy.css'        rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='irregular.css'            rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='irregular.horizontal.css' rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='irregular.vertical.css'   rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='irregular.padded.css'     rel='stylesheet' type='text/css' media='screen'></link> 
+    <link href='irregular.fixed.css'      rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='irregular.sassy.css'      rel='stylesheet' type='text/css' media='screen'></link> 
+    <link href='custom.css'               rel='stylesheet' type='text/css' media='screen'></link>
+    <link href='formats.css'              rel='stylesheet' type='text/css' media='screen'></link>
+    <style>
+      img { border: 1px solid red; }
+    </style>
+  </head>
+  <body>
+
+    <h1>Regular (defaults)</h1>
+    <img src='s.gif' class='regular1'>
+    <img src='s.gif' class='regular2'>
+    <img src='s.gif' class='regular3'>
+    <img src='s.gif' class='regular4'>
+    <img src='s.gif' class='regular5'>
+
+    <h1>Regular (horizontal)</h1>
+    <img src='s.gif' class='horizontal_regular1'>
+    <img src='s.gif' class='horizontal_regular2'>
+    <img src='s.gif' class='horizontal_regular3'>
+    <img src='s.gif' class='horizontal_regular4'>
+    <img src='s.gif' class='horizontal_regular5'>
+
+    <h1>Regular (vertical)</h1>
+    <img src='s.gif' class='vertical_regular1'><br>
+    <img src='s.gif' class='vertical_regular2'><br>
+    <img src='s.gif' class='vertical_regular3'><br>
+    <img src='s.gif' class='vertical_regular4'><br>
+    <img src='s.gif' class='vertical_regular5'><br>
+
+    <h1>Regular (padded)</h1>
+    <img src='s.gif' class='padded_regular1'>
+    <img src='s.gif' class='padded_regular2'>
+    <img src='s.gif' class='padded_regular3'>
+    <img src='s.gif' class='padded_regular4'>
+    <img src='s.gif' class='padded_regular5'>
+
+    <h1>Regular (fixed)</h1>
+    <img src='s.gif' class='fixed_regular1'>
+    <img src='s.gif' class='fixed_regular2'>
+    <img src='s.gif' class='fixed_regular3'>
+    <img src='s.gif' class='fixed_regular4'>
+    <img src='s.gif' class='fixed_regular5'>
+
+    <h1>Regular (sassy)</h1>
+    <img src='s.gif' class='sassy_regular1'>
+    <img src='s.gif' class='sassy_regular2'>
+    <img src='s.gif' class='sassy_regular3'>
+    <img src='s.gif' class='sassy_regular4'>
+    <img src='s.gif' class='sassy_regular5'>
+
+    <h1>Irregular (defaults)</h1>
+    <img src='s.gif' class='irregular1'>
+    <img src='s.gif' class='irregular2'>
+    <img src='s.gif' class='irregular3'>
+    <img src='s.gif' class='irregular4'>
+    <img src='s.gif' class='irregular5'>
+
+    <h1>Irregular (horizontal)</h1>
+    <img src='s.gif' class='horizontal_irregular1'>
+    <img src='s.gif' class='horizontal_irregular2'>
+    <img src='s.gif' class='horizontal_irregular3'>
+    <img src='s.gif' class='horizontal_irregular4'>
+    <img src='s.gif' class='horizontal_irregular5'>
+
+    <h1>Irregular (vertical)</h1>
+    <img src='s.gif' class='vertical_irregular1'><br>
+    <img src='s.gif' class='vertical_irregular2'><br>
+    <img src='s.gif' class='vertical_irregular3'><br>
+    <img src='s.gif' class='vertical_irregular4'><br>
+    <img src='s.gif' class='vertical_irregular5'><br>
+
+    <h1>Irregular (padded)</h1>
+    <img src='s.gif' class='padded_irregular1'>
+    <img src='s.gif' class='padded_irregular2'>
+    <img src='s.gif' class='padded_irregular3'>
+    <img src='s.gif' class='padded_irregular4'>
+    <img src='s.gif' class='padded_irregular5'>
+
+    <h1>Irregular (fixed)</h1>
+    <img src='s.gif' class='fixed_irregular1'>
+    <img src='s.gif' class='fixed_irregular2'>
+    <img src='s.gif' class='fixed_irregular3'>
+    <img src='s.gif' class='fixed_irregular4'>
+    <img src='s.gif' class='fixed_irregular5'>
+
+    <h1>Irregular (sassy)</h1>
+    <img src='s.gif' class='sassy_irregular1'>
+    <img src='s.gif' class='sassy_irregular2'>
+    <img src='s.gif' class='sassy_irregular3'>
+    <img src='s.gif' class='sassy_irregular4'>
+    <img src='s.gif' class='sassy_irregular5'>
+
+    <h1>Custom</h1>
+    <div class='running' id='timer'>
+      <img src='s.gif' class='button' onclick="SpriteFactory.toggleTimer();">
+      <span class='running'>running</span>
+      <span class='stopped'>stopped</span>
+    </div>
+
+    <h1>Other Formats</h1>
+    <img src='s.gif' class='alice'>
+    <img src='s.gif' class='monkey'>
+    <img src='s.gif' class='spies'>
+    <img src='s.gif' class='thief'>
+
+    <script>
+      SpriteFactory = {
+        toggleTimer: function() {
+          var timer = document.getElementById('timer');
+          if (timer) {
+            timer.setAttribute('class', timer.getAttribute('class') == 'running' ? 'stopped' : 'running');
+          }
+        }
+      }
+    </script>
+
+  </body>
+</html>
