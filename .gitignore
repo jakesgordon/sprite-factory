@@ -1,0 +1,10 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+*.swp
+.sass-cache
+test/images/*.png
+test/images/*.css
+test/images/*.sass
+test/images/*.scss
