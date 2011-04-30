@@ -20,11 +20,18 @@ Installation
     $ gem install sprite-factory
 
 An image library is also required. SpriteFactory comes with built in support for
-[RMagick](http://rmagick.rubyforge.org/) or
-[ChunkyPng](https://github.com/wvanbergen/chunky_png) and is easily extensible to
-use any image library of your choice. 
+[RMagick](http://rmagick.rubyforge.org/) or [ChunkyPng](https://github.com/wvanbergen/chunky_png).
 
-_(see below for instructions to install an image library if you don't already have one.)_
+RMagick is the most common image libary to use, installation instructions for ubuntu:
+
+    $ sudo aptitude install imageMagick libMagickWand-dev
+    $ sudo gem install rmagick
+
+ChunkyPng is lighter weight but only supports .png format:
+
+    $ gem install chunky_png
+
+SpriteFactory can also be easily extended to use the image library of your choice.
 
 Usage
 =====
@@ -113,7 +120,7 @@ building a Ruby on Rails application you might need to generate URL's using the 
 helper method to ensure it gets the appopriate cache-busting query parameter.
 
 By default, the SpriteFactory generates simple url's that contain only the basename of the
-unified sprite image, but you can control the generation of these url's using the :csspath
+unified sprite image, but you can control the generation of these url's using the `:csspath`
 option:
 
 For most CDN's, you can prepend a simple string to the image name:
