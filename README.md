@@ -178,26 +178,6 @@ The sprite factory library can also be extended in a number of other ways.
 
 _(see existing code for examples of each)._
 
-Installing an Image Library
-===========================
-
-SpriteFactory comes with built in support for
-[RMagick](http://rmagick.rubyforge.org/) or
-[ChunkyPng](https://github.com/wvanbergen/chunky_png)
-
-RMagick is the most flexible image libary to use, but requires ImageMagick
-binaries, installation instructions for ubuntu:
-
-    $ sudo aptitude install imageMagick libMagickWand-dev
-    $ sudo gem install rmagick
-
-ChunkyPng is lighter weight and has no binary requirements, but only supports
-.png format. Installation is a simple gem install:
-
-    $ gem install chunky_png
-
-SpriteFactory can also be easily extended to use the image library of your choice.
-
 License
 =======
 
