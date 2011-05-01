@@ -181,7 +181,7 @@ _(see existing code for examples of each)._
 License
 =======
 
-See LICENSE file.
+See [LICENSE](https://github.com/jakesgordon/sprite-factory/blob/master/LICENSE) file.
 
 Credits
 =======
