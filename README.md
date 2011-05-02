@@ -12,6 +12,7 @@ The library provides:
  * many customizable options
  * support for any stylesheet syntax, including [CSS](http://www.w3.org/Style/CSS/) and [Sass](http://sass-lang.com/).
  * support for any image library, including [RMagick](http://rmagick.rubyforge.org/) and [ChunkyPNG](https://github.com/wvanbergen/chunky_png).
+ * support for pngcrush'n the generated image file
 
 
 Installation
@@ -77,6 +78,7 @@ Much of the behavior can be customized by overriding the following options:
  - `:padding`  - add padding to each sprite
  - `:width`    - fix width of each sprite to a specific size
  - `:height`   - fix height of each sprite to a specific size
+ - `:pngcrush` - pngcrush the generated output image (if pngcrush is available)
 
 Options can be passed as command line arguments to the `sf` script:
 
