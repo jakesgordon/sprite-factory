@@ -1,4 +1,5 @@
 require 'pathname'
+require 'fileutils'
 
 module SpriteFactory
   class Runner
@@ -146,6 +147,7 @@ module SpriteFactory
 
     def create_sprite(images, width, height)
       library.create(output_image_file, images, width, height)
+      pngcrush(output_image_file)
     end
 
     #----------------------------------------------------------------------------
@@ -167,6 +169,18 @@ module SpriteFactory
 
     def style_comment(comment)
       Style.comment(style_name, comment)
+    end
+
+    #----------------------------------------------------------------------------
+
+    SUPPORTS_PNGCRUSH = !`which pngcrush`.empty?
+
+    def pngcrush(image)
+      if SUPPORTS_PNGCRUSH && config[:pngcrush]
+        crushed = "#{image}.crushed"
+        `pngcrush -rem alla -reduce -brute #{image} #{crushed}`
+        FileUtils.mv(crushed, image) 
+      end
     end
 
     #----------------------------------------------------------------------------
