@@ -2,7 +2,12 @@ module SpriteFactory
   module Layout
     module Packed
 
+      #------------------------------------------------------------------------
+
       def self.layout(images, options = {})
+
+        raise NotImplementedError, ":packed layout does not support the :padding option" if (options[:padding].to_i > 0) || (options[:hpadding].to_i > 0) || (options[:vpadding].to_i > 0)
+        raise NotImplementedError, ":packed layout does not support fixed :width/:height option" if options[:width] || options[:height]
 
         return { :width => 0, :height => 0 } if images.empty?
 
@@ -31,12 +36,10 @@ module SpriteFactory
       end
 
       def self.placeImage(image, node)
-        # puts "placing image #{image[:width]}x#{image[:height]} at #{node[:x]}x#{node[:y]}"
-        image[:x] = image[:cssx] = node[:x]
-        image[:y] = image[:cssy] = node[:y]
-        image[:cssw] = image[:width]
+        image[:cssx] = image[:x] = node[:x]  # TODO
+        image[:cssy] = image[:y] = node[:y]  #   * support for :padding option
+        image[:cssw] = image[:width]         #   * support for fixed :width/:height option
         image[:cssh] = image[:height]
-        # TODO: add support for :padding and fixed :width/:height
       end
 
       def self.findNode(root, w, h)

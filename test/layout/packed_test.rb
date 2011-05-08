@@ -23,13 +23,17 @@ module SpriteFactory
     #--------------------------------------------------------------------------
 
     def test_padded_packed_layout_of_regular_images
-      # TODO
+      assert_not_implemented ":packed layout does not support the :padding option" do
+        Layout::Packed.layout(get_regular_images, :padding => 10)
+      end
     end
 
     #--------------------------------------------------------------------------
 
     def test_fixed_packed_layout_of_regular_images
-      # TODO
+      assert_not_implemented ":packed layout does not support fixed :width/:height option" do
+        Layout::Packed.layout(get_regular_images, :width => 50, :height => 50)
+      end
     end 
 
     #==========================================================================
@@ -48,18 +52,6 @@ module SpriteFactory
       ]                              #           |555|           |
                                      #           -----------------
       verify_layout(120, 100, expected, images, :layout => :packed)
-    end
-
-    #--------------------------------------------------------------------------
-
-    def test_padded_packed_layout_of_irregular_images
-      # TODO
-    end
-
-    #--------------------------------------------------------------------------
-
-    def test_fixed_packed_layout_of_irregular_images
-      # TODO
     end
 
     #==========================================================================

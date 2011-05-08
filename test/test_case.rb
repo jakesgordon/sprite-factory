@@ -80,6 +80,13 @@ module SpriteFactory
       assert_match(msg, e.message) if msg
     end
 
+    def assert_not_implemented(msg = nil)
+      e = assert_raise NotImplementedError do
+        yield
+      end
+      assert_match(msg, e.message) if msg
+    end
+
     #----------------------------------------------------------------------------
 
     def assert_reference_image(name)
