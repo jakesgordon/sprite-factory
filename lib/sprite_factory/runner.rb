@@ -18,6 +18,7 @@ module SpriteFactory
       @config[:selector] ||= SpriteFactory.selector || 'img.'
       @config[:csspath]  ||= SpriteFactory.csspath
       @config[:report]   ||= SpriteFactory.report
+      @config[:pngcrush] ||= SpriteFactory.pngcrush
     end
   
     #----------------------------------------------------------------------------
