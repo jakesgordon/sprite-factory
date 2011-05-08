@@ -8,8 +8,7 @@ module SpriteFactory
   LIB         = File.dirname(__FILE__)
 
   autoload :Runner,  File.join(LIB, 'sprite_factory/runner')  # controller that glues everything together
-  autoload :Layout,  File.join(LIB, 'sprite_factory/layout')  # layout calculations
-  autoload :Style,   File.join(LIB, 'sprite_factory/style')   # style generators
+  autoload :Style,   File.join(LIB, 'sprite_factory/style')   # style generators all live in a single module (for now)
 
   def self.run!(input, config = {}, &block)
     Runner.new(input, config).run!(&block)
@@ -27,6 +26,28 @@ module SpriteFactory
     attr_accessor :selector
     attr_accessor :csspath
     attr_accessor :pngcrush
+  end
+
+  #----------------------------------------------------------------------------
+
+  module Layout # abstract module for various layout strategies
+
+    autoload :Horizontal, File.join(LIB, 'sprite_factory/layout/horizontal') # concrete module for layout in a single horizontal strip
+    autoload :Vertical,   File.join(LIB, 'sprite_factory/layout/vertical')   # concrete module for layout in a single vertical strip
+    autoload :Packed,     File.join(LIB, 'sprite_factory/layout/packed')     # concrete module for layout in a bin-packed square
+
+    def self.horizontal
+      Horizontal
+    end
+
+    def self.vertical
+      Vertical
+    end
+
+    def self.packed
+      Packed
+    end
+
   end
   
   #----------------------------------------------------------------------------

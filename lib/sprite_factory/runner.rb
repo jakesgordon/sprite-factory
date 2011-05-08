@@ -153,8 +153,12 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
+    def layout_strategy
+      @layout_strategy ||= Layout.send(layout_name)
+    end
+
     def layout_images(images)
-      Layout.send(layout_name, images, :width => width, :height => height, :hpadding => hpadding, :vpadding => vpadding)
+      layout_strategy.layout(images, :width => width, :height => height, :hpadding => hpadding, :vpadding => vpadding)
     end
 
     #----------------------------------------------------------------------------

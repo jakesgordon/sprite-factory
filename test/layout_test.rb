@@ -205,7 +205,7 @@ module SpriteFactory
     #--------------------------------------------------------------------------
 
     def verify_layout(expected_width, expected_height, expected_images, images, options = {})
-      max = Layout.send(options[:layout] || :horizontal, images, options)
+      max = Layout.send(options[:layout] || :horizontal).layout(images, options)
       assert_equal(expected_width, max[:width])
       assert_equal(expected_height, max[:height])
       assert_equal(expected_images.length, images.length)
