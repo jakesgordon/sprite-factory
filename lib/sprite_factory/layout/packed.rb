@@ -7,8 +7,8 @@ module SpriteFactory
         return { :width => 0, :height => 0 } if images.empty?
 
         images.sort! do |a,b|
-          diff = [b[:width], b[:height]].max <=> [a[:width], b[:height]].max
-          diff = [b[:width], b[:height]].min <=> [a[:width], b[:height]].min if diff.zero?
+          diff = [b[:width], b[:height]].max <=> [a[:width], a[:height]].max
+          diff = [b[:width], b[:height]].min <=> [a[:width], a[:height]].min if diff.zero?
           diff = b[:height] <=> a[:height] if diff.zero?
           diff = b[:width]  <=> a[:width]  if diff.zero?
           diff
