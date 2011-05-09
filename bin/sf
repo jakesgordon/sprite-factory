@@ -20,7 +20,7 @@ op.on("-v", "--version") do
 end
 
 output_help   = "specify output location, without any extension"
-layout_help   = "specify layout orientation   ( horizontal, vertical )"
+layout_help   = "specify layout orientation   ( horizontal, vertical, packed )"
 style_help    = "specify output style format  ( css, sass )"
 library_help  = "specify image library to use ( rmagic, chunkypng )"
 selector_help = "specify custom selector to use for each css rule ( default: 'img.' )"
@@ -41,7 +41,6 @@ begin
   SpriteFactory.run!(ARGV[0], options)
 rescue Exception => ex
   puts ex.message
-  puts op.to_s
   exit
 end
 

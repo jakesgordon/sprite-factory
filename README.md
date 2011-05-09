@@ -70,7 +70,7 @@ Customization
 Much of the behavior can be customized by overriding the following options:
 
  - `:output`   - specify output location for generated files
- - `:layout`   - specify layout algorithm (horizontal or vertical)
+ - `:layout`   - specify layout algorithm (horizontal, vertical or packed)
  - `:style`    - specify output style (css or sass)
  - `:library`  - specify image library to use (rmagick or chunkypng)
  - `:selector` - specify custom css selector (see below)
@@ -82,14 +82,27 @@ Much of the behavior can be customized by overriding the following options:
 
 Options can be passed as command line arguments to the `sf` script:
 
-    $ sf images/icons --style sass --layout vertical
+    $ sf images/icons --style sass --layout packed
 
 Options can also be passed as the 2nd argument to the `#run!` method:
 
-    SpriteFactory.run!('images/icons', :style => :sass, :layout => :vertical)
+    SpriteFactory.run!('images/icons', :style => :sass, :layout => :packed)
 
 You can see the results of many of these options by viewing the sample page that
 comes with the gem in `test/images/reference/index.html`.
+
+Layout
+======
+
+The generated image can be laid out in a horizontal or a vertical strip by
+providing a `:layout` option (defaults to horizontal). A **new option in v1.2.0** is
+to use a  **:packed** layout which will attempt to generate an optimized packed
+square-ish layout.
+
+For more details on the bin-packing algorithm used:
+
+ * You can find a [description here](http://codeincomplete.com/posts/2011/5/7/bin_packing/)
+ * You can find a [demo here](http://codeincomplete.com/posts/2011/5/7/bin_packing/example/)
 
 Customizing the CSS Selector
 ============================
