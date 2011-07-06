@@ -26,6 +26,7 @@ module SpriteFactory
     attr_accessor :selector
     attr_accessor :csspath
     attr_accessor :pngcrush
+		attr_accessor :output_css_override
   end
 
   #----------------------------------------------------------------------------
