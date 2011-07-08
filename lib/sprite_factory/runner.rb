@@ -19,6 +19,7 @@ module SpriteFactory
       @config[:csspath]  ||= SpriteFactory.csspath
       @config[:report]   ||= SpriteFactory.report
       @config[:pngcrush] ||= SpriteFactory.pngcrush
+			@config[:output_css_override] ||= SpriteFactory.output_css_override || false
     end
   
     #----------------------------------------------------------------------------
@@ -39,16 +40,26 @@ module SpriteFactory
       images = load_images
       max    = layout_images(images)
       header = summary(images, max)
-
+			
       create_sprite(images, max[:width], max[:height])
+			
+			
+			
+			if output_css_override
+				# Return CSS in string
+				return style_comment(header) + style(selector, css_path, images, &block)
+				
+			else
+	      css_file = File.open(output_style_file, "w+")
+	      css_file.puts style_comment(header)
+	      css_file.puts style(selector, css_path, images, &block)
+	      css_file.puts IO.read(custom_style_file) if File.exists?(custom_style_file)
+	      css_file.close
+	
+			end
+			
+			report(header)
 
-      css_file = File.open(output_style_file, "w+")
-      css_file.puts style_comment(header)
-      css_file.puts style(selector, css_path, images, &block)
-      css_file.puts IO.read(custom_style_file) if File.exists?(custom_style_file)
-      css_file.close
-
-      report(header)
 
     end
 
@@ -59,6 +70,10 @@ module SpriteFactory
     def output
       config[:output] || input
     end
+
+		def output_css_override
+			config[:output_css_override]
+		end
 
     def selector
       config[:selector]

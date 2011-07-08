@@ -85,6 +85,7 @@ Much of the behavior can be customized by overriding the following options:
  - `:width`    - fix width of each sprite to a specific size
  - `:height`   - fix height of each sprite to a specific size
  - `:pngcrush` - pngcrush the generated output image (if pngcrush is available)
+ - `:output_css_override` - CSS file output is disabled, instead CSS is returned as a string (useful if you want to store the CSS in the database)
 
 Options can be passed as command line arguments to the `sf` script:
 
