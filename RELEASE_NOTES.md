@@ -1,8 +1,8 @@
 
-v1.3.0
-------
+v1.3.0 (unreleased)
+-------------------
 
- * (nothing yet)
+ * source image file extensions now treated in case INsensitive manner (e.g. we detect both .PNG, .png and .Png)
 
 May 8th 2011 - v1.2.0
 ---------------------

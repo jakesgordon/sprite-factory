@@ -124,7 +124,7 @@ module SpriteFactory
       return [] if input.nil?
       valid_extensions = library::VALID_EXTENSIONS
       expansions = Array(valid_extensions).map{|ext| File.join(input, "**", "*.#{ext}")}
-      Dir[*expansions].sort
+      SpriteFactory.find_files(*expansions)
     end
 
     #----------------------------------------------------------------------------

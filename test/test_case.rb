@@ -15,8 +15,8 @@ module SpriteFactory
     FORMATS_PATH   = 'test/images/formats'
     EMPTY_PATH     = 'test/images/empty'
 
-    REGULAR   = Dir[File.join(REGULAR_PATH,   '*.png')].sort
-    IRREGULAR = Dir[File.join(IRREGULAR_PATH, '*.png')].sort
+    REGULAR   = SpriteFactory.find_files(File.join(REGULAR_PATH,   '*.png'))
+    IRREGULAR = SpriteFactory.find_files(File.join(IRREGULAR_PATH, '*.png'))
 
     REGULAR_INFO = [
       { :filename => REGULAR[0], :width => 64, :height => 64 },
@@ -65,10 +65,12 @@ module SpriteFactory
     end
 
     def clean_output
-      Dir[File.join(IMAGES_PATH, "*.png"),
-          File.join(IMAGES_PATH, "*.css"),
-          File.join(IMAGES_PATH, "*.sass"),
-          File.join(IMAGES_PATH, "*.scss")].each {|f| File.delete(f)}
+      SpriteFactory.find_files(File.join(IMAGES_PATH, "*.png"),
+                               File.join(IMAGES_PATH, "*.css"),
+                               File.join(IMAGES_PATH, "*.sass"),
+                               File.join(IMAGES_PATH, "*.scss")).each do |f|
+        File.delete(f)
+      end
     end
 
     #----------------------------------------------------------------------------

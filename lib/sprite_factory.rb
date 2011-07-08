@@ -69,5 +69,11 @@ module SpriteFactory
 
   #----------------------------------------------------------------------------
 
+  def self.find_files(*args)
+    Dir.glob(args, File::FNM_CASEFOLD).sort # we always do case IN-sensitive file lookups and sort the result
+  end
+
+  #----------------------------------------------------------------------------
+
 end
 
