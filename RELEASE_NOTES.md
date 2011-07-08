@@ -3,6 +3,7 @@ v1.3.0 (unreleased)
 -------------------
 
  * source image file extensions now treated in case INsensitive manner (e.g. we detect both .PNG, .png and .Png)
+ * added `:nocss => true` option to suppress generation of output css file (caller should use `run!` return value instead - it contains the generated css content as a string)
 
 May 8th 2011 - v1.2.0
 ---------------------

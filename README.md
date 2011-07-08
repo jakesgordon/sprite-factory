@@ -85,6 +85,7 @@ Much of the behavior can be customized by overriding the following options:
  - `:width`    - fix width of each sprite to a specific size
  - `:height`   - fix height of each sprite to a specific size
  - `:pngcrush` - pngcrush the generated output image (if pngcrush is available)
+ - `:nocss`    - suppress generation of output css file (`run!` returns css content as a string instead)
 
 Options can be passed as command line arguments to the `sf` script:
 
@@ -98,7 +99,7 @@ You can see the results of many of these options by viewing the sample page that
 comes with the gem in `test/images/reference/index.html`.
 
 >> NOTE: only the common options are available via the command line script (to keep it simple). Specifically,
-the advanced `width`, `height` and `padding` options are only available via the Ruby interface.
+the advanced `width`, `height`, `padding` and `nocss` options are only available via the Ruby interface.
 
 Layout
 ======

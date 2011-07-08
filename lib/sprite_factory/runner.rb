@@ -40,15 +40,23 @@ module SpriteFactory
       max    = layout_images(images)
       header = summary(images, max)
 
+      report(header)
+
+      css = []
+      css << style_comment(header)                                          # header comment
+      css << style(selector, css_path, images, &block)                      # generated styles
+      css << IO.read(custom_style_file) if File.exists?(custom_style_file)  # custom styles
+      css = css.join("\n")
+
       create_sprite(images, max[:width], max[:height])
 
-      css_file = File.open(output_style_file, "w+")
-      css_file.puts style_comment(header)
-      css_file.puts style(selector, css_path, images, &block)
-      css_file.puts IO.read(custom_style_file) if File.exists?(custom_style_file)
-      css_file.close
+      unless nocss?
+        css_file = File.open(output_style_file, "w+")
+        css_file.puts css
+        css_file.close
+      end
 
-      report(header)
+      css # return generated CSS to caller in string form
 
     end
 
@@ -98,6 +106,10 @@ module SpriteFactory
 
     def output_style_file
       "#{output}.#{style_name}" if output and style_name
+    end
+
+    def nocss?
+      config[:nocss] # set true if you dont want an output css file generated (e.g. you will take the #run! output and store it yourself)
     end
 
     def custom_style_file
