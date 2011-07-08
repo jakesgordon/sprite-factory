@@ -10,6 +10,7 @@ The library provides:
 
  * both a ruby API and a command line script
  * many customizable options
+ * support for multiple layout algorithms - horizontal, vertical or packed
  * support for any stylesheet syntax, including [CSS](http://www.w3.org/Style/CSS/) and [Sass](http://sass-lang.com/).
  * support for any image library, including [RMagick](http://rmagick.rubyforge.org/) and [ChunkyPNG](https://github.com/wvanbergen/chunky_png).
  * support for pngcrush'n the generated image file
