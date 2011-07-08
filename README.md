@@ -58,6 +58,11 @@ The original image name is used for the CSS class to show that image in HTML:
     <img src='s.gif' class='medium'>
     <img src='s.gif' class='low'>
 
+>> NOTE: `s.gif` is the traditional name of a 1x1 pixel transparent .gif used as a
+dummy `src` when the true image comes from a css background attribute. Technically,
+for css sprites, you could just use a `div` with a class instead of an `img`, but
+to keep the markup semantic it is common to use an `img` tag with a dummy `src=s.gif`.
+
 When using a framework such as Rails, you would usually DRY this up with a helper method:
 
     def sprite_tag(name)
