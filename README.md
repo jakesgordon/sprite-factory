@@ -96,6 +96,9 @@ Options can also be passed as the 2nd argument to the `#run!` method:
 You can see the results of many of these options by viewing the sample page that
 comes with the gem in `test/images/reference/index.html`.
 
+>> NOTE: only the common options are available via the command line script (to keep it simple). Specifically,
+the advanced `width`, `height` and `padding` options are only available via the Ruby interface.
+
 Layout
 ======
 
