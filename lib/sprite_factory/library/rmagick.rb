@@ -4,7 +4,7 @@ module SpriteFactory
   module Library
     module RMagick
 
-      VALID_EXTENSIONS = [:png, :jpg, :jpeg, :gif]
+      VALID_EXTENSIONS = [:png, :PNG, :jpg, :JPG, :jpeg, :JPEG, :gif, :GIF]
 
       def self.load(files)
         files.map do |filename|
