@@ -14,6 +14,7 @@ The library provides:
  * support for any stylesheet syntax, including [CSS](http://www.w3.org/Style/CSS/) and [Sass](http://sass-lang.com/).
  * support for any image library, including [RMagick](http://rmagick.rubyforge.org/) and [ChunkyPNG](https://github.com/wvanbergen/chunky_png).
  * support for pngcrush'n the generated image file
+ * compatible with Rails 3.1 asset pipeline
 
 
 Installation
@@ -73,19 +74,20 @@ to keep the markup semantic it is common to use an `img` tag with a dummy `src=s
 Customization
 =============
 
-Much of the behavior can be customized by overriding the following options:
+Much of the behavior can be customized by overriding the following options: 
 
- - `:output`   - specify output location for generated files
- - `:layout`   - specify layout algorithm (horizontal, vertical or packed)
- - `:style`    - specify output style (css, scss or sass)
- - `:library`  - specify image library to use (rmagick or chunkypng)
- - `:selector` - specify custom css selector (see below)
- - `:csspath`  - specify custom path for css image url (see below)
- - `:padding`  - add padding to each sprite
- - `:width`    - fix width of each sprite to a specific size
- - `:height`   - fix height of each sprite to a specific size
- - `:pngcrush` - pngcrush the generated output image (if pngcrush is available)
- - `:nocss`    - suppress generation of output css file (`run!` returns css content as a string instead)
+ - `:layout`       - specify layout algorithm (horizontal, vertical or packed)
+ - `:style`        - specify stylesheet syntax (css, scss or sass)
+ - `:library`      - specify image library to use (rmagick or chunkypng)
+ - `:selector`     - specify custom css selector (see below)
+ - `:csspath`      - specify custom path for css image url (see below)
+ - `:output_image` - specify output location for generated image (default: &lt;input folder&gt;.png)
+ - `:output_style` - specify output location for generated stylesheet (default: &lt;input folder&gt;.&lt;style&gt;)
+ - `:pngcrush`     - pngcrush the generated output image (if pngcrush is available)
+ - `:padding`      - add padding to each sprite
+ - `:width`        - fix width of each sprite to a specific size
+ - `:height`       - fix height of each sprite to a specific size
+ - `:nocss`        - suppress generation of output style file (`run!` returns css content as a string instead)
 
 Options can be passed as command line arguments to the `sf` script:
 

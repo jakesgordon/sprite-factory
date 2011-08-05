@@ -19,21 +19,23 @@ op.on("-v", "--version") do
   exit
 end
 
-output_help   = "specify output location, without any extension"
-layout_help   = "specify layout orientation   ( horizontal, vertical, packed )"
-style_help    = "specify output style format  ( css, sass )"
-library_help  = "specify image library to use ( rmagic, chunkypng )"
-selector_help = "specify custom selector to use for each css rule ( default: 'img.' )"
-csspath_help  = "specify custom path to use for css image urls ( default: output file's basename )"
-pngcrush_help = "use pngcrush to optimize generated image"
+layout_help       = "specify layout orientation   ( horizontal, vertical, packed )"
+style_help        = "specify stylesheet syntax  ( css, scss, sass )"
+library_help      = "specify image library to use ( rmagic, chunkypng )"
+selector_help     = "specify custom selector to use for each css rule ( default: 'img.' )"
+csspath_help      = "specify custom path to use for css image urls ( default: output image basename )"
+output_image_help = "specify output location for generated image ( default: <input folder>.png )"
+output_style_help = "specify output location for generated stylesheet ( default: <input folder>.<style>)"
+pngcrush_help     = "use pngcrush to optimize generated image"
 
-op.on("--output   [PATH]",        output_help)   {|value| options[:output]   = value }
-op.on("--layout   [ORIENTATION]", layout_help)   {|value| options[:layout]   = value }
-op.on("--style    [STYLE]",       style_help)    {|value| options[:style]    = value }
-op.on("--library  [LIBRARY]",     library_help)  {|value| options[:library]  = value }
-op.on("--selector [SELECTOR]",    selector_help) {|value| options[:selector] = value }
-op.on("--csspath  [CSSPATH]",     csspath_help)  {|value| options[:csspath]  = value }
-op.on("--pngcrush",               pngcrush_help) {|value| options[:pngcrush] = value }
+op.on("--layout       [ORIENTATION]", layout_help)       {|value| options[:layout]       = value }
+op.on("--style        [STYLE]",       style_help)        {|value| options[:style]        = value }
+op.on("--library      [LIBRARY]",     library_help)      {|value| options[:library]      = value }
+op.on("--selector     [SELECTOR]",    selector_help)     {|value| options[:selector]     = value }
+op.on("--csspath      [CSSPATH]",     csspath_help)      {|value| options[:csspath]      = value }
+op.on("--output-image [PATH]",        output_image_help) {|value| options[:output_image] = value }
+op.on("--output-style [PATH]",        output_style_help) {|value| options[:output_style] = value }
+op.on("--pngcrush",                   pngcrush_help)     {|value| options[:pngcrush]     = value }
 
 begin
   op.parse!(ARGV)

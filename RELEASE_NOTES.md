@@ -1,4 +1,10 @@
 
+UNRELEASED - v1.4.0
+-------------------
+ * added support for `:style => :scss` to generate .scss file (even though content will be almost exactly same as .css style)
+ * deprecated `:output` option and replaced it with 2 new explicit `:output_image` and `:output_style` options
+ * updated RELEASE NOTES to include setup for use with Rails 3.1 asset pipeline (ERRR, NOT YET)
+
 July 9th 2011 - v1.3.0
 ----------------------
 

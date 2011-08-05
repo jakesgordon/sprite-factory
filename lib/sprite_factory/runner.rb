@@ -30,8 +30,10 @@ module SpriteFactory
       raise RuntimeError, "unknown library #{library_name}"   if !Library.respond_to?(library_name)
 
       raise RuntimeError, "input must be a single directory"  if input.nil?  || input.to_s.empty? || !File.directory?(input)
-      raise RuntimeError, "no output file specified"          if output.nil? || output.to_s.empty?
       raise RuntimeError, "no image files found"              if image_files.empty?
+      raise RuntimeError, "no output file specified"          if output.to_s.empty?
+      raise RuntimeError, "no output image file specified"    if output_image_file.to_s.empty?
+      raise RuntimeError, "no output style file specified"    if output_style_file.to_s.empty?
 
       raise RuntimeError, "set :width for fixed width, or :hpadding for horizontal padding, but not both." if width  && !hpadding.zero?
       raise RuntimeError, "set :height for fixed height, or :vpadding for vertical padding, but not both." if height && !vpadding.zero?
@@ -63,10 +65,6 @@ module SpriteFactory
     #----------------------------------------------------------------------------
   
     private
-
-    def output
-      config[:output] || input
-    end
 
     def selector
       config[:selector]
@@ -100,16 +98,20 @@ module SpriteFactory
       config[:height]
     end
 
+    def output
+      config[:output] || input
+    end
+
     def output_image_file
-      "#{output}.png" if output
+      config[:output_image] || "#{output}.png"
     end
 
     def output_style_file
-      "#{output}.#{style_name}" if output and style_name
+      config[:output_style] || "#{output}.#{style_name}"
     end
 
     def nocss?
-      config[:nocss] # set true if you dont want an output css file generated (e.g. you will take the #run! output and store it yourself)
+      config[:nocss] # set true if you dont want an output style file generated (e.g. you will take the #run! output and store it yourself)
     end
 
     def custom_style_file
@@ -128,7 +130,7 @@ module SpriteFactory
           File.join(custom, base)    # allow custom path with simple prepend
         end
       else
-        base                         # otherwise, just default to basename of the output image
+        base                         # otherwise, just default to basename of the output image file
       end
     end
 

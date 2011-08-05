@@ -39,6 +39,16 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
 
+        r = Runner.new(REGULAR_PATH, :output_image => "foo.png", :output_style => "bar.css.sass.erb")
+        assert_equal(REGULAR_PATH,            r.input)
+        assert_equal(REGULAR_PATH,            r.output)
+        assert_equal("foo.png",               r.output_image_file)
+        assert_equal("bar.css.sass.erb",      r.output_style_file)
+        assert_equal(REGULAR,                 r.image_files)
+        assert_equal(:horizontal,             r.layout_name)
+        assert_equal(:css,                    r.style_name)
+        assert_equal(:rmagick,                r.library_name)
+
         r = Runner.new(REGULAR_PATH, :layout => :vertical, :library => :chunkypng, :style => :sass)
         assert_equal(REGULAR_PATH,            r.input)
         assert_equal(REGULAR_PATH,            r.output)
