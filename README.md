@@ -157,7 +157,17 @@ For most CDN's, you can prepend a simple string to the image name:
 
     # generates:  url(http://s3.amazonaws.com/icons.png)
 
-For more control, you can provide a lambda function and generate your own paths:
+For more control, a simple token replacement can be performed using the $IMAGE token. For example, to embed ERB
+into the generated style file and let Rails generate the paths you can use:
+
+    SpriteFactory.run('images/icons',
+                      :csspath => "<%= image_path('$IMAGE') %>")
+
+    # generates:  url(<%= image_path('icons.png') %>)
+
+>> _this assumes Rails will post-process the css file with ERB (e.g. using sprockets in the Rails 3.1 asset pipeline)_
+
+For full control, you can provide a lambda function and generate your own paths:
 
     SpriteFactory.run('images/icons',
                        :csspath => lambda{|image| image_path(image)})
