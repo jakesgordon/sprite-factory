@@ -19,6 +19,14 @@ module SpriteFactory
 
     #--------------------------------------------------------------------------
 
+    def test_scss
+      expected = "img.foo { width: 30px; height: 40px; background: url(path/to/image.png) -10px -20px no-repeat; }"
+      actual   = Style.scss("img.", "foo", TEST_ATTRIBUTES)
+      assert_equal(expected, actual)
+    end
+
+    #--------------------------------------------------------------------------
+
     def test_sass
       expected = "img.foo\n  width: 30px\n  height: 40px\n  background: url(path/to/image.png) -10px -20px no-repeat\n"
       actual   = Style.sass("img.", "foo", TEST_ATTRIBUTES)

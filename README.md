@@ -77,7 +77,7 @@ Much of the behavior can be customized by overriding the following options:
 
  - `:output`   - specify output location for generated files
  - `:layout`   - specify layout algorithm (horizontal, vertical or packed)
- - `:style`    - specify output style (css or sass)
+ - `:style`    - specify output style (css, scss or sass)
  - `:library`  - specify image library to use (rmagick or chunkypng)
  - `:selector` - specify custom css selector (see below)
  - `:csspath`  - specify custom path for css image url (see below)

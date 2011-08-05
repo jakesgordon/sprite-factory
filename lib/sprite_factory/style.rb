@@ -17,6 +17,20 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
+    def self.scss(selector, name, attributes)
+      css(selector, name, attributes) # scss is a superset of css, but we dont actually need any of the extra bits, so just defer to the css generator instead
+    end
+
+    def self.scss_style(attributes)
+      css_style(attributes)
+    end
+
+    def self.scss_comment(comment)
+      css_comment(attributes)
+    end
+
+    #----------------------------------------------------------------------------
+
     def self.sass(selector, name, attributes)
       "#{selector}#{name}\n" + sass_style(attributes)
     end
