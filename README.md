@@ -1,5 +1,5 @@
-Sprite Factory
-==============
+Sprite Factory (v1.4.1)
+=======================
 
 The sprite factory is a ruby library that can be used to generate
 [CSS sprites](http://www.alistapart.com/articles/sprites). It combines
@@ -246,9 +246,9 @@ Generates
  * sprite images in `app/assets/images`
  * sprite styles in `app/assets/stylesheets` - automatically picked up by the asset pipeline and included in your generated application.css
 
-You can find out more about the upcoming Rails 3.1 asset pipeline here:
+You can find out more here:
 
- * [Rails Guides - Asset Pipeline](http://ryanbigg.com/guides/asset_pipeline.html)
+ * [Sprite Factory 1.4.1 and the Rails Asset Pipeline](http://codeincomplete.com/posts/2011/8/6/sprite_factory_1_4_1/)
 
 Extending the Library
 =====================
