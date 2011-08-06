@@ -209,20 +209,20 @@ Using sprite-factory with the Rails 3.1 asset pipeline
 
 The sprite-factory gem (>= v1.4.0) plays nice with the upcoming Rails 3.1 asset pipeline with a few simple steps:
 
- * add the sprite-factory to your Gemfile, including your chosen image library dependency:
+Add the sprite-factory to your Gemfile, including your chosen image library dependency:
 
     group :assets do
       gem 'sprite-factory', '>= 1.4.0'
       gem 'chunky_png'
     end
 
- * store your images in Rails 3.1 `app/assets/images` sub-folders, e.g
+Store your images in Rails 3.1 `app/assets/images` sub-folders, e.g
 
     app/assets/images/avatars/*.png
     app/assets/images/icons/*.png
     ...
 
- * create a Rake task for regenerating your sprites, e.g. in `lib/tasks/assets.rake`
+Create a Rake task for regenerating your sprites, e.g. in `lib/tasks/assets.rake`
 
     require 'sprite_factory'
 
@@ -237,12 +237,14 @@ The sprite-factory gem (>= v1.4.0) plays nice with the upcoming Rails 3.1 asset 
       end
     end
 
- * run the rake task
+Run the rake task
 
     bundle exec rake assets:resprite
 
- * will generate your sprite images in `app/assets/images`
- * will generate your sprite styles in `app/assets/stylesheets` - automatically picked up by the asset pipeline and included in your generated application.css
+Generates
+
+ * sprite images in `app/assets/images`
+ * sprite styles in `app/assets/stylesheets` - automatically picked up by the asset pipeline and included in your generated application.css
 
 You can find out more about the upcoming Rails 3.1 asset pipeline here:
 
