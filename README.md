@@ -204,10 +204,54 @@ value is a hash of image metadata that includes the following:
 
 (*NOTE*: the image coords can differ form the css sprite coords when padding or fixed width/height options are specified)
 
+Using sprite-factory with the Rails 3.1 asset pipeline
+======================================================
+
+The sprite-factory gem (>= v1.4.0) plays nice with the upcoming Rails 3.1 asset pipeline with a few simple steps:
+
+ * add the sprite-factory to your Gemfile, including your chosen image library dependency:
+
+    group :assets do
+      gem 'sprite-factory', '>= 1.4.0'
+      gem 'chunky_png'
+    end
+
+ * store your images in Rails 3.1 `app/assets/images` sub-folders, e.g
+
+    app/assets/images/avatars/*.png
+    app/assets/images/icons/*.png
+    ...
+
+ * create a Rake task for regenerating your sprites, e.g. in `lib/tasks/assets.rake`
+
+    require 'sprite_factory'
+
+    namespace :assets do
+      desc 'recreate sprite images and css'
+      task :resprite => :environment do 
+        SpriteFactory.library = :chunkypng                   # use chunkypng as underlying image library
+        SpriteFactory.csspath = "<%= asset_path '$IMAGE' %>" # embed ERB into css file to be evaluated by asset pipeline
+        SpriteFactory.run!('app/assets/images/avatars', :output_style => 'app/assets/stylesheets/avatars.css.erb')
+        SpriteFactory.run!('app/assets/images/icons',   :output_style => 'app/assets/stylesheets/icons.css.erb')
+        # ... etc ...
+      end
+    end
+
+ * run the rake task
+
+    bundle exec rake assets:resprite
+
+ * will generate your sprite images in `app/assets/images`
+ * will generate your sprite styles in `app/assets/stylesheets` - automatically picked up by the asset pipeline and included in your generated application.css
+
+You can find out more about the upcoming Rails 3.1 asset pipeline here:
+
+ * [Rails Guides - Asset Pipeline](http://ryanbigg.com/guides/asset_pipeline.html)
+
 Extending the Library
 =====================
 
-The sprite factory library can also be extended in a number of other ways.
+The sprite factory library can be extended in a number of other ways.
 
  * provide a custom layout algorithm in the `SpriteFactory::Layout` module.
  * provide a custom style generator in the `SpriteFactory::Style` module.
