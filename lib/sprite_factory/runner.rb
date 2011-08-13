@@ -192,7 +192,7 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
-    SUPPORTS_PNGCRUSH = !`which pngcrush`.empty?
+    SUPPORTS_PNGCRUSH = !`which pngcrush`.empty? rescue false # rescue on environments without `which` (windows)
 
     def pngcrush(image)
       if SUPPORTS_PNGCRUSH && config[:pngcrush]
