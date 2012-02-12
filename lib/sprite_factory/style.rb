@@ -26,7 +26,7 @@ module SpriteFactory
     end
 
     def self.scss_comment(comment)
-      css_comment(attributes)
+      css_comment(comment)
     end
 
     #----------------------------------------------------------------------------
