@@ -1,4 +1,4 @@
-Sprite Factory (v1.4.1)
+Sprite Factory (v1.4.2)
 =======================
 
 The sprite factory is a ruby library that can be used to generate
@@ -54,11 +54,18 @@ You can also use the SpriteFactory class directly from your own code:
 
     SpriteFactory.run!('images/icons')
 
-The original image name is used for the CSS class to show that image in HTML:
+The original image file name is used for the CSS class to show that image in HTML:
 
-    <img src='s.gif' class='high'>
-    <img src='s.gif' class='medium'>
-    <img src='s.gif' class='low'>
+    <img src='s.gif' class='high'>         # e.g. original image was high.png
+    <img src='s.gif' class='medium'>       # e.g. original image was medium.png
+    <img src='s.gif' class='low'>          # e.g. original image was low.png
+
+If original image files are included in sub-folders, the relative path
+name will be used for the CSS class to show that image in HTML:
+
+    <img src='s.gif' class='other_high'>   # e.g. original image was other/high.png
+    <img src='s.gif' class='other_medium'> # e.g. original image was other/medium.png
+    <img src='s.gif' class='other_low'>    # e.g. original image was other/low.png
 
 When using a framework such as Rails, you would usually DRY this up with a helper method:
 

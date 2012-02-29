@@ -2,6 +2,7 @@
 UNRELEASED - v1.4.2
 -------------------
  * added support for `:nocomments => true` to suppress comments in generated output stylesheet
+ * added support for images in subfolders - fixes [github issue #11](https://github.com/jakesgordon/sprite-factory/issues/11)
 
 August 5th 2011 - v1.4.1
 ------------------------
