@@ -46,6 +46,12 @@ module SpriteFactory
                                      :style    => :sass)
     end
 
+    def test_generate_regular_with_nocomments
+      integration_test(REGULAR_PATH, :output     => output_path('regular.nocomments'),
+                                     :selector   => 'img.nocomments_',
+                                     :nocomments => true)
+    end
+
     #----------------------------------------------------------------------------
 
     def test_generate_irregular_sprite

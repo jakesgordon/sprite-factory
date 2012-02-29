@@ -1,4 +1,8 @@
 
+UNRELEASED - v1.4.2
+-------------------
+ * added support for `:nocomments => true` to suppress comments in generated output stylesheet
+
 August 5th 2011 - v1.4.1
 ------------------------
  * added support for `:style => :scss` to generate .scss file (even though content will be almost exactly same as .css style)

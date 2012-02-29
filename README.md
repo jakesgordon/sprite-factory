@@ -87,7 +87,8 @@ Much of the behavior can be customized by overriding the following options:
  - `:padding`      - add padding to each sprite
  - `:width`        - fix width of each sprite to a specific size
  - `:height`       - fix height of each sprite to a specific size
- - `:nocss`        - suppress generation of output style file (`run!` returns css content as a string instead)
+ - `:nocss`        - suppress generation of output stylesheet (`run!` returns css content as a string instead)
+ - `:nocomments`   - suppress generation of comments in output stylesheet
 
 Options can be passed as command line arguments to the `sf` script:
 

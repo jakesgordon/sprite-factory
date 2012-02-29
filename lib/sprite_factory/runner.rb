@@ -12,13 +12,14 @@ module SpriteFactory
     def initialize(input, config = {})
       @input  = input.to_s[-1] == "/" ? input[0...-1] : input # gracefully ignore trailing slash on input directory name
       @config = config
-      @config[:style]    ||= SpriteFactory.style    || :css
-      @config[:layout]   ||= SpriteFactory.layout   || :horizontal
-      @config[:library]  ||= SpriteFactory.library  || :rmagick
-      @config[:selector] ||= SpriteFactory.selector || 'img.'
-      @config[:csspath]  ||= SpriteFactory.csspath
-      @config[:report]   ||= SpriteFactory.report
-      @config[:pngcrush] ||= SpriteFactory.pngcrush
+      @config[:style]      ||= SpriteFactory.style    || :css
+      @config[:layout]     ||= SpriteFactory.layout   || :horizontal
+      @config[:library]    ||= SpriteFactory.library  || :rmagick
+      @config[:selector]   ||= SpriteFactory.selector || 'img.'
+      @config[:csspath]    ||= SpriteFactory.csspath
+      @config[:report]     ||= SpriteFactory.report
+      @config[:pngcrush]   ||= SpriteFactory.pngcrush
+      @config[:nocomments] ||= SpriteFactory.nocomments
     end
   
     #----------------------------------------------------------------------------
@@ -45,7 +46,7 @@ module SpriteFactory
       report(header)
 
       css = []
-      css << style_comment(header)                                          # header comment
+      css << style_comment(header) unless nocomments?                       # header comment
       css << style(selector, css_path, images, &block)                      # generated styles
       css << IO.read(custom_style_file) if File.exists?(custom_style_file)  # custom styles
       css = css.join("\n")
@@ -112,6 +113,10 @@ module SpriteFactory
 
     def nocss?
       config[:nocss] # set true if you dont want an output style file generated (e.g. you will take the #run! output and store it yourself)
+    end
+
+    def nocomments?
+      config[:nocomments] # set true if you dont want any comments in the output style file
     end
 
     def custom_style_file

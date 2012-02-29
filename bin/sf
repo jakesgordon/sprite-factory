@@ -27,6 +27,7 @@ csspath_help      = "specify custom path to use for css image urls ( default: ou
 output_image_help = "specify output location for generated image ( default: <input folder>.png )"
 output_style_help = "specify output location for generated stylesheet ( default: <input folder>.<style>)"
 pngcrush_help     = "use pngcrush to optimize generated image"
+nocomments_help   = "suppress comments in generated stylesheet"
 
 op.on("--layout       [ORIENTATION]", layout_help)       {|value| options[:layout]       = value }
 op.on("--style        [STYLE]",       style_help)        {|value| options[:style]        = value }
@@ -36,6 +37,7 @@ op.on("--csspath      [CSSPATH]",     csspath_help)      {|value| options[:csspa
 op.on("--output-image [PATH]",        output_image_help) {|value| options[:output_image] = value }
 op.on("--output-style [PATH]",        output_style_help) {|value| options[:output_style] = value }
 op.on("--pngcrush",                   pngcrush_help)     {|value| options[:pngcrush]     = value }
+op.on("--nocomments",                 nocomments_help)   {|value| options[:nocomments]   = true  }
 
 begin
   op.parse!(ARGV)

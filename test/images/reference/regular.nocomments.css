@@ -1,0 +1,5 @@
+img.nocomments_regular1 { width: 64px; height: 64px; background: url(regular.nocomments.png) 0px 0px no-repeat; }
+img.nocomments_regular2 { width: 64px; height: 64px; background: url(regular.nocomments.png) -64px 0px no-repeat; }
+img.nocomments_regular3 { width: 64px; height: 64px; background: url(regular.nocomments.png) -128px 0px no-repeat; }
+img.nocomments_regular4 { width: 64px; height: 64px; background: url(regular.nocomments.png) -192px 0px no-repeat; }
+img.nocomments_regular5 { width: 64px; height: 64px; background: url(regular.nocomments.png) -256px 0px no-repeat; }
