@@ -2,7 +2,7 @@ module SpriteFactory
   
   #----------------------------------------------------------------------------
 
-  VERSION     = "1.4.1"
+  VERSION     = "1.4.2"
   SUMMARY     = "Automatic CSS sprite generator"
   DESCRIPTION = "Combines individual images from a directory into a single sprite image file and creates an appropriate CSS stylesheet"
   LIB         = File.dirname(__FILE__)
