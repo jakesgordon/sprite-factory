@@ -114,6 +114,12 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
+    def test_generate_sprite_using_images_in_subfolders
+      integration_test(SUBFOLDERS_PATH)
+    end
+
+    #----------------------------------------------------------------------------
+
     def test_generate_sprite_with_nocss
       input  = REGULAR_PATH
       output = File.basename(REGULAR_PATH)

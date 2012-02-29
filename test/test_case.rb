@@ -8,12 +8,13 @@ module SpriteFactory
 
     IMAGES_PATH    = 'test/images'
 
-    REFERENCE_PATH = 'test/images/reference'
-    REGULAR_PATH   = 'test/images/regular'
-    IRREGULAR_PATH = 'test/images/irregular'
-    CUSTOM_PATH    = 'test/images/custom'
-    FORMATS_PATH   = 'test/images/formats'
-    EMPTY_PATH     = 'test/images/empty'
+    REFERENCE_PATH  = 'test/images/reference'
+    REGULAR_PATH    = 'test/images/regular'
+    IRREGULAR_PATH  = 'test/images/irregular'
+    CUSTOM_PATH     = 'test/images/custom'
+    FORMATS_PATH    = 'test/images/formats'
+    EMPTY_PATH      = 'test/images/empty'
+    SUBFOLDERS_PATH = 'test/images/subfolders'
 
     REGULAR   = SpriteFactory.find_files(File.join(REGULAR_PATH,   '*.png'))
     IRREGULAR = SpriteFactory.find_files(File.join(IRREGULAR_PATH, '*.png'))

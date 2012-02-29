@@ -153,9 +153,10 @@ module SpriteFactory
     end
 
     def load_images
+      input_path = Pathname.new(input)
       images = library.load(image_files)
       images.each do |i|
-        i[:name] = File.basename(i[:filename])
+        i[:name] = Pathname.new(i[:filename]).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, "_")
         i[:ext]  = File.extname(i[:name])
         i[:name] = i[:name][0...-i[:ext].length] unless i[:ext].empty?
 

@@ -1,0 +1,24 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/subfolders/england/amy.png (64x64)
+        test/images/subfolders/england/bob.png (64x64)
+        test/images/subfolders/france/bob.png (64x64)
+        test/images/subfolders/usa/amy.png (64x64)
+        test/images/subfolders/usa/bob.png (64x64)
+
+        Output files:
+          test/images/subfolders.png
+          test/images/subfolders.css
+
+        Output size:
+          320x64
+
+
+*/
+img.england_amy { width: 64px; height: 64px; background: url(subfolders.png) 0px 0px no-repeat; }
+img.england_bob { width: 64px; height: 64px; background: url(subfolders.png) -64px 0px no-repeat; }
+img.france_bob { width: 64px; height: 64px; background: url(subfolders.png) -128px 0px no-repeat; }
+img.usa_amy { width: 64px; height: 64px; background: url(subfolders.png) -192px 0px no-repeat; }
+img.usa_bob { width: 64px; height: 64px; background: url(subfolders.png) -256px 0px no-repeat; }
