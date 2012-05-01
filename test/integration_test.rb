@@ -33,6 +33,12 @@ module SpriteFactory
                                      :padding  => 10)
     end
 
+    def test_generate_regular_sprite_with_margin
+      integration_test(REGULAR_PATH, :output   => output_path('regular.margin'),
+                                     :selector => 'img.margin_',
+                                     :margin   => 10)
+    end
+
     def test_generate_regular_sprite_with_fixed_size
       integration_test(REGULAR_PATH, :output   => output_path('regular.fixed'),
                                      :selector => 'img.fixed_',
@@ -80,6 +86,12 @@ module SpriteFactory
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.padded'),
                                        :selector => 'img.padded_',
                                        :padding  => 10)
+    end
+
+    def test_generate_irregular_sprite_with_margin
+      integration_test(IRREGULAR_PATH, :output   => output_path('irregular.margin'),
+                                       :selector => 'img.margin_',
+                                       :margin  => 10)
     end
 
     def test_generate_irregular_sprite_with_fixed_size

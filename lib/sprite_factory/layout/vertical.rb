@@ -7,7 +7,9 @@ module SpriteFactory
         height    = options[:height]
         hpadding  = options[:hpadding] || 0
         vpadding  = options[:vpadding] || 0
-        max_width = width || ((2 * hpadding) + images.map{|i| i[:width]}.max)
+        hmargin  = options[:hmargin] || 0
+        vmargin  = options[:vmargin] || 0
+        max_width = width || (2 * (hpadding + hmargin) + images.map{|i| i[:width]}.max)
         y = 0
         images.each do |i|
 
@@ -26,12 +28,12 @@ module SpriteFactory
             i[:cssy] = y
             i[:y]    = y + (height - i[:height]) / 2
           else
-            i[:cssh] = i[:height] + (2 * vpadding)  # image height plus padding
-            i[:cssy] = y                            # anchored at y
-            i[:y]    = i[:cssy] + vpadding          # image drawn offset to account for padding
+            i[:cssh] = i[:height] + (2 * vpadding)   # image height plus padding
+            i[:cssy] = y + vmargin                   # anchored at y
+            i[:y]    = i[:cssy] + vpadding           # image drawn offset to account for padding
           end
 
-          y = y + i[:cssh]
+          y += i[:cssh] + 2 * vmargin
 
         end
         { :width => max_width, :height => y }

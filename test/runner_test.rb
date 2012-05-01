@@ -81,6 +81,22 @@ module SpriteFactory
       end
     end
 
+    def test_default_margin
+      Runner.publicize_methods do
+        r = Runner.new(REGULAR_PATH)
+        assert_equal(0, r.hmargin)
+        assert_equal(0, r.vmargin)
+
+        r = Runner.new(REGULAR_PATH, :margin => 10)
+        assert_equal(10, r.hmargin)
+        assert_equal(10, r.vmargin)
+
+        r = Runner.new(REGULAR_PATH, :hmargin => 10, :vmargin => 20)
+        assert_equal(10, r.hmargin)
+        assert_equal(20, r.vmargin)
+      end
+    end
+
     #----------------------------------------------------------------------------
 
     def test_default_css_path
@@ -148,6 +164,14 @@ module SpriteFactory
 
       assert_runtime_error "set :height for fixed height, or :vpadding for vertical padding, but not both." do
         SpriteFactory.run!(REGULAR_PATH, :height => 50, :padding => 10)
+      end
+
+      assert_runtime_error "set :width for fixed width, or :hmargin for horizontal margin, but not both." do
+        SpriteFactory.run!(REGULAR_PATH, :width => 50, :margin => 10)
+      end
+
+      assert_runtime_error "set :height for fixed height, or :vmargin for vertical margin, but not both." do
+        SpriteFactory.run!(REGULAR_PATH, :height => 50, :margin => 10)
       end
 
       assert_runtime_error "image regular1 does not fit within a fixed width of 10" do

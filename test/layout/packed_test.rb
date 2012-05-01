@@ -23,8 +23,12 @@ module SpriteFactory
     #--------------------------------------------------------------------------
 
     def test_padded_packed_layout_of_regular_images
-      assert_not_implemented ":packed layout does not support the :padding option" do
+      assert_not_implemented ":packed layout does not support the :padding and :margin option" do
         Layout::Packed.layout(get_regular_images, :padding => 10)
+      end
+
+      assert_not_implemented ":packed layout does not support the :padding and :margin option" do
+        Layout::Packed.layout(get_regular_images, :margin => 10)
       end
     end
 

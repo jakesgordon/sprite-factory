@@ -1,0 +1,24 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/regular/regular1.PNG (64x64)
+        test/images/regular/regular2.PNG (64x64)
+        test/images/regular/regular3.PNG (64x64)
+        test/images/regular/regular4.PNG (64x64)
+        test/images/regular/regular5.PNG (64x64)
+
+        Output files:
+          test/images/regular.margin.png
+          test/images/regular.margin.css
+
+        Output size:
+          420x84
+
+
+*/
+img.margin_regular1 { width: 64px; height: 64px; background: url(regular.margin.png) -10px -10px no-repeat; }
+img.margin_regular2 { width: 64px; height: 64px; background: url(regular.margin.png) -94px -10px no-repeat; }
+img.margin_regular3 { width: 64px; height: 64px; background: url(regular.margin.png) -178px -10px no-repeat; }
+img.margin_regular4 { width: 64px; height: 64px; background: url(regular.margin.png) -262px -10px no-repeat; }
+img.margin_regular5 { width: 64px; height: 64px; background: url(regular.margin.png) -346px -10px no-repeat; }
