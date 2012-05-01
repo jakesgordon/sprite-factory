@@ -38,6 +38,8 @@ module SpriteFactory
 
       raise RuntimeError, "set :width for fixed width, or :hpadding for horizontal padding, but not both." if width  && !hpadding.zero?
       raise RuntimeError, "set :height for fixed height, or :vpadding for vertical padding, but not both." if height && !vpadding.zero?
+      raise RuntimeError, "set :width for fixed width, or :hmargin for horizontal margin, but not both." if width  && !hmargin.zero?
+      raise RuntimeError, "set :height for fixed height, or :vmargin for vertical margin, but not both." if height && !hmargin.zero?
 
       images = load_images
       max    = layout_images(images)
@@ -89,6 +91,14 @@ module SpriteFactory
 
     def vpadding
       config[:vpadding] || config[:padding] || 0
+    end
+
+    def hmargin
+      config[:hmargin] || config[:margin] || 0
+    end
+
+    def vmargin
+      config[:vmargin] || config[:margin] || 0
     end
 
     def width
@@ -178,7 +188,7 @@ module SpriteFactory
     end
 
     def layout_images(images)
-      layout_strategy.layout(images, :width => width, :height => height, :hpadding => hpadding, :vpadding => vpadding)
+      layout_strategy.layout(images, :width => width, :height => height, :hpadding => hpadding, :vpadding => vpadding, :hmargin => hmargin, :vmargin => vmargin)
     end
 
     #----------------------------------------------------------------------------

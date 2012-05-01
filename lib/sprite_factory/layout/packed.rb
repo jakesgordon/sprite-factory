@@ -6,7 +6,7 @@ module SpriteFactory
 
       def self.layout(images, options = {})
 
-        raise NotImplementedError, ":packed layout does not support the :padding option" if (options[:padding].to_i > 0) || (options[:hpadding].to_i > 0) || (options[:vpadding].to_i > 0)
+        raise NotImplementedError, ":packed layout does not support the :padding and :margin option" if (options[:padding].to_i > 0) || (options[:hpadding].to_i > 0) || (options[:vpadding].to_i > 0) || (options[:margin].to_i > 0) || (options[:hmargin].to_i > 0) || (options[:vmargin].to_i > 0)
         raise NotImplementedError, ":packed layout does not support fixed :width/:height option" if options[:width] || options[:height]
 
         return { :width => 0, :height => 0 } if images.empty?

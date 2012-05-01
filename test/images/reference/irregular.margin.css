@@ -1,0 +1,24 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/irregular/irregular1.png (60x60)
+        test/images/irregular/irregular2.png (16x16)
+        test/images/irregular/irregular3.png (48x48)
+        test/images/irregular/irregular4.png (34x14)
+        test/images/irregular/irregular5.png (46x25)
+
+        Output files:
+          test/images/irregular.margin.png
+          test/images/irregular.margin.css
+
+        Output size:
+          304x80
+
+
+*/
+img.margin_irregular1 { width: 60px; height: 60px; background: url(irregular.margin.png) -10px -10px no-repeat; }
+img.margin_irregular2 { width: 16px; height: 16px; background: url(irregular.margin.png) -90px -32px no-repeat; }
+img.margin_irregular3 { width: 48px; height: 48px; background: url(irregular.margin.png) -126px -16px no-repeat; }
+img.margin_irregular4 { width: 34px; height: 14px; background: url(irregular.margin.png) -194px -33px no-repeat; }
+img.margin_irregular5 { width: 46px; height: 25px; background: url(irregular.margin.png) -248px -27px no-repeat; }

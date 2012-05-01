@@ -34,6 +34,18 @@ module SpriteFactory
         verify_layout(200, 50, expected, images, :layout => :horizontal, :hpadding => 10, :vpadding => 20)
       end
 
+      def test_margin_horizontal_layout_of_regular_images
+        images = get_regular_images
+        expected = [
+          { :cssx =>  10, :cssy => 20, :cssw => 20, :cssh => 10, :x =>  10, :y => 20 },
+          { :cssx =>  50, :cssy => 20, :cssw => 20, :cssh => 10, :x =>  50, :y => 20 },
+          { :cssx =>  90, :cssy => 20, :cssw => 20, :cssh => 10, :x =>  90, :y => 20 },
+          { :cssx => 130, :cssy => 20, :cssw => 20, :cssh => 10, :x => 130, :y => 20 },
+          { :cssx => 170, :cssy => 20, :cssw => 20, :cssh => 10, :x => 170, :y => 20 }
+        ]
+        verify_layout(200, 50, expected, images, :layout => :horizontal, :hmargin => 10, :vmargin => 20)
+      end
+
       #--------------------------------------------------------------------------
 
       def test_fixed_horizontal_layout_of_regular_images
@@ -76,6 +88,18 @@ module SpriteFactory
           { :cssx => 280, :cssy => 20, :cssw => 120, :cssh => 50, :x => 290, :y => 40 }
         ]
         verify_layout(400, 90, expected, images, :layout => :horizontal, :hpadding => 10, :vpadding => 20)
+      end
+
+      def test_margin_horizontal_layout_of_irregular_images
+        images = get_irregular_images
+        expected = [
+          { :cssx =>  10, :cssy => 20, :cssw =>  20, :cssh => 50, :x =>  10, :y => 20 },
+          { :cssx =>  50, :cssy => 25, :cssw =>  40, :cssh => 40, :x =>  50, :y => 25 },
+          { :cssx => 110, :cssy => 30, :cssw =>  60, :cssh => 30, :x => 110, :y => 30 },
+          { :cssx => 190, :cssy => 35, :cssw =>  80, :cssh => 20, :x => 190, :y => 35 },
+          { :cssx => 290, :cssy => 40, :cssw => 100, :cssh => 10, :x => 290, :y => 40 }
+        ]
+        verify_layout(400, 90, expected, images, :layout => :horizontal, :hmargin => 10, :vmargin => 20)
       end
 
       #--------------------------------------------------------------------------

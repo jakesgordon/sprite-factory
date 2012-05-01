@@ -92,6 +92,7 @@ Much of the behavior can be customized by overriding the following options:
  - `:output_style` - specify output location for generated stylesheet (default: &lt;input folder&gt;.&lt;style&gt;)
  - `:pngcrush`     - pngcrush the generated output image (if pngcrush is available)
  - `:padding`      - add padding to each sprite
+ - `:margin`       - add margin to each sprite
  - `:width`        - fix width of each sprite to a specific size
  - `:height`       - fix height of each sprite to a specific size
  - `:nocss`        - suppress generation of output stylesheet (`run!` returns css content as a string instead)
@@ -109,7 +110,7 @@ You can see the results of many of these options by viewing the sample page that
 comes with the gem in `test/images/reference/index.html`.
 
 >> NOTE: only the common options are available via the command line script (to keep it simple). Specifically,
-the advanced `width`, `height`, `padding` and `nocss` options are only available via the Ruby interface.
+the advanced `width`, `height`, `padding`, `margin` and `nocss` options are only available via the Ruby interface.
 
 Layout
 ======
@@ -210,7 +211,7 @@ value is a hash of image metadata that includes the following:
  * `:width`  - the image width
  * `:height` - the image height
 
-(*NOTE*: the image coords can differ form the css sprite coords when padding or fixed width/height options are specified)
+(*NOTE*: the image coords can differ form the css sprite coords when padding/margin or fixed width/height options are specified)
 
 Using sprite-factory with the Rails 3.1 asset pipeline
 ======================================================
