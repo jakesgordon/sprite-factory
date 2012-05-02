@@ -6,17 +6,18 @@ module SpriteFactory
 
       def self.layout(images, options = {})
 
-        raise NotImplementedError, ":packed layout does not support the :margin option" if (options[:margin].to_i > 0) || (options[:hmargin].to_i > 0) || (options[:vmargin].to_i > 0)
         raise NotImplementedError, ":packed layout does not support fixed :width/:height option" if options[:width] || options[:height]
 
         return { :width => 0, :height => 0 } if images.empty?
 
         hpadding = options[:hpadding] || 0
         vpadding = options[:vpadding] || 0
+        hmargin  = options[:hmargin]  || 0
+        vmargin  = options[:vmargin]  || 0
 
         images.each do |i|
-          i[:width]  = i[:width]  + (2*hpadding)
-          i[:height] = i[:height] + (2*vpadding)
+          i[:width]  = i[:width]  + (2*hpadding) + (2*hmargin)
+          i[:height] = i[:height] + (2*vpadding) + (2*vmargin)
         end
 
         images.sort! do |a,b|
@@ -31,7 +32,7 @@ module SpriteFactory
 
         images.each do |i|
           if (node = findNode(root, i[:width], i[:height]))
-            placeImage(i, node, hpadding, vpadding)
+            placeImage(i, node, hpadding, vpadding, hmargin, vmargin)
             splitNode(node, i[:width], i[:height])
           else
             root = grow(root, i[:width], i[:height])
@@ -43,13 +44,13 @@ module SpriteFactory
 
       end
 
-      def self.placeImage(image, node, hpadding, vpadding)
-        image[:cssx] = node[:x]
-        image[:cssy] = node[:y]
-        image[:cssw] = image[:width]
-        image[:cssh] = image[:height]
-        image[:x]    = node[:x] + hpadding 
-        image[:y]    = node[:y] + vpadding
+      def self.placeImage(image, node, hpadding, vpadding, hmargin, vmargin)
+        image[:cssx] = node[:x] + hmargin
+        image[:cssy] = node[:y] + vmargin
+        image[:cssw] = image[:width]  - (2*hmargin)
+        image[:cssh] = image[:height] - (2*vmargin)
+        image[:x]    = image[:cssx] + hpadding 
+        image[:y]    = image[:cssy] + vpadding
       end
 
       def self.findNode(root, w, h)

@@ -39,10 +39,19 @@ module SpriteFactory
                                           
     #--------------------------------------------------------------------------
 
-    def test_margin_packed_layout_of_regular_images
-      assert_not_implemented ":packed layout does not support the :margin option" do
-        Layout::Packed.layout(get_regular_images, :margin => 10)
-      end
+    def test_margin_packed_layout_of_regular_images                                  # expected:  ---------------
+                                                                                     #            |      |      |
+      images = get_regular_images                                                    #            |  11  |  33  |
+      expected = [                                                                   #            |      |      |
+        { :cssx => 20, :cssy => 10, :cssw => 20, :cssh => 10, :x => 20, :y => 10 },  #            ---------------
+        { :cssx => 20, :cssy => 40, :cssw => 20, :cssh => 10, :x => 20, :y => 40 },  #            |      |      |
+        { :cssx => 80, :cssy => 10, :cssw => 20, :cssh => 10, :x => 80, :y => 10 },  #            |  22  |  44  |
+        { :cssx => 80, :cssy => 40, :cssw => 20, :cssh => 10, :x => 80, :y => 40 },  #            |      |      |
+        { :cssx => 20, :cssy => 70, :cssw => 20, :cssh => 10, :x => 20, :y => 70 }   #            ---------------
+      ]                                                                              #            |      |
+      verify_layout(120, 90, expected, images, :layout => :packed,                   #            |  55  |
+                                               :hmargin => 20,                       #            |      |
+                                               :vmargin => 10)                       #            --------
     end
 
     #--------------------------------------------------------------------------
@@ -87,6 +96,24 @@ module SpriteFactory
       verify_layout(220, 190, expected, images, :layout   => :packed,                     #
                                                 :hpadding => 20,                          #
                                                 :vpadding => 10)                          #
+    end
+
+    #--------------------------------------------------------------------------
+
+    def test_margin_packed_layout_of_irregular_images                                     # expected: (but with more vertical margin than shown here)
+      images = get_irregular_images                                                       #
+                                                                                          #  ------------------------- 
+      expected = [                                                                        #  |  1111111111  |  4444  | 
+        { :cssx =>  20, :cssy =>  10, :cssw => 100, :cssh => 10, :x =>   20, :y =>  10 }, #  ----------------  4444  | 
+        { :cssx =>  20, :cssy =>  40, :cssw =>  80, :cssh => 20, :x =>   20, :y =>  40 }, #  |  22222222  | ---------- 
+        { :cssx =>  20, :cssy =>  80, :cssw =>  60, :cssh => 30, :x =>   20, :y =>  80 }, #  --------------          | 
+        { :cssx => 160, :cssy =>  10, :cssw =>  40, :cssh => 40, :x =>  160, :y =>  10 }, #  |  333333  |            | 
+        { :cssx =>  20, :cssy => 130, :cssw =>  20, :cssh => 50, :x =>   20, :y => 130 }  #  |-----------            | 
+      ]                                                                                   #  |  55  |                | 
+                                                                                          #  ------------------------- 
+      verify_layout(220, 190, expected, images, :layout  => :packed,                      #
+                                                :hmargin => 20,                           #
+                                                :vmargin => 10)                           #
     end
 
     #==========================================================================
