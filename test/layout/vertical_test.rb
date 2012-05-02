@@ -34,6 +34,8 @@ module SpriteFactory
         verify_layout(40, 250, expected, images, :layout => :vertical, :hpadding => 10, :vpadding => 20)
       end
 
+      #--------------------------------------------------------------------------
+
       def test_margin_vertical_layout_of_regular_images
         images = get_regular_images
         expected = [
@@ -44,6 +46,20 @@ module SpriteFactory
           { :cssx => 10, :cssy => 220, :cssw => 20, :cssh => 10, :x => 10, :y => 220 }
         ]
         verify_layout(40, 250, expected, images, :layout => :vertical, :hmargin => 10, :vmargin => 20)
+      end
+
+      #--------------------------------------------------------------------------
+
+      def test_padded_and_margin_vertical_layout_of_regular_images
+        images = get_regular_images
+        expected = [
+          { :cssx => 10, :cssy =>  20, :cssw => 24, :cssh => 18, :x => 12, :y =>  24 },
+          { :cssx => 10, :cssy =>  78, :cssw => 24, :cssh => 18, :x => 12, :y =>  82 },
+          { :cssx => 10, :cssy => 136, :cssw => 24, :cssh => 18, :x => 12, :y => 140 },
+          { :cssx => 10, :cssy => 194, :cssw => 24, :cssh => 18, :x => 12, :y => 198 },
+          { :cssx => 10, :cssy => 252, :cssw => 24, :cssh => 18, :x => 12, :y => 256 }
+        ]
+        verify_layout(44, 290, expected, images, :layout => :vertical, :hmargin => 10, :vmargin => 20, :hpadding => 2, :vpadding => 4)
       end
 
       #--------------------------------------------------------------------------
@@ -90,6 +106,8 @@ module SpriteFactory
         verify_layout(120, 350, expected, images, :layout => :vertical, :hpadding => 10, :vpadding => 20)
       end
 
+      #--------------------------------------------------------------------------
+
       def test_margin_vertical_layout_of_irregular_images
         images = get_irregular_images
         expected = [
@@ -100,6 +118,20 @@ module SpriteFactory
           { :cssx => 10, :cssy => 320, :cssw => 100, :cssh => 10, :x => 10, :y => 320 }
         ]
         verify_layout(120, 350, expected, images, :layout => :vertical, :hmargin => 10, :vmargin => 20)
+      end
+
+      #--------------------------------------------------------------------------
+
+      def test_padded_and_margin_vertical_layout_of_irregular_images
+        images = get_irregular_images
+        expected = [
+          { :cssx => 50, :cssy =>  20, :cssw =>  24, :cssh => 58, :x => 52, :y =>  24 },
+          { :cssx => 40, :cssy => 118, :cssw =>  44, :cssh => 48, :x => 42, :y => 122 },
+          { :cssx => 30, :cssy => 206, :cssw =>  64, :cssh => 38, :x => 32, :y => 210 },
+          { :cssx => 20, :cssy => 284, :cssw =>  84, :cssh => 28, :x => 22, :y => 288 },
+          { :cssx => 10, :cssy => 352, :cssw => 104, :cssh => 18, :x => 12, :y => 356 }
+        ]
+        verify_layout(124, 390, expected, images, :layout => :vertical, :hmargin => 10, :vmargin => 20, :hpadding => 2, :vpadding => 4)
       end
 
       #--------------------------------------------------------------------------
