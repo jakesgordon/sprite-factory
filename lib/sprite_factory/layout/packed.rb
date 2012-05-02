@@ -6,10 +6,18 @@ module SpriteFactory
 
       def self.layout(images, options = {})
 
-        raise NotImplementedError, ":packed layout does not support the :padding and :margin option" if (options[:padding].to_i > 0) || (options[:hpadding].to_i > 0) || (options[:vpadding].to_i > 0) || (options[:margin].to_i > 0) || (options[:hmargin].to_i > 0) || (options[:vmargin].to_i > 0)
+        raise NotImplementedError, ":packed layout does not support the :margin option" if (options[:margin].to_i > 0) || (options[:hmargin].to_i > 0) || (options[:vmargin].to_i > 0)
         raise NotImplementedError, ":packed layout does not support fixed :width/:height option" if options[:width] || options[:height]
 
         return { :width => 0, :height => 0 } if images.empty?
+
+        hpadding = options[:hpadding] || 0
+        vpadding = options[:vpadding] || 0
+
+        images.each do |i|
+          i[:width]  = i[:width]  + (2*hpadding)
+          i[:height] = i[:height] + (2*vpadding)
+        end
 
         images.sort! do |a,b|
           diff = [b[:width], b[:height]].max <=> [a[:width], a[:height]].max
@@ -23,7 +31,7 @@ module SpriteFactory
 
         images.each do |i|
           if (node = findNode(root, i[:width], i[:height]))
-            placeImage(i, node)
+            placeImage(i, node, hpadding, vpadding)
             splitNode(node, i[:width], i[:height])
           else
             root = grow(root, i[:width], i[:height])
@@ -35,11 +43,13 @@ module SpriteFactory
 
       end
 
-      def self.placeImage(image, node)
-        image[:cssx] = image[:x] = node[:x]  # TODO
-        image[:cssy] = image[:y] = node[:y]  #   * support for :padding option
-        image[:cssw] = image[:width]         #   * support for fixed :width/:height option
+      def self.placeImage(image, node, hpadding, vpadding)
+        image[:cssx] = node[:x]
+        image[:cssy] = node[:y]
+        image[:cssw] = image[:width]
         image[:cssh] = image[:height]
+        image[:x]    = node[:x] + hpadding 
+        image[:y]    = node[:y] + vpadding
       end
 
       def self.findNode(root, w, h)

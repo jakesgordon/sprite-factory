@@ -10,24 +10,37 @@ module SpriteFactory
 
     def test_packed_layout_of_regular_images
       images = get_regular_images
-      expected = [                    # expected:  ---------
-        { :x =>  0, :y =>  0 },       #            |111|333|
-        { :x =>  0, :y => 10 },       #            ---------
-        { :x => 20, :y =>  0 },       #            |222|444|
-        { :x => 20, :y => 10 },       #            ---------
-        { :x =>  0, :y => 20 }        #            |555|   |
-      ]                               #            ---------
+      expected = [                                                                  # expected:  -------
+        { :cssx =>  0, :cssy =>  0, :cssw => 20, :cssh => 10, :x =>  0, :y =>  0 }, #            |11|33|
+        { :cssx =>  0, :cssy => 10, :cssw => 20, :cssh => 10, :x =>  0, :y => 10 }, #            -------
+        { :cssx => 20, :cssy =>  0, :cssw => 20, :cssh => 10, :x => 20, :y =>  0 }, #            |22|44|
+        { :cssx => 20, :cssy => 10, :cssw => 20, :cssh => 10, :x => 20, :y => 10 }, #            -------
+        { :cssx =>  0, :cssy => 20, :cssw => 20, :cssh => 10, :x =>  0, :y => 20 }  #            |55|  |
+      ]                                                                             #            -------
       verify_layout(40, 30, expected, images, :layout => :packed)
     end
 
     #--------------------------------------------------------------------------
 
-    def test_padded_packed_layout_of_regular_images
-      assert_not_implemented ":packed layout does not support the :padding and :margin option" do
-        Layout::Packed.layout(get_regular_images, :padding => 10)
-      end
+    def test_padded_packed_layout_of_regular_images                                  # expected:  ---------------
+                                                                                     #            |      |      |
+      images = get_regular_images                                                    #            |  11  |  33  |
+      expected = [                                                                   #            |      |      |
+        { :cssx =>  0, :cssy =>  0, :cssw => 60, :cssh => 30, :x => 20, :y => 10 },  #            ---------------
+        { :cssx =>  0, :cssy => 30, :cssw => 60, :cssh => 30, :x => 20, :y => 40 },  #            |      |      |
+        { :cssx => 60, :cssy =>  0, :cssw => 60, :cssh => 30, :x => 80, :y => 10 },  #            |  22  |  44  |
+        { :cssx => 60, :cssy => 30, :cssw => 60, :cssh => 30, :x => 80, :y => 40 },  #            |      |      |
+        { :cssx =>  0, :cssy => 60, :cssw => 60, :cssh => 30, :x => 20, :y => 70 }   #            ---------------
+      ]                                                                              #            |      |
+      verify_layout(120, 90, expected, images, :layout => :packed,                   #            |  55  |
+                                               :hpadding => 20,                      #            |      |
+                                               :vpadding => 10)                      #            --------
+    end
+                                          
+    #--------------------------------------------------------------------------
 
-      assert_not_implemented ":packed layout does not support the :padding and :margin option" do
+    def test_margin_packed_layout_of_regular_images
+      assert_not_implemented ":packed layout does not support the :margin option" do
         Layout::Packed.layout(get_regular_images, :margin => 10)
       end
     end
@@ -46,16 +59,34 @@ module SpriteFactory
 
     def test_packed_layout_of_irregular_images
       images = get_irregular_images
-                                     # expected: -----------------
-      expected = [                   #           |11111111111|444|
-        { :x =>    0, :y =>  0 },    #           ------------|444|
-        { :x =>    0, :y => 10 },    #           |2222222|   |444|
-        { :x =>    0, :y => 30 },    #           ------------|444|
-        { :x =>  100, :y =>  0 },    #           |3333|      -----
-        { :x =>    0, :y => 60 }     #           -----------------
-      ]                              #           |555|           |
-                                     #           -----------------
+                                                                                        # expected: ---------------
+      expected = [                                                                      #           |1111111111|44|
+        { :cssx =>   0, :cssy =>  0, :cssw => 100, :cssh => 10, :x =>    0, :y =>  0 }, #           -----------|44|
+        { :cssx =>   0, :cssy => 10, :cssw =>  80, :cssh => 20, :x =>    0, :y => 10 }, #           |22222222| |44|
+        { :cssx =>   0, :cssy => 30, :cssw =>  60, :cssh => 30, :x =>    0, :y => 30 }, #           -----------|44|
+        { :cssx => 100, :cssy =>  0, :cssw =>  20, :cssh => 50, :x =>  100, :y =>  0 }, #           |333333|   ----
+        { :cssx =>   0, :cssy => 60, :cssw =>  40, :cssh => 40, :x =>    0, :y => 60 }  #           ---------------
+      ]                                                                                 #           |5555|        |
+                                                                                        #           ---------------
       verify_layout(120, 100, expected, images, :layout => :packed)
+    end
+
+    #--------------------------------------------------------------------------
+
+    def test_padded_packed_layout_of_irregular_images                                     # expected: (but with more vertical padding than shown here)
+      images = get_irregular_images                                                       #
+                                                                                          #  ------------------------- 
+      expected = [                                                                        #  |  1111111111  |  4444  | 
+        { :cssx =>   0, :cssy =>   0, :cssw => 140, :cssh => 30, :x =>   20, :y =>  10 }, #  ----------------  4444  | 
+        { :cssx =>   0, :cssy =>  30, :cssw => 120, :cssh => 40, :x =>   20, :y =>  40 }, #  |  22222222  | ---------- 
+        { :cssx =>   0, :cssy =>  70, :cssw => 100, :cssh => 50, :x =>   20, :y =>  80 }, #  --------------          | 
+        { :cssx => 140, :cssy =>   0, :cssw =>  80, :cssh => 60, :x =>  160, :y =>  10 }, #  |  333333  |            | 
+        { :cssx =>   0, :cssy => 120, :cssw =>  60, :cssh => 70, :x =>   20, :y => 130 }  #  |-----------            | 
+      ]                                                                                   #  |  55  |                | 
+                                                                                          #  ------------------------- 
+      verify_layout(220, 190, expected, images, :layout   => :packed,                     #
+                                                :hpadding => 20,                          #
+                                                :vpadding => 10)                          #
     end
 
     #==========================================================================
