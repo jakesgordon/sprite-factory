@@ -24,7 +24,9 @@ module SpriteFactory
     def test_generate_packed_regular_sprite
       integration_test(REGULAR_PATH, :output   => output_path('regular.packed'),
                                      :selector => 'img.packed_',
-                                     :layout   => :packed)
+                                     :layout   => :packed,
+                                     :padding  => 10,
+                                     :margin   => 10)
     end
 
     def test_generate_regular_sprite_with_padding
@@ -79,7 +81,9 @@ module SpriteFactory
     def test_generate_packed_irregular_sprite
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.packed'),
                                        :selector => 'img.packed_',
-                                       :layout   => :packed)
+                                       :layout   => :packed,
+                                       :padding  => 10,
+                                       :margin   => 10)
     end
 
     def test_generate_irregular_sprite_with_padding

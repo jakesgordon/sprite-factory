@@ -16,26 +16,26 @@ module SpriteFactory
         vmargin  = options[:vmargin]  || 0
 
         images.each do |i|
-          i[:width]  = i[:width]  + (2*hpadding) + (2*hmargin)
-          i[:height] = i[:height] + (2*vpadding) + (2*vmargin)
+          i[:w] = i[:width]  + (2*hpadding) + (2*hmargin)
+          i[:h] = i[:height] + (2*vpadding) + (2*vmargin)
         end
 
         images.sort! do |a,b|
-          diff = [b[:width], b[:height]].max <=> [a[:width], a[:height]].max
-          diff = [b[:width], b[:height]].min <=> [a[:width], a[:height]].min if diff.zero?
-          diff = b[:height] <=> a[:height] if diff.zero?
-          diff = b[:width]  <=> a[:width]  if diff.zero?
+          diff = [b[:w], b[:h]].max <=> [a[:w], a[:h]].max
+          diff = [b[:w], b[:h]].min <=> [a[:w], a[:h]].min if diff.zero?
+          diff = b[:h] <=> a[:h] if diff.zero?
+          diff = b[:w]  <=> a[:w]  if diff.zero?
           diff
         end
 
-        root = { :x => 0, :y => 0, :w => images[0][:width], :h => images[0][:height] }
+        root = { :x => 0, :y => 0, :w => images[0][:w], :h => images[0][:h] }
 
         images.each do |i|
-          if (node = findNode(root, i[:width], i[:height]))
+          if (node = findNode(root, i[:w], i[:h]))
             placeImage(i, node, hpadding, vpadding, hmargin, vmargin)
-            splitNode(node, i[:width], i[:height])
+            splitNode(node, i[:w], i[:h])
           else
-            root = grow(root, i[:width], i[:height])
+            root = grow(root, i[:w], i[:h])
             redo
           end
         end
@@ -47,8 +47,8 @@ module SpriteFactory
       def self.placeImage(image, node, hpadding, vpadding, hmargin, vmargin)
         image[:cssx] = node[:x] + hmargin
         image[:cssy] = node[:y] + vmargin
-        image[:cssw] = image[:width]  - (2*hmargin)
-        image[:cssh] = image[:height] - (2*vmargin)
+        image[:cssw] = image[:width]  + (2*hpadding)
+        image[:cssh] = image[:height] + (2*vpadding)
         image[:x]    = image[:cssx] + hpadding 
         image[:y]    = image[:cssy] + vpadding
       end

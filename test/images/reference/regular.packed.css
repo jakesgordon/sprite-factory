@@ -13,12 +13,12 @@
           test/images/regular.packed.css
 
         Output size:
-          192x128
+          312x208
 
 
 */
-img.packed_regular1 { width: 64px; height: 64px; background: url(regular.packed.png) 0px 0px no-repeat; }
-img.packed_regular2 { width: 64px; height: 64px; background: url(regular.packed.png) -64px 0px no-repeat; }
-img.packed_regular3 { width: 64px; height: 64px; background: url(regular.packed.png) 0px -64px no-repeat; }
-img.packed_regular4 { width: 64px; height: 64px; background: url(regular.packed.png) -64px -64px no-repeat; }
-img.packed_regular5 { width: 64px; height: 64px; background: url(regular.packed.png) -128px 0px no-repeat; }
+img.packed_regular1 { width: 84px; height: 84px; background: url(regular.packed.png) -10px -10px no-repeat; }
+img.packed_regular2 { width: 84px; height: 84px; background: url(regular.packed.png) -114px -10px no-repeat; }
+img.packed_regular3 { width: 84px; height: 84px; background: url(regular.packed.png) -10px -114px no-repeat; }
+img.packed_regular4 { width: 84px; height: 84px; background: url(regular.packed.png) -114px -114px no-repeat; }
+img.packed_regular5 { width: 84px; height: 84px; background: url(regular.packed.png) -218px -10px no-repeat; }
