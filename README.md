@@ -112,6 +112,12 @@ comes with the gem in `test/images/reference/index.html`.
 >> NOTE: only the common options are available via the command line script (to keep it simple). Specifically,
 the advanced `width`, `height`, `padding`, `margin` and `nocss` options are only available via the Ruby interface.
 
+>> NOTE: the `width`, `height` and `padding` options are not particularly useful - you would be better off just
+making your source images have the correct dimensions by editing them appropriately in photoshop (or your editor of choice)
+
+>> NOTE: the `margin` option is used primarily to buffer each image in the generated sprite with > 1px margin to
+avoid images bleeding into each other when the browser needs to scale them (e.g. when user increases/decreases font size).
+
 Layout
 ======
 

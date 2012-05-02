@@ -1,6 +1,9 @@
-
-UNRELEASED - v1.4.2
+UNRELEASED - v1.4.3
 -------------------
+ * @halida added a new `margin` option to (optionally) separate images in generated spritesheet to avoid 'bleeding' when browser scales the sprite (e.g. when user increases text size)
+
+February 29th 2012 - v1.4.2
+---------------------------
  * added support for `:nocomments => true` to suppress comments in generated output stylesheet
  * added support for images in subfolders - fixes [github issue #11](https://github.com/jakesgordon/sprite-factory/issues/11)
 

@@ -7,8 +7,8 @@ module SpriteFactory
         height    = options[:height]
         hpadding  = options[:hpadding] || 0
         vpadding  = options[:vpadding] || 0
-        hmargin  = options[:hmargin] || 0
-        vmargin  = options[:vmargin] || 0
+        hmargin   = options[:hmargin]  || 0
+        vmargin   = options[:vmargin]  || 0
         max_width = width || (2 * (hpadding + hmargin) + images.map{|i| i[:width]}.max)
         y = 0
         images.each do |i|
