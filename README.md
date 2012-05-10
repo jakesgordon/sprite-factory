@@ -176,7 +176,7 @@ image filename. For example:
 
 ... when run with:
 
-    SpriteFactory.run!('images/icons', :selector => 'div.example')
+    SpriteFactory.run!('images/icons', :selector => 'div.example ')
 
 ... will generate:
 

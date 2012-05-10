@@ -3,8 +3,8 @@ UNRELEASED - v1.5.0
  * @halida added a new `margin` option to (optionally) separate images in generated spritesheet to avoid 'bleeding' when browser scales the sprite (e.g. when user increases text size)
  * added `padding` support for `packed` layout
  * added `margin` support for `packed` layout
- * added support for using source image filename as automatic css selector (issue #12)
- * added support for `:hover` (and other pseudo-class) selectors (issue #14)
+ * added support for using source image filename as automatic css selector [issue #12](https://github.com/jakesgordon/sprite-factory/issues/12)
+ * added support for `:hover` (and other pseudo-class) selectors [issue #14](https://github.com/jakesgordon/sprite-factory/issues/14)
 
 February 29th 2012 - v1.4.2
 ---------------------------
