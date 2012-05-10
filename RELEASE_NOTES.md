@@ -1,5 +1,5 @@
-UNRELEASED - v1.5.0
--------------------
+May 10th 2012 - v1.5.0
+----------------------
  * @halida added a new `margin` option to (optionally) separate images in generated spritesheet to avoid 'bleeding' when browser scales the sprite (e.g. when user increases text size)
  * added `padding` support for `packed` layout
  * added `margin` support for `packed` layout
