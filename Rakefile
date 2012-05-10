@@ -46,6 +46,8 @@ task :reference do
   regenerate.call('test/images/irregular', :output => 'test/images/irregular.fixed',      :selector => 'img.fixed_',      :width => 100, :height => 100)
   regenerate.call('test/images/irregular', :output => 'test/images/irregular.sassy',      :selector => 'img.sassy_',      :style => :sass)
 
+  regenerate.call('test/images/hover', :output => 'test/images/hover', :selector => 'div.hover ', :style => :css)
+
   regenerate.call('test/images/custom', :output => 'test/images/custom') do |images|
     rules = []
     rules << "div.running img.button { cursor: pointer; #{images[:running][:style]} }"

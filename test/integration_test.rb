@@ -136,6 +136,12 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
+    def test_generate_sprites_with_hover_pseudo_class
+      integration_test(HOVER_PATH, :selector => 'div.hover ')
+    end
+
+    #----------------------------------------------------------------------------
+
     def test_generate_sprite_with_nocss
       input  = REGULAR_PATH
       output = File.basename(REGULAR_PATH)

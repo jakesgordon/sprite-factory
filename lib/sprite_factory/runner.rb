@@ -166,14 +166,20 @@ module SpriteFactory
       input_path = Pathname.new(input)
       images = library.load(image_files)
       images.each do |i|
-        i[:name] = Pathname.new(i[:filename]).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, "_")
-        i[:ext]  = File.extname(i[:name])
-        i[:name] = i[:name][0...-i[:ext].length] unless i[:ext].empty?
-
+        i[:name], i[:ext] = map_image_filename(i[:filename], input_path)
         raise RuntimeError, "image #{i[:name]} does not fit within a fixed width of #{width}" if width && (width < i[:width])
         raise RuntimeError, "image #{i[:name]} does not fit within a fixed height of #{height}" if height && (height < i[:height])
       end
       images
+    end
+
+    def map_image_filename(filename, input_path)
+      name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, "_")
+      name = name.gsub('--', ':')
+      name = name.gsub('__', ' ')
+      ext  = File.extname(name)
+      name = name[0...-ext.length] unless ext.empty?
+      [name, ext]
     end
 
     def create_sprite(images, width, height)

@@ -1,4 +1,4 @@
-Sprite Factory (v1.4.3)
+Sprite Factory (v1.5.0)
 =======================
 
 The sprite factory is a ruby library that can be used to generate
@@ -13,6 +13,7 @@ The library provides:
  * support for multiple layout algorithms - horizontal, vertical or [packed](http://codeincomplete.com/posts/2011/5/7/bin_packing/)
  * support for any stylesheet syntax, including [CSS](http://www.w3.org/Style/CSS/) and [Sass](http://sass-lang.com/).
  * support for any image library, including [RMagick](http://rmagick.rubyforge.org/) and [ChunkyPNG](https://github.com/wvanbergen/chunky_png).
+ * support for any css selector style, including :hover pseudo-class selectors
  * support for pngcrush'n the generated image file
  * compatible with Rails 3.1 asset pipeline
 
@@ -136,7 +137,17 @@ Customizing the CSS Selector
 
 By default, the CSS generated is fairly simple. It assumes you will be using `<img>`
 elements for your sprites, and that the basename of each individual file is suitable for
-use as a CSS classname. For example:
+use as a CSS classname. For example, the following files:
+
+    images/icons/high.png
+    images/icons/medium.png
+    images/icons/low.png
+
+... when run with:
+
+    SpriteFactory.run!('images/icons')
+
+... will generate the following css:
 
     img.high   { width: 16px; height: 16px; background: url(images/icons.png)   0px 0px no-repeat; }
     img.medium { width: 16px; height: 16px; background: url(images/icons.png) -16px 0px no-repeat; }
@@ -147,11 +158,46 @@ example:
 
     SpriteFactory.run!('images/icons', :selector => 'span.icon_')
 
-will generate:
+... will generate:
 
     span.icon_high   { width: 16px; height: 16px; background: url(images/icons.png)   0px 0px no-repeat; }
     span.icon_medium { width: 16px; height: 16px; background: url(images/icons.png) -16px 0px no-repeat; }
     span.icon_low    { width: 16px; height: 16px; background: url(images/icons.png) -32px 0px no-repeat; }
+
+Customizing the CSS Selector Per Image
+======================================
+
+If you want to specify a custom selector for each individual image, then name the image files
+accordingly - the library will map '\_\_' (double underscore) to a single space ' ' in any source
+image filename. For example:
+
+    images/icons/div.foo__span.icon_alert.png
+    images/icons/div.bar__span.icon_alert.png
+
+... when run with:
+
+    SpriteFactory.run!('images/icons', :selector => 'div.example')
+
+... will generate:
+
+    div.example div.foo span.icon_alert { ... first file   ... }
+    div.example div.bar span.icon_alert { ... second file  ... }
+    
+
+If you want to specify a psuedo class such as `:hover` for some of your images, the library will also
+map '--' (double dash) to a colon ':' in any source image filename. For example:
+
+    images/icons/alert.png
+    images/icons/alert--hover.png
+
+... when run with:
+
+    SpriteFactory.run!('images/icons', :selector => 'span.icon_')
+
+... will generate:
+
+    span.icon_alert       { ... first file  ... }
+    span.icon_alert:hover { ... second file ... }
 
 Customizing the CSS Image Path
 ==============================
