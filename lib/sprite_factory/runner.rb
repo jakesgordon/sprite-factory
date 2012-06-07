@@ -61,7 +61,11 @@ module SpriteFactory
         css_file.close
       end
 
-      css # return generated CSS to caller in string form
+      if config[:return] == :images
+        images # if caller explicitly asked for detailed images hash instead of generated CSS
+      else
+        css    # otherwise, default is to return the generated CSS to caller in string form
+      end
 
     end
 
