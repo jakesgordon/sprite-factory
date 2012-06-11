@@ -1,5 +1,5 @@
-(unreleased) - v1.5.1
----------------------
+June 11th 2012 - v1.5.1
+-----------------------
  * added a new `:return => :images` option for callers that want access to the detailed `images` hash instead of the generated css content
 
 May 10th 2012 - v1.5.0
