@@ -2,10 +2,10 @@
 
         Creating a sprite from following images:
         
-        test/images/hover/div.bar__img.icon--hover.png (18x18)
         test/images/hover/div.bar__img.icon.png (18x18)
-        test/images/hover/div.foo__img.icon--hover.png (18x18)
+        test/images/hover/div.bar__img.icon--hover.png (18x18)
         test/images/hover/div.foo__img.icon.png (18x18)
+        test/images/hover/div.foo__img.icon--hover.png (18x18)
 
         Output files:
           test/images/hover.png
@@ -16,7 +16,7 @@
 
 
 */
-div.hover div.bar img.icon:hover { width: 18px; height: 18px; background: url(hover.png) 0px 0px no-repeat; }
-div.hover div.bar img.icon { width: 18px; height: 18px; background: url(hover.png) -18px 0px no-repeat; }
-div.hover div.foo img.icon:hover { width: 18px; height: 18px; background: url(hover.png) -36px 0px no-repeat; }
-div.hover div.foo img.icon { width: 18px; height: 18px; background: url(hover.png) -54px 0px no-repeat; }
+div.hover div.bar img.icon { width: 18px; height: 18px; background: url(hover.png) 0px 0px no-repeat; }
+div.hover div.bar img.icon:hover { width: 18px; height: 18px; background: url(hover.png) -18px 0px no-repeat; }
+div.hover div.foo img.icon { width: 18px; height: 18px; background: url(hover.png) -36px 0px no-repeat; }
+div.hover div.foo img.icon:hover { width: 18px; height: 18px; background: url(hover.png) -54px 0px no-repeat; }
