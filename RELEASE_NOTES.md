@@ -1,5 +1,6 @@
 v1.5.2 - Unreleased
 -------------------
+ * ordered css rules by pseudoclass importance [issue #20](https://github.com/jakesgordon/sprite-factory/pull/20)
  * added support for .ico files when using rmagick [issue #18](https://github.com/jakesgordon/sprite-factory/pull/18)
 
 June 11th 2012 - v1.5.1

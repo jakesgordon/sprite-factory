@@ -208,11 +208,13 @@ module SpriteFactory
           "div.bar img.icon",
           "div.bar img.icon:link",
           "div.bar img.icon:visited",
+          "div.bar img.icon:focus",
           "div.bar img.icon:hover",
           "div.bar img.icon:active",
           "div.foo img.icon",
           "div.foo img.icon:link",
           "div.foo img.icon:visited",
+          "div.foo img.icon:focus",
           "div.foo img.icon:hover",
           "div.foo img.icon:active",
         ]

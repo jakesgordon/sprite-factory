@@ -5,11 +5,13 @@
         test/images/hover/div.bar__img.icon.png (18x18)
         test/images/hover/div.bar__img.icon--link.png (18x18)
         test/images/hover/div.bar__img.icon--visited.png (18x18)
+        test/images/hover/div.bar__img.icon--focus.png (18x18)
         test/images/hover/div.bar__img.icon--hover.png (18x18)
         test/images/hover/div.bar__img.icon--active.png (18x18)
         test/images/hover/div.foo__img.icon.png (18x18)
         test/images/hover/div.foo__img.icon--link.png (18x18)
         test/images/hover/div.foo__img.icon--visited.png (18x18)
+        test/images/hover/div.foo__img.icon--focus.png (18x18)
         test/images/hover/div.foo__img.icon--hover.png (18x18)
         test/images/hover/div.foo__img.icon--active.png (18x18)
 
@@ -18,17 +20,19 @@
           test/images/hover.css
 
         Output size:
-          180x18
+          216x18
 
 
 */
 div.hover div.bar img.icon { width: 18px; height: 18px; background: url(hover.png) 0px 0px no-repeat; }
 div.hover div.bar img.icon:link { width: 18px; height: 18px; background: url(hover.png) -18px 0px no-repeat; }
 div.hover div.bar img.icon:visited { width: 18px; height: 18px; background: url(hover.png) -36px 0px no-repeat; }
-div.hover div.bar img.icon:hover { width: 18px; height: 18px; background: url(hover.png) -54px 0px no-repeat; }
-div.hover div.bar img.icon:active { width: 18px; height: 18px; background: url(hover.png) -72px 0px no-repeat; }
-div.hover div.foo img.icon { width: 18px; height: 18px; background: url(hover.png) -90px 0px no-repeat; }
-div.hover div.foo img.icon:link { width: 18px; height: 18px; background: url(hover.png) -108px 0px no-repeat; }
-div.hover div.foo img.icon:visited { width: 18px; height: 18px; background: url(hover.png) -126px 0px no-repeat; }
-div.hover div.foo img.icon:hover { width: 18px; height: 18px; background: url(hover.png) -144px 0px no-repeat; }
-div.hover div.foo img.icon:active { width: 18px; height: 18px; background: url(hover.png) -162px 0px no-repeat; }
+div.hover div.bar img.icon:focus { width: 18px; height: 18px; background: url(hover.png) -54px 0px no-repeat; }
+div.hover div.bar img.icon:hover { width: 18px; height: 18px; background: url(hover.png) -72px 0px no-repeat; }
+div.hover div.bar img.icon:active { width: 18px; height: 18px; background: url(hover.png) -90px 0px no-repeat; }
+div.hover div.foo img.icon { width: 18px; height: 18px; background: url(hover.png) -108px 0px no-repeat; }
+div.hover div.foo img.icon:link { width: 18px; height: 18px; background: url(hover.png) -126px 0px no-repeat; }
+div.hover div.foo img.icon:visited { width: 18px; height: 18px; background: url(hover.png) -144px 0px no-repeat; }
+div.hover div.foo img.icon:focus { width: 18px; height: 18px; background: url(hover.png) -162px 0px no-repeat; }
+div.hover div.foo img.icon:hover { width: 18px; height: 18px; background: url(hover.png) -180px 0px no-repeat; }
+div.hover div.foo img.icon:active { width: 18px; height: 18px; background: url(hover.png) -198px 0px no-repeat; }
