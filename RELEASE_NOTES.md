@@ -1,6 +1,6 @@
 v1.5.2 - Unreleased
 -------------------
- * (nothing yet)
+ * added support for .ico files when using rmagick [issue #18](https://github.com/jakesgordon/sprite-factory/pull/18)
 
 June 11th 2012 - v1.5.1
 -----------------------

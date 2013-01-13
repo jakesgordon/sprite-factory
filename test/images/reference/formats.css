@@ -3,8 +3,11 @@
         Creating a sprite from following images:
         
         test/images/formats/alice.gif (50x50)
+        test/images/formats/codeincomplete.ico (16x16)
+        test/images/formats/github.ico (32x32)
         test/images/formats/monkey.gif (50x50)
         test/images/formats/spies.jpg (150x92)
+        test/images/formats/stackoverflow.ico (16x16)
         test/images/formats/thief.png (50x50)
 
         Output files:
@@ -12,11 +15,14 @@
           test/images/formats.css
 
         Output size:
-          300x92
+          364x92
 
 
 */
 img.alice { width: 50px; height: 50px; background: url(formats.png) 0px -21px no-repeat; }
-img.monkey { width: 50px; height: 50px; background: url(formats.png) -50px -21px no-repeat; }
-img.spies { width: 150px; height: 92px; background: url(formats.png) -100px 0px no-repeat; }
-img.thief { width: 50px; height: 50px; background: url(formats.png) -250px -21px no-repeat; }
+img.codeincomplete { width: 16px; height: 16px; background: url(formats.png) -50px -38px no-repeat; }
+img.github { width: 32px; height: 32px; background: url(formats.png) -66px -30px no-repeat; }
+img.monkey { width: 50px; height: 50px; background: url(formats.png) -98px -21px no-repeat; }
+img.spies { width: 150px; height: 92px; background: url(formats.png) -148px 0px no-repeat; }
+img.stackoverflow { width: 16px; height: 16px; background: url(formats.png) -298px -38px no-repeat; }
+img.thief { width: 50px; height: 50px; background: url(formats.png) -314px -21px no-repeat; }
