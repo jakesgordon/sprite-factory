@@ -88,7 +88,7 @@ Much of the behavior can be customized by overriding the following options:
  - `:style`        - specify stylesheet syntax (css, scss or sass)
  - `:library`      - specify image library to use (rmagick or chunkypng)
  - `:selector`     - specify custom css selector (see below)
- - `:cssurl`       - specify custom path for css image url (see below)
+ - `:cssurl`       - specify custom css url (see below)
  - `:output_image` - specify output location for generated image (default: &lt;input folder&gt;.png)
  - `:output_style` - specify output location for generated stylesheet (default: &lt;input folder&gt;.&lt;style&gt;)
  - `:pngcrush`     - pngcrush the generated output image (if pngcrush is available)
@@ -199,18 +199,18 @@ map '--' (double dash) to a colon ':' in any source image filename. For example:
     span.icon_alert       { ... first file  ... }
     span.icon_alert:hover { ... second file ... }
 
-Customizing the CSS Image Path
-==============================
+Customizing the CSS Image Url
+=============================
 
 Within the generated CSS file, it can be tricky to get the correct path to your unified
 sprite image. For example, you might be hosting your images on Amazon S3, or if you are
 building a Ruby on Rails application you might need to generate URL's using the `#image_path`
-helper method to ensure it gets the appopriate cache-busting query parameter.
+helper method to ensure it gets the appropriate cache-busting query parameter.
 
-By default, the SpriteFactory generates simple url's that contain only the basename of the
+By default, the SpriteFactory generates simple url's that contain the basename of the
 unified sprite image, e.g:
 
-    SpriteFactory.run('images/icons')
+    SpriteFactory.run('icons')
 
     # generates: url(icons.png)
 
@@ -218,7 +218,7 @@ unified sprite image, e.g:
 
 For most CDN's, you can prepend a simple string to the image name:
 
-    SpriteFactory.run('images/icons',
+    SpriteFactory.run('icons',
                       :cssurl => "http://s3.amazonaws.com/")
 
     # generates:  url(http://s3.amazonaws.com/icons.png)
@@ -226,16 +226,18 @@ For most CDN's, you can prepend a simple string to the image name:
 For more control, a simple token replacement can be performed using the $IMAGE token. For example, to generate calls
 to custom Sass helper functions, such as those provided by [sass-rails](https://github.com/rails/sass-rails) plugin:
 
-    SpriteFactory.run('images/icons',
+    SpriteFactory.run('icons',
                       :cssurl => "image-url('$IMAGE')")
+
+    # generates:  image-url('icons.png')
 
 
 For full control, you can provide a lambda function and generate your own values:
 
-    SpriteFactory.run('images/icons',
+    SpriteFactory.run('icons',
                        :cssurl => lambda{|image| "url(#{image_path(image)})" })
 
-    # generates:   url(/images/icons.png?v123456)
+    # generates:   url(/path/to/my/images/icons.png?v123456)
 
 Customizing the entire CSS output 
 =================================
