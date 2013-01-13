@@ -186,5 +186,42 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
+    def test_images_are_sorted_in_classname_order
+      Runner.publicize_methods do
+        expected = [
+          "alice",
+          "codeincomplete",
+          "github",
+          "monkey",
+          "spies",
+          "stackoverflow",
+          "thief"
+        ]
+        actual = Runner.new(FORMATS_PATH).load_images.map{|i| i[:name]}
+        assert_equal(expected, actual)
+      end
+    end
+
+    def test_images_are_secondary_sorted_on_psuedoclass
+      Runner.publicize_methods do
+        expected = [
+          "div.bar img.icon",
+          "div.bar img.icon:link",
+          "div.bar img.icon:visited",
+          "div.bar img.icon:hover",
+          "div.bar img.icon:active",
+          "div.foo img.icon",
+          "div.foo img.icon:link",
+          "div.foo img.icon:visited",
+          "div.foo img.icon:hover",
+          "div.foo img.icon:active",
+        ]
+        actual = Runner.new(HOVER_PATH).load_images.map{|i| i[:name]}
+        assert_equal(expected, actual)
+      end
+    end
+
+    #----------------------------------------------------------------------------
+
   end
 end
