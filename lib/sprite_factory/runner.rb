@@ -3,14 +3,10 @@ require 'fileutils'
 
 module SpriteFactory
   class Runner
-    PSEUDO_CLASS_PRIORITIES = Hash.new(99).merge!({
-      nil => 0,
-      '' => 0,
-      ':link' => 1,
-      ':visited' => 2,
-      ':hover' => 3,
-      ':active' => 4
-    })
+
+    #----------------------------------------------------------------------------
+
+    PSEUDO_CLASS_ORDER = [nil, ':link', ':visited', ':focus', ':hover', ':active'] # TODO: allow caller to specify this order ?
 
     #----------------------------------------------------------------------------
 
@@ -174,14 +170,6 @@ module SpriteFactory
       @library ||= Library.send(library_name)
     end
 
-    def image_pseudo_class(image_name)
-      image_name.slice(/:.*?\Z/)
-    end
-
-    def image_name_without_pseudo_class(image_name)
-      image_name.split(':').first
-    end
-
     def load_images
       input_path = Pathname.new(input)
       images = library.load(image_files)
@@ -190,19 +178,7 @@ module SpriteFactory
         raise RuntimeError, "image #{i[:name]} does not fit within a fixed width of #{width}" if width && (width < i[:width])
         raise RuntimeError, "image #{i[:name]} does not fit within a fixed height of #{height}" if height && (height < i[:height])
       end
-
-      images.sort! do |i1, i2|
-        name_cmp = image_name_without_pseudo_class(i1[:name]) <=> image_name_without_pseudo_class(i2[:name])
-        if name_cmp != 0
-          name_cmp
-        else
-          pseudo_class1 = image_pseudo_class(i1[:name])
-          pseudo_class2 = image_pseudo_class(i2[:name])
-          PSEUDO_CLASS_PRIORITIES[pseudo_class1] <=> PSEUDO_CLASS_PRIORITIES[pseudo_class2]
-        end
-      end
-
-      images
+      images.sort_by {|i| [image_name_without_pseudo_class(i), image_pseudo_class_priority(i)] }
     end
 
     def map_image_filename(filename, input_path)
@@ -213,6 +189,20 @@ module SpriteFactory
       name = name[0...-ext.length] unless ext.empty?
       [name, ext]
     end
+
+    def image_name_without_pseudo_class(image)
+      image[:name].split(':').first
+    end
+
+    def image_pseudo_class(image)
+      image[:name].slice(/:.*?\Z/)
+    end
+
+    def image_pseudo_class_priority(image)
+      PSEUDO_CLASS_ORDER.index(image_pseudo_class(image))
+    end
+
+    #----------------------------------------------------------------------------
 
     def create_sprite(images, width, height)
       library.create(output_image_file, images, width, height)
