@@ -1,5 +1,5 @@
-v1.5.2 - Unreleased
--------------------
+January 13th 2013 - v1.5.2
+--------------------------
  * replaced `:csspath` option with `:cssurl` [issue #21](https://github.com/jakesgordon/sprite-factory/issues/21)
  * ordered css rules by pseudoclass importance [issue #20](https://github.com/jakesgordon/sprite-factory/pull/20)
  * added support for .ico files when using rmagick [issue #18](https://github.com/jakesgordon/sprite-factory/pull/18)
