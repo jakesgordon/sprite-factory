@@ -88,7 +88,7 @@ Much of the behavior can be customized by overriding the following options:
  - `:style`        - specify stylesheet syntax (css, scss or sass)
  - `:library`      - specify image library to use (rmagick or chunkypng)
  - `:selector`     - specify custom css selector (see below)
- - `:csspath`      - specify custom path for css image url (see below)
+ - `:cssurl`       - specify custom path for css image url (see below)
  - `:output_image` - specify output location for generated image (default: &lt;input folder&gt;.png)
  - `:output_style` - specify output location for generated stylesheet (default: &lt;input folder&gt;.&lt;style&gt;)
  - `:pngcrush`     - pngcrush the generated output image (if pngcrush is available)
@@ -208,30 +208,32 @@ building a Ruby on Rails application you might need to generate URL's using the 
 helper method to ensure it gets the appopriate cache-busting query parameter.
 
 By default, the SpriteFactory generates simple url's that contain only the basename of the
-unified sprite image, but you can control the generation of these url's using the `:csspath`
-option:
+unified sprite image, e.g:
+
+    SpriteFactory.run('images/icons')
+
+    # generates: url(icons.png)
+
+...but you can control the generation of these url's using the `:cssurl` option:
 
 For most CDN's, you can prepend a simple string to the image name:
 
     SpriteFactory.run('images/icons',
-                      :csspath => "http://s3.amazonaws.com/")
+                      :cssurl => "http://s3.amazonaws.com/")
 
     # generates:  url(http://s3.amazonaws.com/icons.png)
 
-For more control, a simple token replacement can be performed using the $IMAGE token. For example, to embed ERB
-into the generated style file and let Rails generate the paths you can use:
+For more control, a simple token replacement can be performed using the $IMAGE token. For example, to generate calls
+to custom Sass helper functions, such as those provided by [sass-rails](https://github.com/rails/sass-rails) plugin:
 
     SpriteFactory.run('images/icons',
-                      :csspath => "<%= image_path('$IMAGE') %>")
+                      :cssurl => "image-url('$IMAGE')")
 
-    # generates:  url(<%= image_path('icons.png') %>)
 
->> _this assumes Rails will post-process the css file with ERB (e.g. using sprockets in the Rails 3.1 asset pipeline)_
-
-For full control, you can provide a lambda function and generate your own paths:
+For full control, you can provide a lambda function and generate your own values:
 
     SpriteFactory.run('images/icons',
-                       :csspath => lambda{|image| image_path(image)})
+                       :cssurl => lambda{|image| "url(#{image_path(image)})" })
 
     # generates:   url(/images/icons.png?v123456)
 
@@ -265,16 +267,16 @@ value is a hash of image metadata that includes the following:
 
 (*NOTE*: the image coords can differ form the css sprite coords when padding/margin or fixed width/height options are specified)
 
-Using sprite-factory with the Rails 3.1 asset pipeline
-======================================================
+Using sprite-factory with the Rails asset pipeline
+==================================================
 
-The sprite-factory gem (>= v1.4.0) plays nice with the upcoming Rails 3.1 asset pipeline with a few simple steps:
+The sprite-factory gem plays nice with the Rails asset pipeline with a few simple steps:
 
 Add the sprite-factory to your Gemfile, including your chosen image library dependency:
 
     group :assets do
-      gem 'sprite-factory', '>= 1.4.0'
-      gem 'chunky_png'
+      gem 'sprite-factory', '>= 1.5.2'
+      gem 'rmagick'
     end
 
 Store your images in Rails 3.1 `app/assets/images` sub-folders, e.g
@@ -290,8 +292,7 @@ Create a Rake task for regenerating your sprites, e.g. in `lib/tasks/assets.rake
     namespace :assets do
       desc 'recreate sprite images and css'
       task :resprite => :environment do 
-        SpriteFactory.library = :chunkypng                   # use chunkypng as underlying image library
-        SpriteFactory.csspath = "<%= asset_path '$IMAGE' %>" # embed ERB into css file to be evaluated by asset pipeline
+        SpriteFactory.cssurl = "image-url('$IMAGE')"    # use a sass-rails helper method to be evaluated by the rails asset pipeline
         SpriteFactory.run!('app/assets/images/avatars', :output_style => 'app/assets/stylesheets/avatars.css.erb')
         SpriteFactory.run!('app/assets/images/icons',   :output_style => 'app/assets/stylesheets/icons.css.erb')
         # ... etc ...
@@ -309,7 +310,7 @@ Generates
 
 You can find out more here:
 
- * [Sprite Factory 1.4.1 and the Rails Asset Pipeline](http://codeincomplete.com/posts/2011/8/6/sprite_factory_1_4_1/)
+ * [Sprite Factory and the Rails Asset Pipeline](http://codeincomplete.com/posts/2011/8/6/sprite_factory_1_4_1/)
 
 Extending the Library
 =====================
@@ -338,7 +339,7 @@ Contact
 
 If you have any ideas, feedback, requests or bug reports, you can reach me at
 [jake@codeincomplete.com](mailto:jake@codeincomplete.com), or via
-my website: [Code inComplete](http://codeincomplete.com/posts/2011/4/29/sprite_factory/).
+my website: [Code inComplete](http://codeincomplete.com).
 
 
 

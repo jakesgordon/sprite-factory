@@ -20,7 +20,7 @@ module SpriteFactory
       @config[:layout]     ||= SpriteFactory.layout   || :horizontal
       @config[:library]    ||= SpriteFactory.library  || :rmagick
       @config[:selector]   ||= SpriteFactory.selector || 'img.'
-      @config[:csspath]    ||= SpriteFactory.csspath
+      @config[:cssurl]     ||= SpriteFactory.cssurl
       @config[:report]     ||= SpriteFactory.report
       @config[:pngcrush]   ||= SpriteFactory.pngcrush
       @config[:nocomments] ||= SpriteFactory.nocomments
@@ -45,6 +45,8 @@ module SpriteFactory
       raise RuntimeError, "set :width for fixed width, or :hmargin for horizontal margin, but not both." if width  && !hmargin.zero?
       raise RuntimeError, "set :height for fixed height, or :vmargin for vertical margin, but not both." if height && !hmargin.zero?
 
+      raise RuntimeError, "The legacy :csspath attribute is no longer supported, please use :cssurl instead (see README)" unless @config[:csspath].nil?
+
       images = load_images
       max    = layout_images(images)
       header = summary(images, max)
@@ -53,7 +55,7 @@ module SpriteFactory
 
       css = []
       css << style_comment(header) unless nocomments?                       # header comment
-      css << style(selector, css_path, images, &block)                      # generated styles
+      css << style(selector, css_url, images, &block)                       # generated styles
       css << IO.read(custom_style_file) if File.exists?(custom_style_file)  # custom styles
       css = css.join("\n")
 
@@ -141,19 +143,19 @@ module SpriteFactory
       File.join(input, File.basename(input) + ".#{style_name}")
     end
 
-    def css_path
-      base   = File.basename(output_image_file)
-      custom = config[:csspath]
+    def css_url
+      base = File.basename(output_image_file)
+      custom = config[:cssurl]
       if custom
         if custom.is_a?(Proc)
-          custom.call(base)          # allow custom path using a lambda
+          custom.call(base)                 # allow custom url using a lambda
         elsif custom.include?('$IMAGE')
-          custom.sub('$IMAGE', base) # allow custom path with token replacement
+          custom.sub('$IMAGE', base)        # allow custom url with simple token replacement
         else
-          File.join(custom, base)    # allow custom path with simple prepend
+          "url(#{File.join(custom, base)})" # allow custom url with simple prepend
         end
       else
-        base                         # otherwise, just default to basename of the output image file
+        "url(#{base})"                      # otherwise, just default to basename of the output image file
       end
     end
 
@@ -221,8 +223,8 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
-    def style(selector, path, images, &block)
-      defaults = Style.generate(style_name, selector, path, images) # must call, even if custom block is given, because it stashes generated css style into image[:style] attributes
+    def style(selector, url, images, &block)
+      defaults = Style.generate(style_name, selector, url, images) # must call, even if custom block is given, because it stashes generated css style into image[:style] attributes
       if block_given?
         yield images.inject({}) {|h,i| h[i[:name].to_sym] = i; h} # provide custom rule builder a hash by image name
       else

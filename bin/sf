@@ -23,7 +23,7 @@ layout_help       = "specify layout orientation   ( horizontal, vertical, packed
 style_help        = "specify stylesheet syntax  ( css, scss, sass )"
 library_help      = "specify image library to use ( rmagic, chunkypng )"
 selector_help     = "specify custom selector to use for each css rule ( default: 'img.' )"
-csspath_help      = "specify custom path to use for css image urls ( default: output image basename )"
+cssurl_help       = "specify custom string to use for css image urls ( default: 'url(output image basename)' )"
 output_image_help = "specify output location for generated image ( default: <input folder>.png )"
 output_style_help = "specify output location for generated stylesheet ( default: <input folder>.<style>)"
 pngcrush_help     = "use pngcrush to optimize generated image"
@@ -33,7 +33,7 @@ op.on("--layout       [ORIENTATION]", layout_help)       {|value| options[:layou
 op.on("--style        [STYLE]",       style_help)        {|value| options[:style]        = value }
 op.on("--library      [LIBRARY]",     library_help)      {|value| options[:library]      = value }
 op.on("--selector     [SELECTOR]",    selector_help)     {|value| options[:selector]     = value }
-op.on("--csspath      [CSSPATH]",     csspath_help)      {|value| options[:csspath]      = value }
+op.on("--cssurl       [CSSURL]",      cssurl_help)       {|value| options[:cssurl]       = value }
 op.on("--output-image [PATH]",        output_image_help) {|value| options[:output_image] = value }
 op.on("--output-style [PATH]",        output_style_help) {|value| options[:output_style] = value }
 op.on("--pngcrush",                   pngcrush_help)     {|value| options[:pngcrush]     = value }

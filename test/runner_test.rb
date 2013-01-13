@@ -99,17 +99,17 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
-    def test_default_css_path
+    def test_default_css_url
       Runner.publicize_methods do
         r1 = Runner.new(REGULAR_PATH)
-        r2 = Runner.new(REGULAR_PATH, :csspath => "http://s3.amazonaws.com/sf")
-        r3 = Runner.new(REGULAR_PATH, :csspath => "<%= image_path('$IMAGE') %>")
-        r4 = Runner.new(REGULAR_PATH, :csspath => lambda{|image| "/very/dynamic/path/#{image}"})
+        r2 = Runner.new(REGULAR_PATH, :cssurl => "http://s3.amazonaws.com/sf")
+        r3 = Runner.new(REGULAR_PATH, :cssurl => "foo(<%= image_path('$IMAGE') %>)")
+        r4 = Runner.new(REGULAR_PATH, :cssurl => lambda{|image| "foo(/very/dynamic/path/#{image})" })
 
-        assert_equal("regular.png",                            r1.css_path, "by default, csspath should be basename of the generated sprite image")
-        assert_equal("http://s3.amazonaws.com/sf/regular.png", r2.css_path, "allow customization by prepending to basename of the generated sprite image")
-        assert_equal("<%= image_path('regular.png') %>",       r3.css_path, "allow customization by providing custom format string with $IMAGE token to be replaced with basename of the generated sprite image")
-        assert_equal("/very/dynamic/path/regular.png",         r4.css_path, "allow customization by lambda function - allow caller to decide how to generate css path to sprite image")
+        assert_equal("url(regular.png)",                            r1.css_url, "by default, css_url should be basename of the generated sprite image")
+        assert_equal("url(http://s3.amazonaws.com/sf/regular.png)", r2.css_url, "allow customization by prepending to basename of the generated sprite image")
+        assert_equal("foo(<%= image_path('regular.png') %>)",       r3.css_url, "allow customization by providing custom format string with $IMAGE token to be replaced with basename of the generated sprite image")
+        assert_equal("foo(/very/dynamic/path/regular.png)",         r4.css_url, "allow customization by lambda function - allow caller to decide how to generate css url to sprite image")
       end
     end
 

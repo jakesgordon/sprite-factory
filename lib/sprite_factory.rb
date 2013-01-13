@@ -24,7 +24,7 @@ module SpriteFactory
     attr_accessor :layout
     attr_accessor :library
     attr_accessor :selector
-    attr_accessor :csspath
+    attr_accessor :cssurl
     attr_accessor :pngcrush
     attr_accessor :nocomments
   end

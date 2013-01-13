@@ -39,7 +39,7 @@ module SpriteFactory
 
       style    = :css
       selector = 'img.'
-      path     = '/path/to/sprite.png'
+      url      = 'url(/path/to/sprite.png)'
       images   = [
         {:filename => '/path/to/sprite1.png', :name => 'sprite1', :cssx => 1, :cssy => 10, :cssw => 100, :cssh => 1000},
         {:filename => '/path/to/sprite2.png', :name => 'sprite2', :cssx => 2, :cssy => 20, :cssw => 200, :cssh => 2000},
@@ -48,7 +48,7 @@ module SpriteFactory
         {:filename => '/path/to/sprite5.png', :name => 'sprite5', :cssx => 5, :cssy => 50, :cssw => 500, :cssh => 5000}
       ]
 
-      lines = Style.generate(style, selector, path, images).split("\n")
+      lines = Style.generate(style, selector, url, images).split("\n")
 
       assert_equal("width: 100px; height: 1000px; background: url(/path/to/sprite.png) -1px -10px no-repeat", images[0][:style], "pure style should have been stashed away in image[:style] for use by custom rule builders")
       assert_equal("width: 200px; height: 2000px; background: url(/path/to/sprite.png) -2px -20px no-repeat", images[1][:style], "pure style should have been stashed away in image[:style] for use by custom rule builders")
