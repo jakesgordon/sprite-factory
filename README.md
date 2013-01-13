@@ -239,6 +239,10 @@ For full control, you can provide a lambda function and generate your own values
 
     # generates:   url(/path/to/my/images/icons.png?v123456)
 
+>> NOTE: the `:cssurl` option replaces `:csspath` from earlier versions. The previous option only let you
+customize the path inside of the generated `url(...)`, while this new option allows you to customize the
+entire value, including the outer `url(...)` itself.
+
 Customizing the entire CSS output 
 =================================
 
@@ -267,7 +271,7 @@ value is a hash of image metadata that includes the following:
  * `:width`  - the image width
  * `:height` - the image height
 
-(*NOTE*: the image coords can differ form the css sprite coords when padding/margin or fixed width/height options are specified)
+>> NOTE: the image coords can differ form the css sprite coords when padding/margin or fixed width/height options are specified)
 
 Using sprite-factory with the Rails asset pipeline
 ==================================================
