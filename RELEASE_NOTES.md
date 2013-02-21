@@ -1,3 +1,7 @@
+February 21st 2013 - v1.5.3
+---------------------------
+ * bugfix: added back `:selector` when providing attributes for custom style generators (it was accidentally removed in v1.5.2)
+
 January 13th 2013 - v1.5.2
 --------------------------
  * replaced `:csspath` option with `:cssurl` [issue #21](https://github.com/jakesgordon/sprite-factory/issues/21)
