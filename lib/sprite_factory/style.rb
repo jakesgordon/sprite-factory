@@ -53,7 +53,8 @@ module SpriteFactory
           "height: #{image[:cssh]}px",
           "background: #{url} #{-image[:cssx]}px #{-image[:cssy]}px no-repeat"
         ]
-        image[:style] = send("#{style_name}_style", attr) # make pure style available for (optional) custom rule generators (see usage of yield inside Runner#style)
+        image[:selector] = selector                          # make selector available for (optional) custom rule generators
+        image[:style]    = send("#{style_name}_style", attr) # make pure style available for (optional) custom rule generators (see usage of yield inside Runner#style)
         styles << send(style_name, selector, image[:name], attr)
       end
       styles << ""
