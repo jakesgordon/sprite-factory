@@ -26,7 +26,7 @@ module SpriteFactory
     end
 
     def self.less_comment(comment)
-      return "// #{comment}"
+      return "/*\n #{comment}\n*/"
     end
 
     #----------------------------------------------------------------------------
