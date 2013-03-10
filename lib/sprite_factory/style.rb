@@ -22,7 +22,7 @@ module SpriteFactory
     end
 
     def self.less_style(attributes)
-      attributes.join("; ")
+      attributes.join(";\n")
     end
 
     def self.less_comment(comment)
