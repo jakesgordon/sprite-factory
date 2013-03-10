@@ -14,6 +14,20 @@ module SpriteFactory
     def self.css_comment(comment)
       return "/*\n#{comment}\n*/"
     end
+    
+    #----------------------------------------------------------------------------
+
+    def self.less(selector, name, attributes)
+      "#{selector}#{name} { #{css_style(attributes)}; }"
+    end
+
+    def self.less_style(attributes)
+      attributes.join("; ")
+    end
+
+    def self.less_comment(comment)
+      return "// #{comment}"
+    end
 
     #----------------------------------------------------------------------------
 
