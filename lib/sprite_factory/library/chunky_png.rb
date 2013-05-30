@@ -19,7 +19,7 @@ module SpriteFactory
       end
 
       def self.create(filename, images, width, height)
-        target = ChunkyPNG::Image.new(width, height, ChunkyPNG::Color::TRANSPARENT)
+        target = ChunkyPNG::Image.new(width, height, ChunkyPNG::Color.rgba(255, 255, 255, 0))
         images.each do |image|
           target.compose!(image[:image], image[:x], image[:y])
         end
