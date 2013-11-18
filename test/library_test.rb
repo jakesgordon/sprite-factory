@@ -5,8 +5,9 @@ class SpriteFactory::LibraryTest < SpriteFactory::TestCase
   #--------------------------------------------------------------------------
 
   LIBRARIES = {
-    :rmagick   => SpriteFactory::Library::RMagick,
-    :chunkypng => SpriteFactory::Library::ChunkyPng
+    :rmagick      => SpriteFactory::Library::RMagick,
+    :chunkypng    => SpriteFactory::Library::ChunkyPng,
+    :image_magick => SpriteFactory::Library::ImageMagick
   }
 
   #--------------------------------------------------------------------------
