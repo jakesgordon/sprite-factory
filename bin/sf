@@ -27,6 +27,8 @@ cssurl_help       = "specify custom string to use for css image urls ( default: 
 output_image_help = "specify output location for generated image ( default: <input folder>.png )"
 output_style_help = "specify output location for generated stylesheet ( default: <input folder>.<style>)"
 pngcrush_help     = "use pngcrush to optimize generated image"
+padding_help      = "add padding to each sprite"
+margin_help       = "add margin to each sprite"
 nocomments_help   = "suppress comments in generated stylesheet"
 
 op.on("--layout       [ORIENTATION]", layout_help)       {|value| options[:layout]       = value }
@@ -37,6 +39,8 @@ op.on("--cssurl       [CSSURL]",      cssurl_help)       {|value| options[:cssur
 op.on("--output-image [PATH]",        output_image_help) {|value| options[:output_image] = value }
 op.on("--output-style [PATH]",        output_style_help) {|value| options[:output_style] = value }
 op.on("--pngcrush",                   pngcrush_help)     {|value| options[:pngcrush]     = value }
+op.on("--padding [PIXELS]",           padding_help)      {|value| options[:padding]      = value.to_i }
+op.on("--margin [PIXELS]",            margin_help)       {|value| options[:margin]       = value.to_i }
 op.on("--nocomments",                 nocomments_help)   {|value| options[:nocomments]   = true  }
 
 begin
