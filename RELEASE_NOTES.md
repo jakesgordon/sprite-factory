@@ -1,7 +1,6 @@
-March ?? 2014 - v1.6.0
-----------------------
+March 16th 2014 - v1.6.0
+------------------------
 
- * (work in progress)
  * Added raw ImageMagick driver can be used without RMagick gem (courtesy of @willglynn - Cheers!)
  * Exposed `padding` and `margin` support to the cli interface (courtesy of @miguelgonz - Cheers!)
 
