@@ -1,3 +1,7 @@
+March ?? 2014 - v1.6.0
+----------------------
+ * (work in progress)
+
 February 21st 2013 - v1.5.3
 ---------------------------
  * bugfix: added back `:selector` when providing attributes for custom style generators (it was accidentally removed in v1.5.2)
