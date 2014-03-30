@@ -103,7 +103,7 @@ module SpriteFactory
       actual_image   = Magick::Image.read(actual)[0]
       expected_image = Magick::Image.read(expected)[0]
       img, val       = expected_image.compare_channel(actual_image, Magick::MeanAbsoluteErrorMetric)
-      assert_equal(0.0, val, "generated image does not match pregenerated reference:\n actual:   #{actual}\n expected: #{expected}")
+      assert_in_delta(0.0, val, 1e-7, "generated image does not match pregenerated reference:\n actual:   #{actual}\n expected: #{expected}\n expected: #{expected}")
     end
 
     def assert_reference_style(name)
