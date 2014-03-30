@@ -24,6 +24,7 @@ module SpriteFactory
       @config[:report]     ||= SpriteFactory.report
       @config[:pngcrush]   ||= SpriteFactory.pngcrush
       @config[:nocomments] ||= SpriteFactory.nocomments
+      @config[:margin]     ||= SpriteFactory.margin
     end
   
     #----------------------------------------------------------------------------
