@@ -16,6 +16,7 @@ module SpriteFactory
     EMPTY_PATH      = 'test/images/empty'
     SUBFOLDERS_PATH = 'test/images/subfolders'
     HOVER_PATH      = 'test/images/hover'
+    NAMES_PATH      = 'test/images/names'
 
     REGULAR   = SpriteFactory.find_files(File.join(REGULAR_PATH,   '*.png'))
     IRREGULAR = SpriteFactory.find_files(File.join(IRREGULAR_PATH, '*.png'))
