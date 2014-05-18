@@ -24,12 +24,12 @@ module SpriteFactory
       @config[:report]     ||= SpriteFactory.report
       @config[:pngcrush]   ||= SpriteFactory.pngcrush
       @config[:nocomments] ||= SpriteFactory.nocomments
+      @config[:directory_separator] ||= SpriteFactory.directory_separator || '_'
     end
   
     #----------------------------------------------------------------------------
 
     def run!(&block)
-
       raise RuntimeError, "unknown layout #{layout_name}"     if !Layout.respond_to?(layout_name)
       raise RuntimeError, "unknown style #{style_name}"       if !Style.respond_to?(style_name)
       raise RuntimeError, "unknown library #{library_name}"   if !Library.respond_to?(library_name)
@@ -139,6 +139,10 @@ module SpriteFactory
       config[:nocomments] # set true if you dont want any comments in the output style file
     end
 
+    def directory_separator
+      config[:directory_separator]
+    end
+
     def custom_style_file
       File.join(input, File.basename(input) + ".#{style_name}")
     end
@@ -174,6 +178,7 @@ module SpriteFactory
 
     def load_images
       input_path = Pathname.new(input)
+
       images = library.load(image_files)
       images.each do |i|
         i[:name], i[:ext] = map_image_filename(i[:filename], input_path)
@@ -184,7 +189,7 @@ module SpriteFactory
     end
 
     def map_image_filename(filename, input_path)
-      name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, "_")
+      name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, directory_separator)
       name = name.gsub('--', ':')
       name = name.gsub('__', ' ')
       ext  = File.extname(name)
