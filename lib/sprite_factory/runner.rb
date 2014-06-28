@@ -243,7 +243,7 @@ module SpriteFactory
     def pngcrush(image)
       if SUPPORTS_PNGCRUSH && config[:pngcrush]
         crushed = "#{image}.crushed"
-        `pngcrush -rem alla -reduce -brute #{image} #{crushed}`
+        `pngcrush -q -rem alla -reduce -brute #{image} #{crushed}`
         FileUtils.mv(crushed, image) 
       end
     end
