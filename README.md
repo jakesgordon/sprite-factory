@@ -1,4 +1,4 @@
-Sprite Factory (v1.6.0)
+Sprite Factory (v1.6.1)
 =======================
 
 The sprite factory is a ruby library that can be used to generate
