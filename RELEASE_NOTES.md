@@ -1,3 +1,9 @@
+August 8th 2014 - v1.6.1
+------------------------
+
+ * correct escaping for filenames passed to pngcrush (courtesy of @phallstrom - Cheers!)
+ * suppress pngcrush output with -q (courtesy of @phallstrom - Cheers!)
+
 March 16th 2014 - v1.6.0
 ------------------------
 
