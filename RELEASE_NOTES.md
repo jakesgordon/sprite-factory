@@ -1,3 +1,8 @@
+January 17th 2015 - v1.6.2
+--------------------------
+
+ * replace deprecated Magick::MaxRGB with Magick::QuantumRange (courtesy of @kenmicles)
+
 August 8th 2014 - v1.6.1
 ------------------------
 
