@@ -27,6 +27,7 @@ module SpriteFactory
     attr_accessor :cssurl
     attr_accessor :pngcrush
     attr_accessor :nocomments
+    attr_accessor :directory_separator
   end
 
   #----------------------------------------------------------------------------
