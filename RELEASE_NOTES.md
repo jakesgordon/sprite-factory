@@ -1,3 +1,9 @@
+January 17th 2015 - v1.6.2
+--------------------------
+
+ * replace deprecated Magick::MaxRGB with Magick::QuantumRange (courtesy of @kenmicles)
+ * add option to override default directory separator (courtesy of @cotampanie)
+
 August 8th 2014 - v1.6.1
 ------------------------
 

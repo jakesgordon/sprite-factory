@@ -16,22 +16,22 @@ module SpriteFactory
     def initialize(input, config = {})
       @input  = input.to_s[-1] == "/" ? input[0...-1] : input # gracefully ignore trailing slash on input directory name
       @config = config
-      @config[:style]         ||= SpriteFactory.style    || :css
-      @config[:layout]        ||= SpriteFactory.layout   || :horizontal
-      @config[:library]       ||= SpriteFactory.library  || :rmagick
-      @config[:selector]      ||= SpriteFactory.selector || 'img.'
-      @config[:cssurl]        ||= SpriteFactory.cssurl
-      @config[:report]        ||= SpriteFactory.report
-      @config[:pngcrush]      ||= SpriteFactory.pngcrush
-      @config[:nocomments]    ||= SpriteFactory.nocomments
-      @config[:margin]        ||= SpriteFactory.margin
-      @config[:sanitizenames] ||= SpriteFactory.sanitizenames
+      @config[:style]               ||= SpriteFactory.style    || :css
+      @config[:layout]              ||= SpriteFactory.layout   || :horizontal
+      @config[:library]             ||= SpriteFactory.library  || :rmagick
+      @config[:selector]            ||= SpriteFactory.selector || 'img.'
+      @config[:cssurl]              ||= SpriteFactory.cssurl
+      @config[:report]              ||= SpriteFactory.report
+      @config[:pngcrush]            ||= SpriteFactory.pngcrush
+      @config[:nocomments]          ||= SpriteFactory.nocomments
+      @config[:margin]              ||= SpriteFactory.margin
+      @config[:directory_separator] ||= SpriteFactory.directory_separator || '_'
+      @config[:sanitizenames]       ||= SpriteFactory.sanitizenames
     end
 
     #----------------------------------------------------------------------------
 
     def run!(&block)
-
       raise RuntimeError, "unknown layout #{layout_name}"     if !Layout.respond_to?(layout_name)
       raise RuntimeError, "unknown style #{style_name}"       if !Style.respond_to?(style_name)
       raise RuntimeError, "unknown library #{library_name}"   if !Library.respond_to?(library_name)
@@ -141,6 +141,10 @@ module SpriteFactory
       config[:nocomments] # set true if you dont want any comments in the output style file
     end
 
+    def directory_separator
+      config[:directory_separator]
+    end
+
     def sanitizenames?
       config[:sanitizenames] # set true if you want to make sure the incoming file names are valid CSS class names (may result in dupes)
     end
@@ -180,6 +184,7 @@ module SpriteFactory
 
     def load_images
       input_path = Pathname.new(input)
+
       images = library.load(image_files)
       images.each do |i|
         i[:name], i[:ext] = map_image_filename(i[:filename], input_path)
@@ -190,8 +195,8 @@ module SpriteFactory
     end
 
     def map_image_filename(filename, input_path)
-      name = Pathname.new(filename).relative_path_from(input_path).to_s
-      name = name.gsub(File::SEPARATOR, "_") #Deal with folder separators in path
+      name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, directory_separator)
+      name = name.gsub('--', ':')
       ext  = File.extname(name)
       name = name[0...-ext.length] unless ext.empty?
       name = name.gsub(/[^\w-]/, '') unless !sanitizenames? #Non-word characters

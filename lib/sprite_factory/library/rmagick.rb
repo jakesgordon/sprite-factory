@@ -20,7 +20,7 @@ module SpriteFactory
 
       def self.create(filename, images, width, height)
         target = Magick::Image.new(width,height)
-        target.opacity = Magick::MaxRGB
+        target.opacity = Magick::QuantumRange
         images.each do |image|
           target.composite!(image[:image], image[:x], image[:y], Magick::SrcOverCompositeOp)
         end
