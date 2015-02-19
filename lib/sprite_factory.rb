@@ -28,6 +28,8 @@ module SpriteFactory
     attr_accessor :pngcrush
     attr_accessor :nocomments
     attr_accessor :directory_separator
+    attr_accessor :margin
+    attr_accessor :sanitizenames
   end
 
   #----------------------------------------------------------------------------

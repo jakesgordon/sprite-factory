@@ -16,17 +16,19 @@ module SpriteFactory
     def initialize(input, config = {})
       @input  = input.to_s[-1] == "/" ? input[0...-1] : input # gracefully ignore trailing slash on input directory name
       @config = config
-      @config[:style]      ||= SpriteFactory.style    || :css
-      @config[:layout]     ||= SpriteFactory.layout   || :horizontal
-      @config[:library]    ||= SpriteFactory.library  || :rmagick
-      @config[:selector]   ||= SpriteFactory.selector || 'img.'
-      @config[:cssurl]     ||= SpriteFactory.cssurl
-      @config[:report]     ||= SpriteFactory.report
-      @config[:pngcrush]   ||= SpriteFactory.pngcrush
-      @config[:nocomments] ||= SpriteFactory.nocomments
+      @config[:style]               ||= SpriteFactory.style    || :css
+      @config[:layout]              ||= SpriteFactory.layout   || :horizontal
+      @config[:library]             ||= SpriteFactory.library  || :rmagick
+      @config[:selector]            ||= SpriteFactory.selector || 'img.'
+      @config[:cssurl]              ||= SpriteFactory.cssurl
+      @config[:report]              ||= SpriteFactory.report
+      @config[:pngcrush]            ||= SpriteFactory.pngcrush
+      @config[:nocomments]          ||= SpriteFactory.nocomments
+      @config[:margin]              ||= SpriteFactory.margin
       @config[:directory_separator] ||= SpriteFactory.directory_separator || '_'
+      @config[:sanitizenames]       ||= SpriteFactory.sanitizenames
     end
-  
+
     #----------------------------------------------------------------------------
 
     def run!(&block)
@@ -143,6 +145,10 @@ module SpriteFactory
       config[:directory_separator]
     end
 
+    def sanitizenames?
+      config[:sanitizenames] # set true if you want to make sure the incoming file names are valid CSS class names (may result in dupes)
+    end
+
     def custom_style_file
       File.join(input, File.basename(input) + ".#{style_name}")
     end
@@ -191,9 +197,11 @@ module SpriteFactory
     def map_image_filename(filename, input_path)
       name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, directory_separator)
       name = name.gsub('--', ':')
-      name = name.gsub('__', ' ')
       ext  = File.extname(name)
       name = name[0...-ext.length] unless ext.empty?
+      name = name.gsub(/[^\w-]/, '') unless !sanitizenames? #Non-word characters
+      name = name.gsub('--', ':') #Pseudo classes
+      name = name.gsub('__', ' ') #Intentional spaces
       [name, ext]
     end
 

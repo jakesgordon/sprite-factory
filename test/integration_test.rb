@@ -163,5 +163,11 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
+    def test_generate_sprites_with_from_non_css_named_files
+      integration_test(NAMES_PATH, :sanitizenames => true)
+    end
+
+    #----------------------------------------------------------------------------
+
   end
 end

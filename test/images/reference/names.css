@@ -1,0 +1,20 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/names/Ends With Bang !.png (64x64)
+        test/images/names/Has & Ampersand.png (64x64)
+        test/images/names/Odd.Period.png (64x64)
+
+        Output files:
+          test/images/names.png
+          test/images/names.css
+
+        Output size:
+          192x64
+
+
+*/
+img.EndsWithBang { width: 64px; height: 64px; background: url(names.png) 0px 0px no-repeat; }
+img.HasAmpersand { width: 64px; height: 64px; background: url(names.png) -64px 0px no-repeat; }
+img.OddPeriod { width: 64px; height: 64px; background: url(names.png) -128px 0px no-repeat; }
