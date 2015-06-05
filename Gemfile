@@ -8,5 +8,5 @@ source "http://rubygems.org"
 
 group :development do
   gem "chunky_png", "1.3.0"
-  gem "rmagick",    "2.13.2"
+  gem "rmagick",    "2.13.4"
 end
