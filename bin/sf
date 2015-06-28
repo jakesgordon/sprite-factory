@@ -19,6 +19,7 @@ op.on("-v", "--version") do
   exit
 end
 
+glob_pattern_help = "specify glob pattern used to find images ( default: '*' )"
 layout_help       = "specify layout orientation   ( horizontal, vertical, packed )"
 style_help        = "specify stylesheet syntax  ( css, scss, sass )"
 library_help      = "specify image library to use ( rmagic, chunkypng )"
@@ -31,6 +32,7 @@ padding_help      = "add padding to each sprite"
 margin_help       = "add margin to each sprite"
 nocomments_help   = "suppress comments in generated stylesheet"
 
+op.on("--glob-pattern [PATTERN]",     glob_pattern_help) {|value| options[:glob_pattern] = value }
 op.on("--layout       [ORIENTATION]", layout_help)       {|value| options[:layout]       = value }
 op.on("--style        [STYLE]",       style_help)        {|value| options[:style]        = value }
 op.on("--library      [LIBRARY]",     library_help)      {|value| options[:library]      = value }
@@ -51,5 +53,3 @@ rescue Exception => ex
   puts ex.message
   exit
 end
-
-

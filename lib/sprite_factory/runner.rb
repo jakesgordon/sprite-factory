@@ -12,7 +12,7 @@ module SpriteFactory
 
     attr :input
     attr :config
-  
+
     def initialize(input, config = {})
       @input  = input.to_s[-1] == "/" ? input[0...-1] : input # gracefully ignore trailing slash on input directory name
       @config = config
@@ -25,8 +25,9 @@ module SpriteFactory
       @config[:pngcrush]   ||= SpriteFactory.pngcrush
       @config[:nocomments] ||= SpriteFactory.nocomments
       @config[:directory_separator] ||= SpriteFactory.directory_separator || '_'
+      @config[:glob_pattern]        ||= SpriteFactory.glob_pattern        || '*'
     end
-  
+
     #----------------------------------------------------------------------------
 
     def run!(&block)
@@ -76,7 +77,7 @@ module SpriteFactory
     end
 
     #----------------------------------------------------------------------------
-  
+
     private
 
     def selector
@@ -166,7 +167,7 @@ module SpriteFactory
     def image_files
       return [] if input.nil?
       valid_extensions = library::VALID_EXTENSIONS
-      expansions = Array(valid_extensions).map{|ext| File.join(input, "**", "*.#{ext}")}
+      expansions = Array(valid_extensions).map{|ext| File.join(input, "**", "#{config[:glob_pattern]}.#{ext}")}
       SpriteFactory.find_files(*expansions)
     end
 
@@ -249,7 +250,7 @@ module SpriteFactory
       if SUPPORTS_PNGCRUSH && config[:pngcrush]
         crushed = "#{image}.crushed"
         system('pngcrush', '-q', '-rem alla', '-reduce', '-brute', image, crushed)
-        FileUtils.mv(crushed, image) 
+        FileUtils.mv(crushed, image)
       end
     end
 

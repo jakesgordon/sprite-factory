@@ -1,5 +1,5 @@
 module SpriteFactory
-  
+
   #----------------------------------------------------------------------------
 
   VERSION     = "1.6.2"
@@ -19,6 +19,7 @@ module SpriteFactory
   # avoid having to pass them to #run! every single time
   #
   class << self
+    attr_accessor :glob_pattern
     attr_accessor :report
     attr_accessor :style
     attr_accessor :layout
@@ -51,7 +52,7 @@ module SpriteFactory
     end
 
   end
-  
+
   #----------------------------------------------------------------------------
 
   module Library # abstract module for using various image libraries
@@ -67,7 +68,7 @@ module SpriteFactory
     def self.chunkypng
       ChunkyPng
     end
-    
+
     def self.image_magick
       ImageMagick
     end
