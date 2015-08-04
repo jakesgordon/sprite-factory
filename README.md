@@ -89,8 +89,8 @@ Much of the behavior can be customized by overriding the following options:
  - `:library`      - specify image library to use (rmagick or chunkypng)
  - `:selector`     - specify custom css selector (see below)
  - `:cssurl`       - specify custom css url (see below)
- - `:output_image` - specify output location for generated image (default: &lt;input folder&gt;.png)
- - `:output_style` - specify output location for generated stylesheet (default: &lt;input folder&gt;.&lt;style&gt;)
+ - `:output-image` - specify output location for generated image (default: &lt;input folder&gt;.png)
+ - `:output-style` - specify output location for generated stylesheet (default: &lt;input folder&gt;.&lt;style&gt;)
  - `:pngcrush`     - pngcrush the generated output image (if pngcrush is available)
  - `:padding`      - add padding to each sprite
  - `:margin`       - add margin to each sprite
