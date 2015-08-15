@@ -1,8 +1,8 @@
 require File.expand_path('../lib/sprite_factory', File.dirname(__FILE__))
-require 'test/unit'
+require 'minitest/autorun'
 
 module SpriteFactory
-  class TestCase < Test::Unit::TestCase
+  class TestCase < Minitest::Test
 
     #----------------------------------------------------------------------------
 
@@ -80,14 +80,14 @@ module SpriteFactory
     #----------------------------------------------------------------------------
 
     def assert_runtime_error(msg = nil)
-      e = assert_raise RuntimeError do
+      e = assert_raises RuntimeError do
         yield
       end
       assert_match(msg, e.message) if msg
     end
 
     def assert_not_implemented(msg = nil)
-      e = assert_raise NotImplementedError do
+      e = assert_raises NotImplementedError do
         yield
       end
       assert_match(msg, e.message) if msg
