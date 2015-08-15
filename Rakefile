@@ -48,6 +48,8 @@ task :reference do
 
   regenerate.call('test/images/hover', :output => 'test/images/hover', :selector => 'div.hover ', :style => :css)
   regenerate.call('test/images/glob',  :output => 'test/images/glob', :glob => "included*")
+  regenerate.call('test/images/names', :output => 'test/images/sanitized', :sanitizer => true)
+  regenerate.call('test/images/names', :output => 'test/images/sanitized.custom', :sanitizer => lambda {|name| name.gsub(/\\?[^\w]/, '_').downcase })
 
   regenerate.call('test/images/custom', :output => 'test/images/custom') do |images|
     rules = []

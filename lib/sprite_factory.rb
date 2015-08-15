@@ -29,6 +29,7 @@ module SpriteFactory
     attr_accessor :nocomments
     attr_accessor :separator
     attr_accessor :glob
+    attr_accessor :sanitizer
   end
 
   #----------------------------------------------------------------------------

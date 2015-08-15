@@ -26,6 +26,7 @@ module SpriteFactory
       @config[:nocomments] ||= SpriteFactory.nocomments
       @config[:separator]  ||= SpriteFactory.separator || '_'
       @config[:glob]       ||= SpriteFactory.glob      || '*'
+      @config[:sanitizer]  ||= SpriteFactory.sanitizer
     end
 
     #----------------------------------------------------------------------------
@@ -144,6 +145,10 @@ module SpriteFactory
       config[:separator]
     end
 
+    def sanitizer
+      config[:sanitizer]
+    end
+
     def custom_style_file
       File.join(input, File.basename(input) + ".#{style_name}")
     end
@@ -182,20 +187,29 @@ module SpriteFactory
 
       images = library.load(image_files)
       images.each do |i|
-        i[:name], i[:ext] = map_image_filename(i[:filename], input_path)
+        i[:name], i[:ext] = extract_image_filename(i[:filename], input_path)
         raise RuntimeError, "image #{i[:name]} does not fit within a fixed width of #{width}" if width && (width < i[:width])
         raise RuntimeError, "image #{i[:name]} does not fit within a fixed height of #{height}" if height && (height < i[:height])
       end
       images.sort_by {|i| [image_name_without_pseudo_class(i), image_pseudo_class_priority(i)] }
     end
 
-    def map_image_filename(filename, input_path)
+    def extract_image_filename(filename, input_path)
       name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, separator)
-      name = name.gsub('--', ':')
-      name = name.gsub('__', ' ')
       ext  = File.extname(name)
       name = name[0...-ext.length] unless ext.empty?
+      name = sanitize_image_filename(name)
       [name, ext]
+    end
+
+    def sanitize_image_filename(name)
+      if sanitizer.is_a?(Proc)
+        sanitizer.call(name)                   # custom sanitizer
+      elsif sanitizer
+        name.gsub(/[^\w-]/, '')                # (opt-in) clean all non-word characters
+      else
+        name.gsub('--', ':').gsub('__', ' ')   # legacy behavior
+      end
     end
 
     def image_name_without_pseudo_class(image)

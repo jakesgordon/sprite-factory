@@ -148,6 +148,20 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
+    def test_generate_with_sanitizer
+      integration_test(NAMES_PATH, :output   => output_path('sanitized'),
+                                   :sanitizer => true)
+    end
+
+    #----------------------------------------------------------------------------
+
+    def test_generate_with_custom_sanitizer
+      integration_test(NAMES_PATH, :output    => output_path('sanitized.custom'),
+                                   :sanitizer => lambda {|name| name.gsub(/\\?[^\w]/, '_').downcase })
+    end
+
+    #----------------------------------------------------------------------------
+
     def test_generate_sprite_with_nocss
       input  = REGULAR_PATH
       output = File.basename(REGULAR_PATH)
