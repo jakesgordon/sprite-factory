@@ -25,7 +25,7 @@ module SpriteFactory
       @config[:pngcrush]   ||= SpriteFactory.pngcrush
       @config[:nocomments] ||= SpriteFactory.nocomments
       @config[:directory_separator] ||= SpriteFactory.directory_separator || '_'
-      @config[:glob_pattern]        ||= SpriteFactory.glob_pattern        || '*'
+      @config[:glob]       ||= SpriteFactory.glob || '*'
     end
 
     #----------------------------------------------------------------------------
@@ -167,7 +167,7 @@ module SpriteFactory
     def image_files
       return [] if input.nil?
       valid_extensions = library::VALID_EXTENSIONS
-      expansions = Array(valid_extensions).map{|ext| File.join(input, "**", "#{config[:glob_pattern]}.#{ext}")}
+      expansions = Array(valid_extensions).map{|ext| File.join(input, "**", "#{config[:glob]}.#{ext}")}
       SpriteFactory.find_files(*expansions)
     end
 

@@ -19,7 +19,6 @@ module SpriteFactory
   # avoid having to pass them to #run! every single time
   #
   class << self
-    attr_accessor :glob_pattern
     attr_accessor :report
     attr_accessor :style
     attr_accessor :layout
@@ -29,6 +28,7 @@ module SpriteFactory
     attr_accessor :pngcrush
     attr_accessor :nocomments
     attr_accessor :directory_separator
+    attr_accessor :glob
   end
 
   #----------------------------------------------------------------------------

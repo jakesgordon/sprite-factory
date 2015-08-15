@@ -1,0 +1,20 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/glob/included1.png (64x64)
+        test/images/glob/included2.png (64x64)
+        test/images/glob/included3.png (64x64)
+
+        Output files:
+          test/images/glob.png
+          test/images/glob.css
+
+        Output size:
+          192x64
+
+
+*/
+img.included1 { width: 64px; height: 64px; background: url(glob.png) 0px 0px no-repeat; }
+img.included2 { width: 64px; height: 64px; background: url(glob.png) -64px 0px no-repeat; }
+img.included3 { width: 64px; height: 64px; background: url(glob.png) -128px 0px no-repeat; }

@@ -142,6 +142,12 @@ module SpriteFactory
 
     #----------------------------------------------------------------------------
 
+    def test_generate_with_custom_glob
+      integration_test(GLOB_PATH, :glob => 'included*')
+    end
+
+    #----------------------------------------------------------------------------
+
     def test_generate_sprite_with_nocss
       input  = REGULAR_PATH
       output = File.basename(REGULAR_PATH)

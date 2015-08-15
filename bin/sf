@@ -19,7 +19,7 @@ op.on("-v", "--version") do
   exit
 end
 
-glob_pattern_help = "specify glob pattern used to find images ( default: '*' )"
+glob_help         = "specify glob pattern used to find images ( default: '*' )"
 layout_help       = "specify layout orientation   ( horizontal, vertical, packed )"
 style_help        = "specify stylesheet syntax  ( css, scss, sass )"
 library_help      = "specify image library to use ( rmagic, chunkypng )"
@@ -32,7 +32,6 @@ padding_help      = "add padding to each sprite"
 margin_help       = "add margin to each sprite"
 nocomments_help   = "suppress comments in generated stylesheet"
 
-op.on("--glob-pattern [PATTERN]",     glob_pattern_help) {|value| options[:glob_pattern] = value }
 op.on("--layout       [ORIENTATION]", layout_help)       {|value| options[:layout]       = value }
 op.on("--style        [STYLE]",       style_help)        {|value| options[:style]        = value }
 op.on("--library      [LIBRARY]",     library_help)      {|value| options[:library]      = value }
@@ -41,8 +40,9 @@ op.on("--cssurl       [CSSURL]",      cssurl_help)       {|value| options[:cssur
 op.on("--output-image [PATH]",        output_image_help) {|value| options[:output_image] = value }
 op.on("--output-style [PATH]",        output_style_help) {|value| options[:output_style] = value }
 op.on("--pngcrush",                   pngcrush_help)     {|value| options[:pngcrush]     = value }
-op.on("--padding [PIXELS]",           padding_help)      {|value| options[:padding]      = value.to_i }
-op.on("--margin [PIXELS]",            margin_help)       {|value| options[:margin]       = value.to_i }
+op.on("--padding      [PIXELS]",      padding_help)      {|value| options[:padding]      = value.to_i }
+op.on("--margin       [PIXELS]",      margin_help)       {|value| options[:margin]       = value.to_i }
+op.on("--glob         [PATTERN]",     glob_help)         {|value| options[:glob]         = value }
 op.on("--nocomments",                 nocomments_help)   {|value| options[:nocomments]   = true  }
 
 begin
