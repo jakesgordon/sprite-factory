@@ -1,5 +1,5 @@
-August 15th 2015 - v1.6.3
--------------------------
+August 15th 2015 - v1.7
+-----------------------
 
  * rename `directory_separator` option to simpler `separator`
  * switch to minitest 
