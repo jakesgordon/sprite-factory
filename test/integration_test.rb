@@ -157,7 +157,7 @@ module SpriteFactory
 
     def test_generate_with_custom_sanitizer
       integration_test(NAMES_PATH, :output    => output_path('sanitized.custom'),
-                                   :sanitizer => lambda {|name| name.gsub(/\\?[^\w]/, '_').downcase })
+                                   :sanitizer => lambda {|name| name.gsub(/[^\w]/, '_').downcase })
     end
 
     #----------------------------------------------------------------------------
