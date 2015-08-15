@@ -199,6 +199,9 @@ map '--' (double dash) to a colon ':' in any source image filename. For example:
     span.icon_alert       { ... first file  ... }
     span.icon_alert:hover { ... second file ... }
 
+Sanitizing the CSS Selector
+===========================
+
 If your image filenames contain non-word characters that would otherwise invalidate your css selector you
 can sanitize these characters using the `:sanitizer` option. For example:
 
@@ -223,7 +226,7 @@ If you want **full control** over the filename-to-selector sanitization process 
 
 ... when run with:
 
-    SpriteFactory.run!('images/icons', :sanitizer => lamda {|name| name.reverse})
+    SpriteFactory.run!('images/icons', :sanitizer => lamda { |name| name.reverse })  # pointless, but amusing
 
 ... will generate
 
