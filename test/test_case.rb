@@ -37,7 +37,7 @@ module SpriteFactory
       { :filename => IRREGULAR[4], :width => 46, :height => 25 }
     ]
 
-    DIRECTORY_SEPARATOR = '_'
+    SEPARATOR = '_'
 
     def output_path(name)
       File.join(IMAGES_PATH, name)

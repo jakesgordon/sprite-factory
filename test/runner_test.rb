@@ -18,7 +18,7 @@ module SpriteFactory
         assert_equal(:horizontal,             r.layout_name)
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
-        assert_equal(DIRECTORY_SEPARATOR,     r.directory_separator)
+        assert_equal(SEPARATOR,               r.separator)
 
         r = Runner.new(IRREGULAR_PATH)
         assert_equal(IRREGULAR_PATH,          r.input)
@@ -29,9 +29,9 @@ module SpriteFactory
         assert_equal(:horizontal,             r.layout_name)
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
-        assert_equal(DIRECTORY_SEPARATOR,     r.directory_separator)
+        assert_equal(SEPARATOR,               r.separator)
 
-        r = Runner.new(IRREGULAR_PATH, :directory_separator => '.')
+        r = Runner.new(IRREGULAR_PATH, :separator => '.')
         assert_equal(IRREGULAR_PATH,          r.input)
         assert_equal(IRREGULAR_PATH,          r.output)
         assert_equal(IRREGULAR_PATH + ".png", r.output_image_file)
@@ -40,7 +40,7 @@ module SpriteFactory
         assert_equal(:horizontal,             r.layout_name)
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
-        assert_equal('.',     r.directory_separator)
+        assert_equal('.',                     r.separator)
 
         r = Runner.new(REGULAR_PATH, :output => IRREGULAR_PATH)
         assert_equal(REGULAR_PATH,            r.input)
@@ -51,7 +51,7 @@ module SpriteFactory
         assert_equal(:horizontal,             r.layout_name)
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
-        assert_equal(DIRECTORY_SEPARATOR,     r.directory_separator)
+        assert_equal(SEPARATOR,               r.separator)
 
         r = Runner.new(REGULAR_PATH, :output_image => "foo.png", :output_style => "bar.css.sass.erb")
         assert_equal(REGULAR_PATH,            r.input)
@@ -62,7 +62,7 @@ module SpriteFactory
         assert_equal(:horizontal,             r.layout_name)
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
-        assert_equal(DIRECTORY_SEPARATOR,     r.directory_separator)
+        assert_equal(SEPARATOR,               r.separator)
 
         r = Runner.new(REGULAR_PATH, :layout => :vertical, :library => :chunkypng, :style => :sass)
         assert_equal(REGULAR_PATH,            r.input)
@@ -73,7 +73,7 @@ module SpriteFactory
         assert_equal(:vertical,               r.layout_name)
         assert_equal(:sass,                   r.style_name)
         assert_equal(:chunkypng,              r.library_name)
-        assert_equal(DIRECTORY_SEPARATOR,     r.directory_separator)
+        assert_equal(SEPARATOR,               r.separator)
 
       end
     
@@ -239,10 +239,10 @@ module SpriteFactory
       end
     end
 
-    def test_use_specified_directory_separator
+    def test_use_specified_separator
       Runner.publicize_methods do
         expected = %w(england.amy england.bob france.bob usa.amy usa.bob)
-        actual = Runner.new(SUBFOLDERS_PATH, :directory_separator => '.').load_images.map{|i| i[:name]}
+        actual = Runner.new(SUBFOLDERS_PATH, :separator => '.').load_images.map{|i| i[:name]}
         assert_equal(expected, actual)
       end
     end

@@ -1,6 +1,7 @@
 August 15th 2015 - v1.6.3
 -------------------------
 
+ * rename `directory_separator` option to simpler `separator`
  * switch to minitest 
  * replace deprecated require 'RMagick' with require 'rmagick' (courtesy of @warrenguy)
  * added `:glob` option to override default globbing behavior (courtsey of @jdlich)

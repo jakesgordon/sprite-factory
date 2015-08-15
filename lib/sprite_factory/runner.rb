@@ -24,8 +24,8 @@ module SpriteFactory
       @config[:report]     ||= SpriteFactory.report
       @config[:pngcrush]   ||= SpriteFactory.pngcrush
       @config[:nocomments] ||= SpriteFactory.nocomments
-      @config[:directory_separator] ||= SpriteFactory.directory_separator || '_'
-      @config[:glob]       ||= SpriteFactory.glob || '*'
+      @config[:separator]  ||= SpriteFactory.separator || '_'
+      @config[:glob]       ||= SpriteFactory.glob      || '*'
     end
 
     #----------------------------------------------------------------------------
@@ -140,8 +140,8 @@ module SpriteFactory
       config[:nocomments] # set true if you dont want any comments in the output style file
     end
 
-    def directory_separator
-      config[:directory_separator]
+    def separator
+      config[:separator]
     end
 
     def custom_style_file
@@ -190,7 +190,7 @@ module SpriteFactory
     end
 
     def map_image_filename(filename, input_path)
-      name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, directory_separator)
+      name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, separator)
       name = name.gsub('--', ':')
       name = name.gsub('__', ' ')
       ext  = File.extname(name)
