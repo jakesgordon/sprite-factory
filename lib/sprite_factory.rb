@@ -1,5 +1,5 @@
 module SpriteFactory
-  
+
   #----------------------------------------------------------------------------
 
   VERSION     = "1.6.2"
@@ -28,6 +28,7 @@ module SpriteFactory
     attr_accessor :pngcrush
     attr_accessor :nocomments
     attr_accessor :directory_separator
+    attr_accessor :exclude
   end
 
   #----------------------------------------------------------------------------
@@ -51,7 +52,7 @@ module SpriteFactory
     end
 
   end
-  
+
   #----------------------------------------------------------------------------
 
   module Library # abstract module for using various image libraries
@@ -67,7 +68,7 @@ module SpriteFactory
     def self.chunkypng
       ChunkyPng
     end
-    
+
     def self.image_magick
       ImageMagick
     end
@@ -83,4 +84,3 @@ module SpriteFactory
   #----------------------------------------------------------------------------
 
 end
-

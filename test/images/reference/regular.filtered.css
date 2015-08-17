@@ -1,0 +1,20 @@
+/*
+
+        Creating a sprite from following images:
+        
+        test/images/regular/regular2.PNG (64x64)
+        test/images/regular/regular3.PNG (64x64)
+        test/images/regular/regular4.PNG (64x64)
+
+        Output files:
+          test/images/regular.filtered.png
+          test/images/regular.filtered.css
+
+        Output size:
+          192x64
+
+
+*/
+img.filtered_regular2 { width: 64px; height: 64px; background: url(regular.filtered.png) 0px 0px no-repeat; }
+img.filtered_regular3 { width: 64px; height: 64px; background: url(regular.filtered.png) -64px 0px no-repeat; }
+img.filtered_regular4 { width: 64px; height: 64px; background: url(regular.filtered.png) -128px 0px no-repeat; }
