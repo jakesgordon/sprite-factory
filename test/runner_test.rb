@@ -90,10 +90,8 @@ module SpriteFactory
         assert_equal(:sass,                   r.style_name)
         assert_equal(:chunkypng,              r.library_name)
         assert_equal(SEPARATOR,               r.separator)
-        assert_equal([],                      r.exclusion_array)
-        
-      end
-    
+        assert_equal([],                      r.exclusion_array)        
+      end    
     end
 
     #----------------------------------------------------------------------------

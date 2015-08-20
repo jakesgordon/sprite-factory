@@ -11,59 +11,59 @@ module SpriteFactory
 
     def test_generate_horizontal_regular_sprite
       integration_test(REGULAR_PATH, :output   => output_path('regular.horizontal'),
-                       :selector => 'img.horizontal_',
-                       :layout   => :horizontal)
+                                     :selector => 'img.horizontal_',
+                                     :layout   => :horizontal)
     end
 
     def test_generate_vertical_regular_sprite
       integration_test(REGULAR_PATH, :output   => output_path('regular.vertical'),
-                       :selector => 'img.vertical_',
-                       :layout   => :vertical)
+                                     :selector => 'img.vertical_',
+                                     :layout   => :vertical)
     end
 
     def test_generate_packed_regular_sprite
       integration_test(REGULAR_PATH, :output   => output_path('regular.packed'),
-                       :selector => 'img.packed_',
-                       :layout   => :packed,
-                       :padding  => 10,
-                       :margin   => 10)
+                                     :selector => 'img.packed_',
+                                     :layout   => :packed,
+                                     :padding  => 10,
+                                     :margin   => 10)
     end
 
     def test_generate_regular_sprite_with_padding
       integration_test(REGULAR_PATH, :output   => output_path('regular.padded'),
-                       :selector => 'img.padded_',
-                       :padding  => 10)
+                                     :selector => 'img.padded_',
+                                     :padding  => 10)
     end
 
     def test_generate_regular_sprite_with_margin
       integration_test(REGULAR_PATH, :output   => output_path('regular.margin'),
-                       :selector => 'img.margin_',
-                       :margin   => 10)
+                                     :selector => 'img.margin_',
+                                     :margin   => 10)
     end
 
     def test_generate_regular_sprite_with_fixed_size
       integration_test(REGULAR_PATH, :output   => output_path('regular.fixed'),
-                       :selector => 'img.fixed_',
-                       :width    => 100,
-                       :height   => 100)
+                                     :selector => 'img.fixed_',
+                                     :width    => 100,
+                                     :height   => 100)
     end
 
     def test_generate_regular_sprite_with_sassy_style
       integration_test(REGULAR_PATH, :output   => output_path('regular.sassy'),
-                       :selector => 'img.sassy_',
-                       :style    => :sass)
+                                     :selector => 'img.sassy_',
+                                     :style    => :sass)
     end
 
     def test_generate_regular_with_nocomments
       integration_test(REGULAR_PATH, :output     => output_path('regular.nocomments'),
-                       :selector   => 'img.nocomments_',
-                       :nocomments => true)
+                                     :selector   => 'img.nocomments_',
+                                     :nocomments => true)
     end
 
     def test_generate_regular_sprite_with_exclude_array
       integration_test(REGULAR_PATH, :output   => output_path('regular.filtered'),
-                       :selector => 'img.filtered_',
-                       :exclude  => ['regular1.PNG', 'regular5.PNG'])
+                                     :selector => 'img.filtered_',
+                                     :exclude  => ['regular1.PNG', 'regular5.PNG'])
     end
 
     #----------------------------------------------------------------------------
@@ -74,53 +74,53 @@ module SpriteFactory
 
     def test_generate_horizontal_irregular_sprite
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.horizontal'),
-                       :selector => 'img.horizontal_',
-                       :layout   => :horizontal)
+                                       :selector => 'img.horizontal_',
+                                       :layout   => :horizontal)
     end
 
     def test_generate_vertical_irregular_sprite
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.vertical'),
-                       :selector => 'img.vertical_',
-                       :layout   => :vertical)
+                                       :selector => 'img.vertical_',
+                                       :layout   => :vertical)
     end
 
     def test_generate_packed_irregular_sprite
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.packed'),
-                       :selector => 'img.packed_',
-                       :layout   => :packed,
-                       :padding  => 10,
-                       :margin   => 10)
+                                       :selector => 'img.packed_',
+                                       :layout   => :packed,
+                                       :padding  => 10,
+                                       :margin   => 10)
     end
 
     def test_generate_irregular_sprite_with_padding
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.padded'),
-                       :selector => 'img.padded_',
-                       :padding  => 10)
+                                       :selector => 'img.padded_',
+                                       :padding  => 10)
     end
 
     def test_generate_irregular_sprite_with_margin
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.margin'),
-                       :selector => 'img.margin_',
-                       :margin  => 10)
+                                       :selector => 'img.margin_',
+                                       :margin  => 10)
     end
 
     def test_generate_irregular_sprite_with_fixed_size
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.fixed'),
-                       :selector => 'img.fixed_',
-                       :width    => 100,
-                       :height   => 100)
+                                       :selector => 'img.fixed_',
+                                       :width    => 100,
+                                       :height   => 100)
     end
 
     def test_generate_irregular_sprite_with_sassy_style
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.sassy'),
-                       :selector => 'img.sassy_',
-                       :style    => :sass)
+                                       :selector => 'img.sassy_',
+                                       :style    => :sass)
     end
 
     def test_generate_irregular_sprite_with_exclude_array
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.filtered'),
-                        :selector => 'img.filtered_',
-                        :exclude  => ['irregular1.png', 'irregular5.png'])
+                                       :selector => 'img.filtered_',
+                                       :exclude  => ['irregular1.png', 'irregular5.png'])
     end
 
     #----------------------------------------------------------------------------
