@@ -27,7 +27,7 @@ module SpriteFactory
       @config[:separator]  ||= SpriteFactory.separator || '_'
       @config[:glob]       ||= SpriteFactory.glob      || '*'
       @config[:sanitizer]  ||= SpriteFactory.sanitizer
-      @config[:exclude]    ||= SpriteFactory.exclude || []
+      @config[:exclude]    ||= SpriteFactory.exclude   || []
     end
 
     #----------------------------------------------------------------------------
