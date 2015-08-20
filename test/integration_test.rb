@@ -137,7 +137,7 @@ module SpriteFactory
     #----------------------------------------------------------------------------
 
     def test_generate_sprite_from_other_formats
-      #integration_test(FORMATS_PATH, :library => :rmagick)
+      integration_test(FORMATS_PATH, :library => :rmagick)
     end
 
     #----------------------------------------------------------------------------
