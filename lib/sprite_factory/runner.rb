@@ -183,12 +183,7 @@ module SpriteFactory
     end
 
     def file_contains_exclusion_name?(file)
-      result = false
-      exclusion_array.each do |name| 
-        break if result
-        result = file.include?(name)
-      end
-      result
+      exclusion_array.any? { |exclude| file.include?(exclude) }
     end
 
     #----------------------------------------------------------------------------
