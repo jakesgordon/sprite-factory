@@ -12,7 +12,7 @@ module SpriteFactory
 
     attr :input
     attr :config
-  
+
     def initialize(input, config = {})
       @input  = input.to_s[-1] == "/" ? input[0...-1] : input # gracefully ignore trailing slash on input directory name
       @config = config
@@ -24,10 +24,12 @@ module SpriteFactory
       @config[:report]     ||= SpriteFactory.report
       @config[:pngcrush]   ||= SpriteFactory.pngcrush
       @config[:nocomments] ||= SpriteFactory.nocomments
-      @config[:directory_separator] ||= SpriteFactory.directory_separator || '_'
+      @config[:separator]  ||= SpriteFactory.separator || '_'
+      @config[:glob]       ||= SpriteFactory.glob      || '*'
+      @config[:sanitizer]  ||= SpriteFactory.sanitizer
       @config[:exclude]    ||= SpriteFactory.exclude || []
     end
-  
+
     #----------------------------------------------------------------------------
 
     def run!(&block)
@@ -78,7 +80,7 @@ module SpriteFactory
     end
 
     #----------------------------------------------------------------------------
-  
+
     private
 
     def selector
@@ -141,8 +143,12 @@ module SpriteFactory
       config[:nocomments] # set true if you dont want any comments in the output style file
     end
 
-    def directory_separator
-      config[:directory_separator]
+    def separator
+      config[:separator]
+    end
+
+    def sanitizer
+      config[:sanitizer]
     end
 
     def exclusion_array
@@ -178,7 +184,7 @@ module SpriteFactory
     def all_image_files
       return [] if input.nil?
       valid_extensions = library::VALID_EXTENSIONS
-      expansions = Array(valid_extensions).map{ |ext| File.join(input, "**", "*.#{ext}") }
+      expansions = Array(valid_extensions).map{|ext| File.join(input, "**", "#{config[:glob]}.#{ext}")}
       SpriteFactory.find_files(*expansions)
     end
 
@@ -197,20 +203,29 @@ module SpriteFactory
 
       images = library.load(image_files)
       images.each do |i|
-        i[:name], i[:ext] = map_image_filename(i[:filename], input_path)
+        i[:name], i[:ext] = extract_image_filename(i[:filename], input_path)
         raise RuntimeError, "image #{i[:name]} does not fit within a fixed width of #{width}" if width && (width < i[:width])
         raise RuntimeError, "image #{i[:name]} does not fit within a fixed height of #{height}" if height && (height < i[:height])
       end
       images.sort_by {|i| [image_name_without_pseudo_class(i), image_pseudo_class_priority(i)] }
     end
 
-    def map_image_filename(filename, input_path)
-      name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, directory_separator)
-      name = name.gsub('--', ':')
-      name = name.gsub('__', ' ')
+    def extract_image_filename(filename, input_path)
+      name = Pathname.new(filename).relative_path_from(input_path).to_s.gsub(File::SEPARATOR, separator)
       ext  = File.extname(name)
       name = name[0...-ext.length] unless ext.empty?
+      name = sanitize_image_filename(name)
       [name, ext]
+    end
+
+    def sanitize_image_filename(name)
+      if sanitizer.is_a?(Proc)
+        sanitizer.call(name)                   # custom sanitizer
+      elsif sanitizer
+        name.gsub(/[^\w-]/, '')                # (opt-in) clean all non-word characters
+      else
+        name.gsub('--', ':').gsub('__', ' ')   # legacy behavior
+      end
     end
 
     def image_name_without_pseudo_class(image)
@@ -265,7 +280,7 @@ module SpriteFactory
       if SUPPORTS_PNGCRUSH && config[:pngcrush]
         crushed = "#{image}.crushed"
         system('pngcrush', '-q', '-rem alla', '-reduce', '-brute', image, crushed)
-        FileUtils.mv(crushed, image) 
+        FileUtils.mv(crushed, image)
       end
     end
 

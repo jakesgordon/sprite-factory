@@ -1,3 +1,12 @@
+August 15th 2015 - v1.7
+-----------------------
+
+ * added `sanitizer` option to give more control over converting non-standard filenames to css selectors (hattip to @MentalPower)
+ * rename `directory_separator` option to simpler `separator`
+ * switch to minitest 
+ * replace deprecated require 'RMagick' with require 'rmagick' (courtesy of @warrenguy)
+ * added `:glob` option to override default globbing behavior (courtsey of @jdlich)
+
 January 17th 2015 - v1.6.2
 --------------------------
 

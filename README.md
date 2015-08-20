@@ -1,4 +1,4 @@
-Sprite Factory (v1.6.2)
+Sprite Factory (v1.7)
 =======================
 
 The sprite factory is a ruby library that can be used to generate
@@ -98,6 +98,7 @@ Much of the behavior can be customized by overriding the following options:
  - `:height`       - fix height of each sprite to a specific size
  - `:nocss`        - suppress generation of output stylesheet (`run!` returns css content as a string instead)
  - `:nocomments`   - suppress generation of comments in output stylesheet
+ - `:sanitizer`    - strip non-word characters from image filenames when generating css selectors
 
 Options can be passed as command line arguments to the `sf` script:
 
@@ -183,7 +184,6 @@ image filename. For example:
     div.example div.foo span.icon_alert { ... first file   ... }
     div.example div.bar span.icon_alert { ... second file  ... }
     
-
 If you want to specify a psuedo class such as `:hover` for some of your images, the library will also
 map '--' (double dash) to a colon ':' in any source image filename. For example:
 
@@ -198,6 +198,40 @@ map '--' (double dash) to a colon ':' in any source image filename. For example:
 
     span.icon_alert       { ... first file  ... }
     span.icon_alert:hover { ... second file ... }
+
+Sanitizing the CSS Selector
+===========================
+
+If your image filenames contain non-word characters that would otherwise invalidate your css selector you
+can sanitize these characters using the `:sanitizer` option. For example:
+
+    images/icons/has & ampersand.png
+    images/icons/odd.period.png
+    images/icons/ends with bang!.png
+
+... when run with:
+
+    SpriteFactory.run!('images/icons', :sanitizer => true)
+
+... will generate:
+
+    span.icon_hasampersand { ... first file  ... }
+    span.icon_oddperiod    { ... second file ... }
+    span.icon_endswithbang { ... third file  ... }
+
+If you want **full control** over the filename-to-selector sanitization process you can provide a custom `:sanitizer`. For example:
+
+    images/icons/foo.png
+    images/icons/bar.png
+
+... when run with:
+
+    SpriteFactory.run!('images/icons', :sanitizer => lamda { |name| name.reverse })  # pointless, but amusing
+
+... will generate
+
+    span.icon_oof { ... first file  ... }
+    span.icon_rab { ... second file ... }
 
 Customizing the CSS Image Url
 =============================

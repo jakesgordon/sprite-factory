@@ -1,8 +1,8 @@
 require File.expand_path('../lib/sprite_factory', File.dirname(__FILE__))
-require 'test/unit'
+require 'minitest/autorun'
 
 module SpriteFactory
-  class TestCase < Test::Unit::TestCase
+  class TestCase < Minitest::Test
 
     #----------------------------------------------------------------------------
 
@@ -16,6 +16,8 @@ module SpriteFactory
     EMPTY_PATH      = 'test/images/empty'
     SUBFOLDERS_PATH = 'test/images/subfolders'
     HOVER_PATH      = 'test/images/hover'
+    GLOB_PATH       = 'test/images/glob'
+    NAMES_PATH      = 'test/images/names'
 
     REGULAR   = SpriteFactory.find_files(File.join(REGULAR_PATH,   '*.png'))
     IRREGULAR = SpriteFactory.find_files(File.join(IRREGULAR_PATH, '*.png'))
@@ -36,7 +38,7 @@ module SpriteFactory
       { :filename => IRREGULAR[4], :width => 46, :height => 25 }
     ]
 
-    DIRECTORY_SEPARATOR = '_'
+    SEPARATOR = '_'
 
     def output_path(name)
       File.join(IMAGES_PATH, name)
@@ -80,14 +82,14 @@ module SpriteFactory
     #----------------------------------------------------------------------------
 
     def assert_runtime_error(msg = nil)
-      e = assert_raise RuntimeError do
+      e = assert_raises RuntimeError do
         yield
       end
       assert_match(msg, e.message) if msg
     end
 
     def assert_not_implemented(msg = nil)
-      e = assert_raise NotImplementedError do
+      e = assert_raises NotImplementedError do
         yield
       end
       assert_match(msg, e.message) if msg
@@ -105,7 +107,7 @@ module SpriteFactory
       actual_image   = Magick::Image.read(actual)[0]
       expected_image = Magick::Image.read(expected)[0]
       img, val       = expected_image.compare_channel(actual_image, Magick::MeanAbsoluteErrorMetric)
-      assert_equal(0.0, val, "generated image does not match pregenerated reference:\n actual:   #{actual}\n expected: #{expected}")
+      assert_in_delta(0.0, val, 1e-7, "generated image does not match pregenerated reference:\n actual:   #{actual}\n expected: #{expected}\n expected: #{expected}")
     end
 
     def assert_reference_style(name)
