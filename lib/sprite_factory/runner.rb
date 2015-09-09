@@ -154,6 +154,10 @@ module SpriteFactory
       config[:exclude]
     end
 
+    def exclude?(file)
+      Array(exclude).any? { |name| file.include?(name) }
+    end
+
     def custom_style_file
       File.join(input, File.basename(input) + ".#{style_name}")
     end
@@ -177,18 +181,12 @@ module SpriteFactory
     #----------------------------------------------------------------------------
 
     def image_files
-      all_image_files.reject{ |file| file_contains_exclusion_name?(file) }
-    end
-
-    def all_image_files
       return [] if input.nil?
       valid_extensions = library::VALID_EXTENSIONS
       expansions = Array(valid_extensions).map{|ext| File.join(input, "**", "#{config[:glob]}.#{ext}")}
-      SpriteFactory.find_files(*expansions)
-    end
-
-    def file_contains_exclusion_name?(file)
-      Array(exclude).any? { |exclude| file.include?(exclude) }
+      files = SpriteFactory.find_files(*expansions)
+      files = files.reject{ |file| exclude?(file) }
+      files
     end
 
     #----------------------------------------------------------------------------
