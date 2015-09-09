@@ -38,7 +38,6 @@ module SpriteFactory
       raise RuntimeError, "unknown library #{library_name}"   if !Library.respond_to?(library_name)
 
       raise RuntimeError, "input must be a single directory"  if input.nil?  || input.to_s.empty? || !File.directory?(input)
-      raise RuntimeError, "exclude must be an array type"     unless exclusion_array.kind_of?(Array)
       raise RuntimeError, "no image files found"              if image_files.empty?
       raise RuntimeError, "no output file specified"          if output.to_s.empty?
       raise RuntimeError, "no output image file specified"    if output_image_file.to_s.empty?
@@ -151,7 +150,7 @@ module SpriteFactory
       config[:sanitizer]
     end
 
-    def exclusion_array
+    def exclude
       config[:exclude]
     end
 
@@ -189,7 +188,7 @@ module SpriteFactory
     end
 
     def file_contains_exclusion_name?(file)
-      exclusion_array.any? { |exclude| file.include?(exclude) }
+      Array(exclude).any? { |exclude| file.include?(exclude) }
     end
 
     #----------------------------------------------------------------------------

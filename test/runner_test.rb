@@ -19,7 +19,7 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
-        assert_equal([],                      r.exclusion_array)
+        assert_equal([],                      r.exclude)
 
         r = Runner.new(IRREGULAR_PATH)
         assert_equal(IRREGULAR_PATH,          r.input)
@@ -31,7 +31,7 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
-        assert_equal([],                      r.exclusion_array)
+        assert_equal([],                      r.exclude)
 
         r = Runner.new(IRREGULAR_PATH, :separator => '.')
         assert_equal(IRREGULAR_PATH,          r.input)
@@ -54,7 +54,7 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
-        assert_equal([],                      r.exclusion_array)
+        assert_equal([],                      r.exclude)
 
         r = Runner.new(REGULAR_PATH, :exclude => ['foo.png']) 
         assert_equal(REGULAR_PATH,            r.input)
@@ -66,7 +66,7 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
-        assert_equal(['foo.png'],             r.exclusion_array)
+        assert_equal(['foo.png'],             r.exclude)
 
         r = Runner.new(REGULAR_PATH, :output_image => "foo.png", :output_style => "bar.css.sass.erb")
         assert_equal(REGULAR_PATH,            r.input)
@@ -78,7 +78,7 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
-        assert_equal([],                      r.exclusion_array)
+        assert_equal([],                      r.exclude)
 
         r = Runner.new(REGULAR_PATH, :layout => :vertical, :library => :chunkypng, :style => :sass)
         assert_equal(REGULAR_PATH,            r.input)
@@ -90,7 +90,7 @@ module SpriteFactory
         assert_equal(:sass,                   r.style_name)
         assert_equal(:chunkypng,              r.library_name)
         assert_equal(SEPARATOR,               r.separator)
-        assert_equal([],                      r.exclusion_array)        
+        assert_equal([],                      r.exclude)        
       end    
     end
 
@@ -187,10 +187,6 @@ module SpriteFactory
 
       assert_runtime_error "unknown library hogwarts" do
         SpriteFactory.run!(REGULAR_PATH, :library => :hogwarts)
-      end
-
-      assert_runtime_error "exclude must be an array type" do
-        SpriteFactory.run!(REGULAR_PATH, :exclude => "")
       end
 
       assert_runtime_error "set :width for fixed width, or :hpadding for horizontal padding, but not both." do
