@@ -30,6 +30,7 @@ module SpriteFactory
     attr_accessor :separator
     attr_accessor :glob
     attr_accessor :sanitizer
+    attr_accessor :exclude
   end
 
   #----------------------------------------------------------------------------
@@ -85,4 +86,3 @@ module SpriteFactory
   #----------------------------------------------------------------------------
 
 end
-

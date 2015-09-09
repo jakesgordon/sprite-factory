@@ -27,6 +27,7 @@ module SpriteFactory
       @config[:separator]  ||= SpriteFactory.separator || '_'
       @config[:glob]       ||= SpriteFactory.glob      || '*'
       @config[:sanitizer]  ||= SpriteFactory.sanitizer
+      @config[:exclude]    ||= SpriteFactory.exclude   || []
     end
 
     #----------------------------------------------------------------------------
@@ -37,6 +38,7 @@ module SpriteFactory
       raise RuntimeError, "unknown library #{library_name}"   if !Library.respond_to?(library_name)
 
       raise RuntimeError, "input must be a single directory"  if input.nil?  || input.to_s.empty? || !File.directory?(input)
+      raise RuntimeError, "exclude must be an array type"     unless exclusion_array.kind_of?(Array)
       raise RuntimeError, "no image files found"              if image_files.empty?
       raise RuntimeError, "no output file specified"          if output.to_s.empty?
       raise RuntimeError, "no output image file specified"    if output_image_file.to_s.empty?
@@ -149,6 +151,10 @@ module SpriteFactory
       config[:sanitizer]
     end
 
+    def exclusion_array
+      config[:exclude]
+    end
+
     def custom_style_file
       File.join(input, File.basename(input) + ".#{style_name}")
     end
@@ -169,11 +175,21 @@ module SpriteFactory
       end
     end
 
+    #----------------------------------------------------------------------------
+
     def image_files
+      all_image_files.reject{ |file| file_contains_exclusion_name?(file) }
+    end
+
+    def all_image_files
       return [] if input.nil?
       valid_extensions = library::VALID_EXTENSIONS
       expansions = Array(valid_extensions).map{|ext| File.join(input, "**", "#{config[:glob]}.#{ext}")}
       SpriteFactory.find_files(*expansions)
+    end
+
+    def file_contains_exclusion_name?(file)
+      exclusion_array.any? { |exclude| file.include?(exclude) }
     end
 
     #----------------------------------------------------------------------------

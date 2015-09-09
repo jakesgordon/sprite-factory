@@ -60,6 +60,12 @@ module SpriteFactory
                                      :nocomments => true)
     end
 
+    def test_generate_regular_sprite_with_exclude_array
+      integration_test(REGULAR_PATH, :output   => output_path('regular.filtered'),
+                                     :selector => 'img.filtered_',
+                                     :exclude  => ['regular1.PNG', 'regular5.PNG'])
+    end
+
     #----------------------------------------------------------------------------
 
     def test_generate_irregular_sprite
@@ -109,6 +115,12 @@ module SpriteFactory
       integration_test(IRREGULAR_PATH, :output   => output_path('irregular.sassy'),
                                        :selector => 'img.sassy_',
                                        :style    => :sass)
+    end
+
+    def test_generate_irregular_sprite_with_exclude_array
+      integration_test(IRREGULAR_PATH, :output   => output_path('irregular.filtered'),
+                                       :selector => 'img.filtered_',
+                                       :exclude  => ['irregular1.png', 'irregular5.png'])
     end
 
     #----------------------------------------------------------------------------

@@ -19,6 +19,7 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
+        assert_equal([],                      r.exclusion_array)
 
         r = Runner.new(IRREGULAR_PATH)
         assert_equal(IRREGULAR_PATH,          r.input)
@@ -30,6 +31,7 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
+        assert_equal([],                      r.exclusion_array)
 
         r = Runner.new(IRREGULAR_PATH, :separator => '.')
         assert_equal(IRREGULAR_PATH,          r.input)
@@ -52,6 +54,19 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
+        assert_equal([],                      r.exclusion_array)
+
+        r = Runner.new(REGULAR_PATH, :exclude => ['foo.png']) 
+        assert_equal(REGULAR_PATH,            r.input)
+        assert_equal(REGULAR_PATH,            r.output)
+        assert_equal(REGULAR_PATH + ".png",   r.output_image_file)
+        assert_equal(REGULAR_PATH + ".css",   r.output_style_file)
+        assert_equal(REGULAR,                 r.image_files)
+        assert_equal(:horizontal,             r.layout_name)
+        assert_equal(:css,                    r.style_name)
+        assert_equal(:rmagick,                r.library_name)
+        assert_equal(SEPARATOR,               r.separator)
+        assert_equal(['foo.png'],             r.exclusion_array)
 
         r = Runner.new(REGULAR_PATH, :output_image => "foo.png", :output_style => "bar.css.sass.erb")
         assert_equal(REGULAR_PATH,            r.input)
@@ -63,6 +78,7 @@ module SpriteFactory
         assert_equal(:css,                    r.style_name)
         assert_equal(:rmagick,                r.library_name)
         assert_equal(SEPARATOR,               r.separator)
+        assert_equal([],                      r.exclusion_array)
 
         r = Runner.new(REGULAR_PATH, :layout => :vertical, :library => :chunkypng, :style => :sass)
         assert_equal(REGULAR_PATH,            r.input)
@@ -74,9 +90,8 @@ module SpriteFactory
         assert_equal(:sass,                   r.style_name)
         assert_equal(:chunkypng,              r.library_name)
         assert_equal(SEPARATOR,               r.separator)
-
-      end
-    
+        assert_equal([],                      r.exclusion_array)        
+      end    
     end
 
     #----------------------------------------------------------------------------
@@ -174,6 +189,10 @@ module SpriteFactory
         SpriteFactory.run!(REGULAR_PATH, :library => :hogwarts)
       end
 
+      assert_runtime_error "exclude must be an array type" do
+        SpriteFactory.run!(REGULAR_PATH, :exclude => "")
+      end
+
       assert_runtime_error "set :width for fixed width, or :hpadding for horizontal padding, but not both." do
         SpriteFactory.run!(REGULAR_PATH, :width => 50, :padding => 10)
       end
@@ -201,6 +220,15 @@ module SpriteFactory
     end
 
     #----------------------------------------------------------------------------
+
+    def test_images_are_filtered_correctly
+      Runner.publicize_methods do
+        expected = REGULAR_INFO.map{ |i| i[:filename] }
+        excluded = expected.pop(2)
+        actual = Runner.new(REGULAR_PATH, :exclude => excluded).image_files
+        assert_equal(expected, actual)
+      end
+    end
 
     def test_images_are_sorted_in_classname_order
       Runner.publicize_methods do
