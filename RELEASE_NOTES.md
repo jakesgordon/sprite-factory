@@ -1,3 +1,8 @@
+September 9th 2015 - v1.7.1
+---------------------------
+
+ * added `exclude` option to ignore select images in source directory (courtesy of @AlexanderRD)
+
 August 15th 2015 - v1.7
 -----------------------
 
