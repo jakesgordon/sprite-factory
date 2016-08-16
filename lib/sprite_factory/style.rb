@@ -51,7 +51,9 @@ module SpriteFactory
         attr = [
           "width: #{image[:cssw]}px",
           "height: #{image[:cssh]}px",
-          "background: #{url} #{-image[:cssx]}px #{-image[:cssy]}px no-repeat"
+          "background-image: #{url}",
+          "background-position: #{-image[:cssx]}px #{-image[:cssy]}px",
+          "background-repeat: no-repeat"
         ]
         image[:selector] = selector                          # make selector available for (optional) custom rule generators
         image[:style]    = send("#{style_name}_style", attr) # make pure style available for (optional) custom rule generators (see usage of yield inside Runner#style)
