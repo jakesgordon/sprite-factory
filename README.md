@@ -11,7 +11,7 @@ The library provides:
  * both a ruby API and a command line script
  * many customizable options
  * support for multiple layout algorithms - horizontal, vertical or [packed](http://codeincomplete.com/posts/2011/5/7/bin_packing/)
- * support for any stylesheet syntax, including [CSS](http://www.w3.org/Style/CSS/) and [Sass](http://sass-lang.com/).
+ * support for any stylesheet syntax, including [CSS](http://www.w3.org/Style/CSS/), [LESS](http://lesscss.org) and [Sass](http://sass-lang.com/).
  * support for any image library, including [RMagick](http://rmagick.rubyforge.org/) and [ChunkyPNG](https://github.com/wvanbergen/chunky_png).
  * support for any css selector style, including :hover pseudo-class selectors
  * support for pngcrush'n the generated image file
@@ -102,11 +102,11 @@ Much of the behavior can be customized by overriding the following options:
 
 Options can be passed as command line arguments to the `sf` script:
 
-    $ sf images/icons --style sass --layout packed
+    $ sf images/icons --style less --layout packed
 
 Options can also be passed as the 2nd argument to the `#run!` method:
 
-    SpriteFactory.run!('images/icons', :style => :sass, :layout => :packed)
+    SpriteFactory.run!('images/icons', :style => :less, :layout => :packed)
 
 You can see the results of many of these options by viewing the sample page that
 comes with the gem in `test/images/reference/index.html`.
