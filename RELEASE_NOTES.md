@@ -1,3 +1,8 @@
+June 14th 2021 - v1.7.3
+---------------------------
+
+* removed deprecated method `has_rdoc` from gemspec. This method has no replacement and will be removed in Rubygems 4.
+
 February 26th 2021 - v1.7.2
 ---------------------------
 
