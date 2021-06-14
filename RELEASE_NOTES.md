@@ -1,3 +1,8 @@
+February 26th 2021 - v1.7.2
+---------------------------
+
+* replaced deprecated method `opacity`, so that this gem can be used with rmagick >= 4.0.0.
+
 September 9th 2015 - v1.7.1
 ---------------------------
 
