@@ -59,7 +59,7 @@ module SpriteFactory
       css = []
       css << style_comment(header) unless nocomments?                       # header comment
       css << style(selector, css_url, images, &block)                       # generated styles
-      css << IO.read(custom_style_file) if File.exists?(custom_style_file)  # custom styles
+      css << IO.read(custom_style_file) if File.exist?(custom_style_file)  # custom styles
       css = css.join("\n")
 
       create_sprite(images, max[:width], max[:height])
