@@ -179,13 +179,13 @@ module SpriteFactory
       output = File.basename(REGULAR_PATH)
       with_clean_output do
 
-        assert_equal(false, File.exists?(output_path(output + ".png")), "preconditions")
-        assert_equal(false, File.exists?(output_path(output + ".css")), "preconditions")
+        assert_equal(false, File.exist?(output_path(output + ".png")), "preconditions")
+        assert_equal(false, File.exist?(output_path(output + ".css")), "preconditions")
 
         css = SpriteFactory.run!(REGULAR_PATH, {:nocss => true})
 
-        assert_equal(true,  File.exists?(output_path(output + ".png")), "output sprite IMAGE should exist")
-        assert_equal(false, File.exists?(output_path(output + ".css")), "output sprite CSS should NOT exist")
+        assert_equal(true,  File.exist?(output_path(output + ".png")), "output sprite IMAGE should exist")
+        assert_equal(false, File.exist?(output_path(output + ".css")), "output sprite CSS should NOT exist")
         assert_equal(IO.read(reference_path(output+".css")), css, "expected return value from #run! to provide generated CSS content")
 
         assert_reference_image(output + ".png")
