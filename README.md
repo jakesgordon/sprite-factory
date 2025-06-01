@@ -10,7 +10,7 @@ The library provides:
 
  * both a ruby API and a command line script
  * many customizable options
- * support for multiple layout algorithms - horizontal, vertical or [packed](http://codeincomplete.com/posts/2011/5/7/bin_packing/)
+ * support for multiple layout algorithms - horizontal, vertical or [packed](https://jakesgordon.com/writing/bin-packing/)
  * support for any stylesheet syntax, including [CSS](http://www.w3.org/Style/CSS/) and [Sass](http://sass-lang.com/).
  * support for any image library, including [RMagick](http://rmagick.rubyforge.org/) and [ChunkyPNG](https://github.com/wvanbergen/chunky_png).
  * support for any css selector style, including :hover pseudo-class selectors
@@ -130,8 +130,8 @@ square-ish layout.
 
 For more details on the bin-packing algorithm used:
 
- * You can find a [description here](http://codeincomplete.com/posts/2011/5/7/bin_packing/)
- * You can find a [demo here](http://codeincomplete.com/posts/2011/5/7/bin_packing/example/)
+ * You can find a [description here](https://jakesgordon.com/writing/bin-packing/)
+ * You can find a [demo here](https://jakesgordon.com/writing/bin-packing/demo/)
 
 Customizing the CSS Selector
 ============================
@@ -350,7 +350,7 @@ Generates
 
 You can find out more here:
 
- * [Sprite Factory and the Rails Asset Pipeline](http://codeincomplete.com/posts/2011/8/6/sprite_factory_1_4_1/)
+ * [Sprite Factory and the Rails Asset Pipeline](https://jakesgordon.com/writing/sprite-factory-1-4-1/)
 
 Extending the Library
 =====================
@@ -378,8 +378,8 @@ Contact
 =======
 
 If you have any ideas, feedback, requests or bug reports, you can reach me at
-[jake@codeincomplete.com](mailto:jake@codeincomplete.com), or via
-my website: [Code inComplete](http://codeincomplete.com).
+[jakesgordon.com](mailto:jakesgordon.com), or via
+my website: [jakesgordon.com](https://jakesgordon.com).
 
 
 

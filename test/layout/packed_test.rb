@@ -133,7 +133,7 @@ module SpriteFactory
 
     #==========================================================================
     # some test cases from original bin packing demonstration
-    #   (see http://codeincomplete.com/posts/2011/5/7/bin_packing/example/)
+    #   (see https://jakesgordon.com/writing/bin-packing/demo/)
     #==========================================================================
 
     def test_packed_simple
