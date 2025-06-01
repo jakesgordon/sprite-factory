@@ -378,7 +378,7 @@ Contact
 =======
 
 If you have any ideas, feedback, requests or bug reports, you can reach me at
-[jakesgordon.com](mailto:jakesgordon.com), or via
+[jakesgordon@gmail.com.com](mailto:jakesgordon@gmail.com), or via
 my website: [jakesgordon.com](https://jakesgordon.com).
 
 
