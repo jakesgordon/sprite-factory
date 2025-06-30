@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rmagick'
   s.add_development_dependency 'chunky_png'
 
-  s.has_rdoc         = false
   s.extra_rdoc_files = ["README.md"]
   s.rdoc_options     = ["--charset=UTF-8"]
   s.files            = `git ls-files `.split("\n")

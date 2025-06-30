@@ -1,3 +1,13 @@
+June 14th 2021 - v1.7.3
+---------------------------
+
+* removed deprecated method `has_rdoc` from gemspec. This method has no replacement and will be removed in Rubygems 4.
+
+February 26th 2021 - v1.7.2
+---------------------------
+
+* replaced deprecated method `opacity`, so that this gem can be used with rmagick >= 4.0.0.
+
 September 9th 2015 - v1.7.1
 ---------------------------
 
